@@ -1,7 +1,9 @@
-package test;
+package Database;
 
 import java.sql.*;
 import java.util.*;
+import Tables.* ;
+
 public class DatabaseManager {
 	
     private Connection connexion;

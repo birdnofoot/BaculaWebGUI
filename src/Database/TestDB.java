@@ -1,7 +1,8 @@
-package test;
+package Database;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
+import Tables.* ;
 
 public class TestDB {
 
