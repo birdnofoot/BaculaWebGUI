@@ -4,31 +4,34 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/createfilesetservlet.do")
-public class CreateFilesetServlet extends HttpServlet {
-	
+/**
+ * Servlet implementation class CreateJobServlet
+ */
+@WebServlet("/CreateJobServlet")
+public class CreateJobServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateFilesetServlet() {
+    public CreateJobServlet() {
         super();
     }
-
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		PrintWriter writer = response.getWriter() ;
-		String fileset_name = request.getParameter("fileset_name");
+		String job_name = request.getParameter("job_name");
 		String backup_folder_path = request.getParameter("backup_folder_path");
 		String exclude_folder_path = request.getParameter("exclude_folder_path");
 		String signature = request.getParameter("signature");
@@ -40,7 +43,7 @@ public class CreateFilesetServlet extends HttpServlet {
 		bw.newLine();
 		bw.write("FileSet {");
 		bw.newLine();
-		bw.write("  Name = \""+fileset_name+"\"");
+		bw.write("  Name = \""+job_name+"\"");
 		bw.newLine();
 		bw.write("  Include {");
 		bw.newLine();
@@ -65,14 +68,14 @@ public class CreateFilesetServlet extends HttpServlet {
 		bw.write("}");
 		bw.newLine();
 		bw.close();
-		writer.println("The fileset \""+fileset_name+"\" has been created with succes. ");
+		writer.println("The fileset \""+job_name+"\" has been created with succes. ");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

@@ -1,4 +1,4 @@
-package Tables;
+package table;
 
 public class Storage {
 

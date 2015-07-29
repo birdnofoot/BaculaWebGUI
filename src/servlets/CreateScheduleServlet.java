@@ -1,51 +1,33 @@
-package Database;
+package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.LinkedList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Tables.FileSet;
-
 /**
- * Servlet implementation class TestDatabase
+ * Servlet implementation class CreateScheduleServlet
  */
-@WebServlet("/TestDatabase")
-public class TestDatabase extends HttpServlet {
+@WebServlet("/CreateScheduleServlet")
+public class CreateScheduleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TestDatabase() {
+    public CreateScheduleServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter writer = response.getWriter();
-		DatabaseManager m = new DatabaseManager();
-		try {
-			m.connectoDatabase();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		LinkedList<FileSet> fs = new LinkedList<FileSet>();
-		fs = m.getFileSet();
-		int i = 0 ;
-		System.out.println("size = " + fs.size());
-		for(i=0;i<fs.size();i++){
-			writer.println(fs.get(i).getFileSetName());
-		}
-		m.closeConnection();
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
