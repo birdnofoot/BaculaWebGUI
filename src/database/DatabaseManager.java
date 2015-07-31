@@ -16,7 +16,7 @@ public class DatabaseManager {
 		
 	}
 
-	protected void connectoDatabase() throws SQLException{
+	public void connectoDatabase() throws SQLException{
     	try {
     		Class.forName("com.mysql.jdbc.Driver").newInstance();
     		connexion = DriverManager.getConnection(url, user, pw);

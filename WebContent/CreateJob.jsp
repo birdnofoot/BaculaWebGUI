@@ -106,21 +106,21 @@
 			<h1>Create a Job</h1>
 		</div>
 
-		<form id="form_create_fileset" class="form-horizontal"
-				action="createfilesetservlet.do" method="post" novalidate>
+		<form class="form-horizontal"
+				action="createjobservlet.do" method="post" novalidate>
 
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="pool_name">Job name :</label>
-		<input type="text" class="form-control" name="client_name" placeholder="job name"
+		<label for="job_name">Job name :</label>
+		<input type="text" class="form-control" name="job_name" placeholder="job name"
 			required />
 		</div>
 		</div>
 
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="pool_type">Job type :</label>
-		<select class="form-control" name="jobType" required>
+		<label for="job_type">Job type :</label>
+		<select class="form-control" name="job_type" required>
 			<option>Backup</option>
 			<option>Restore</option>
 		</select>
@@ -129,7 +129,7 @@
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="pool_type">Client :</label>
+		<label for="client">Client :</label>
 		<select class="form-control" name="client" required>
 			<option>Nagios</option>
 		</select>
@@ -138,7 +138,7 @@
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="pool_type">Storage :</label>
+		<label for="storage">Storage :</label>
 		<select class="form-control" name="storage" required>
 			<option>Default</option>
 		</select>
@@ -147,7 +147,7 @@
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="pool_type">Pool :</label>
+		<label for="pool">Pool :</label>
 		<select class="form-control" name="pool" required>
 			<option>File</option>
 		</select>
@@ -157,8 +157,8 @@
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="pool_type">Message type :</label>
-		<select class="form-control" name="messageType" required>
+		<label for="message_type">Message type :</label>
+		<select class="form-control" name="message_type" required>
 			<option>Standard</option>
 		</select>
 		</div>
@@ -166,14 +166,14 @@
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="pool_name">Location (optional) :</label>
-		<input type="text" class="form-control" name="client_name" placeholder="Location"/>
+		<label for="location">Location (optional) :</label>
+		<input type="text" class="form-control" name="location" placeholder="location"/>
 		</div>
 		</div>
 
 		<br/>
 		<br/>
-		<input class = "btn btn-primary" type="submit" id="submit" name="submit_fileset" value="Create" />
+		<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
 
 		</form>
 		</div>

@@ -14,17 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 public class CreateFilesetServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public CreateFilesetServlet() {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		PrintWriter writer = response.getWriter() ;
@@ -68,11 +62,7 @@ public class CreateFilesetServlet extends HttpServlet {
 		writer.println("The fileset \""+fileset_name+"\" has been created with succes. ");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 }

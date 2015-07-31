@@ -111,7 +111,7 @@
 
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="pool_name">FileSet name :</label>
+		<label for="fileset_name">FileSet name :</label>
 		<input type="text" class="form-control" name="fileset_name" placeholder="fileset name"
 			required />
 		</div>
@@ -119,7 +119,7 @@
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="pool_name">Backup folder path :</label>
+		<label for="backup_folder_path">Backup folder path :</label>
 		<input type="text" class="form-control" name="backup_folder_path" placeholder="Backup folder path"
 			required />
 		</div>
@@ -127,7 +127,7 @@
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="pool_name">Exclude folder path :</label>
+		<label for="exclude_folder_path">Exclude folder path :</label>
 		<input type="text" class="form-control" name="exclude_folder_path" placeholder="Exclude folder path"
 			required />
 		</div>
@@ -135,7 +135,7 @@
 
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="pool_type">Choose signature :</label>
+		<label for="signature">Choose signature :</label>
 		<select class="form-control" name="signature" required>
 			<option>MD5</option>
 			<option>SHA1</option>
@@ -145,7 +145,7 @@
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="pool_type">Choose compression type :</label>
+		<label for="compression">Choose compression type :</label>
 		<select class="form-control" name="compression" required>
 			<option>no compression</option>
 			<option>GZIP</option>
@@ -162,7 +162,7 @@
 		</div>
 		<br/>
 		<br/>
-		<input class = "btn btn-primary" type="submit" id="submit" name="submit_fileset" value="Create" />
+		<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
 
 			</form>
 		</div>
