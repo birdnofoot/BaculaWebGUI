@@ -2,13 +2,14 @@
 <html lang="en">
 
 <head>
-<title>Add Client - Bacula Web GUI</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="description" content="" />
-<meta name="keywords" content="" />
+<title>Add a Client - Bacula Web GUI</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/jquery-2.1.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<script src="js/jquery-2.1.1.min.js"></script>
 </head>
 
 <body>
@@ -100,44 +101,77 @@
 		<!-- /.container-fluid -->
 	</nav>
 	
-	<div class="container-fluid">
+	<div class="container">
+	
 		<div class="page-header">
 			<h1>Add a Client</h1>
 		</div>
 
-		<div class="form_add_client">
-			<form id="form_add_client" class="form" action="addclientservlet.do"
-				method="post" novalidate>
-				<br />
-				<p>Client name :</p>
-				<input type="text" name="client_name" placeholder="client name"
-					required /><br />
-				<br />
-				<p>Client IP Address :</p>
-				<input type="text" name="address" placeholder="IP address" required /><br />
-				<br />
-				<p>File Daemon Port (9102 By default) :</p>
-				<input type="text" name="fdPort" placeholder="File deamon port" /><br />
-				<br />
-				<p>Catalog :</p>
-				<select name="catalog" required>
+			<form class="form-horizontal"
+				action="createscheduleservlet.do" method="post" novalidate>
+				
+				<div class = "form-group">
+				<div class="col-xs-3">
+				<label for="client_name">Client name :</label>
+				<input type="text" class="form-control" name="client_name" placeholder="client name"
+					required />
+				</div>
+				</div>
+				
+				<div class = "form-group">
+				<div class="col-xs-3">
+				<label for="client_ip_address">Client IP Address :</label>
+				<input type="text" class="form-control" name="client_ip_address" placeholder="client IP address"
+					required />
+				</div>
+				</div>
+				
+				<div class = "form-group">
+				<div class="col-xs-3">
+				<label for="fd_port">File Daemon Port (9102 By default) :</label>
+				<input type="text" class="form-control" name="fd_port" placeholder="FD Port"
+					required />
+				</div>
+				</div>
+				
+				<div class = "form-group">
+				<div class="col-xs-3">
+				<label for="catalog">Catalog :</label>
+				<select class="form-control" name="catalog" required>
 					<option>MyCatalog</option>
-				</select><br />
-				<br />
-				<p>Password :</p>
-				<input type="password" name="password" placeholder="Password" /><br />
-				<br />
-				<p>File Retention (ex. 30 days) :</p>
-				<input type="text" name="fileRetention" placeholder="File retention" /><br />
-				<br />
-				<p>Job Retention (ex. 6 months) :</p>
-				<input type="text" name="jobRetention" placeholder="Job retention" /><br />
-				<br /> <br /> <input type="checkbox" name="autoPrune"
-					value="autoPrune" /><label for="autoPrune">Enable AutoPrune</label><br />
-				<br /> <br /> <br /> <input type="submit" id="submit"
-					name="submit_client" value="Add" /> <br /> <br />
+				</select>
+				</div>
+				</div>
+				
+				<div class = "form-group">
+				<div class="col-xs-3">
+				<label for="password">Password :</label>
+				<input type="text" class="form-control" name="password" placeholder="password"
+					required />
+				</div>
+				</div>
+				
+				<div class = "form-group">
+				<div class="col-xs-3">
+				<label for="file_retention">File Retention (ex. 30 days) :</label>
+				<input type="text" class="form-control" name="file_retention" placeholder="file retention"
+					required />
+				</div>
+				</div>
+				
+				<div class = "form-group">
+				<div class="col-xs-3">
+				<label for="autoprune">Autoprune :</label>
+				<select  class="form-control" name="autoprune" required>
+					<option>no</option>
+					<option>yes</option>
+				</select>
+				</div>
+				</div>
+
+				<br/>
+				<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
 			</form>
-		</div>
 	</div>
 </body>
 </html>
