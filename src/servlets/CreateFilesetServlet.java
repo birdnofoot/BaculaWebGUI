@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/createfilesetservlet.do")
+@WebServlet("/createfilesetservlet")
 public class CreateFilesetServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -27,7 +27,7 @@ public class CreateFilesetServlet extends HttpServlet {
 		String exclude_folder_path = request.getParameter("exclude_folder_path");
 		String signature = request.getParameter("signature");
 		String compression = request.getParameter("compression");
-		String fileset_conf_path = "/etc/bacula/conf.d/fileSets-Test.conf" ;
+		String fileset_conf_path = "/etc/bacula/conf.d/filesets.conf" ;
 		
 		BufferedWriter bw = new BufferedWriter(new FileWriter(fileset_conf_path, true));
 		
@@ -51,15 +51,19 @@ public class CreateFilesetServlet extends HttpServlet {
 		bw.write("    File = "+backup_folder_path);
 		bw.newLine();
 		bw.write("  }");
+		bw.newLine();
 		if(!exclude_folder_path.isEmpty()){
-			bw.write("    Exclude = "+exclude_folder_path);
+			bw.write("    Exclude { ");
+			bw.newLine();
+			bw.write("      File = "+exclude_folder_path);
+			bw.newLine();
+			bw.write("    }");
 			bw.newLine();
 		}
-		bw.newLine();
 		bw.write("}");
 		bw.newLine();
 		bw.close();
-		writer.println("The fileset \""+fileset_name+"\" has been created with succes. ");
+		response.sendRedirect(request.getContextPath() + "/index.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

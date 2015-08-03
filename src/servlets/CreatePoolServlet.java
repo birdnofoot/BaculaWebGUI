@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import database.DatabaseManager;
 
-@WebServlet("/createpoolservlet.do")
+@WebServlet("/createpoolservlet")
 public class CreatePoolServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -49,7 +50,7 @@ public class CreatePoolServlet extends HttpServlet {
 		String volume_retention = request.getParameter("volume_retention");
 		String maximum_volume_bytes = request.getParameter("maximum_volume_bytes");
 		String maximum_volumes = request.getParameter("maximum_volumes");
-		String pools_conf_path = "/etc/bacula/conf.d/fileSets-Test.conf" ;
+		String pools_conf_path = "/etc/bacula/conf.d/pools.conf" ;
 		
 		BufferedWriter bw = new BufferedWriter(new FileWriter(pools_conf_path, true));
 		
@@ -78,6 +79,7 @@ public class CreatePoolServlet extends HttpServlet {
 		else{
 			writer.println("The pool name \""+pool_name+"\" is in use, please choose another name.");
 		}
+		response.sendRedirect(request.getContextPath() + "/index.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

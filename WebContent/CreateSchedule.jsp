@@ -110,7 +110,7 @@
 		</div>
 
 			<form class="form-horizontal"
-				action="createscheduleservlet.do" method="post" novalidate>
+				action="createscheduleservlet" method="post" novalidate>
 				
 				<div class = "form-group">
 				<div class="col-xs-3">

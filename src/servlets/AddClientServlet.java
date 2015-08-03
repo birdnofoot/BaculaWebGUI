@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AddClientServlet
  */
-@WebServlet("/addclientservlet.do")
+@WebServlet("/addclientservlet")
 public class AddClientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -32,14 +32,13 @@ public class AddClientServlet extends HttpServlet {
 		
 		PrintWriter writer = response.getWriter() ;
 		String client_name = request.getParameter("client_name");
-		String address = request.getParameter("address");
-		String fdPort = request.getParameter("fdPort");
+		String client_ip_address = request.getParameter("client_ip_address");
+		String fd_port = request.getParameter("fd_port");
 		String catalog = request.getParameter("catalog");
 		String password = request.getParameter("password");
-		String fileRetention = request.getParameter("fileRetention");
-		String jobRetention = request.getParameter("jobRetention");
-		String autoPrune = request.getParameter("autoPrune");
-		String fileset_conf_path = "/etc/bacula/conf.d/clients2.conf" ;
+		String file_retention = request.getParameter("file_retention");
+		String autoprune = request.getParameter("autoprune");
+		String fileset_conf_path = "/etc/bacula/conf.d/clients.conf" ;
 		
 		BufferedWriter bw = new BufferedWriter(new FileWriter(fileset_conf_path, true));
 		
@@ -48,29 +47,22 @@ public class AddClientServlet extends HttpServlet {
 		bw.newLine();
 		bw.write("  Name = "+client_name);
 		bw.newLine();
-		bw.write("  Address = "+address);
+		bw.write("  Address = "+client_ip_address);
 		bw.newLine();
-		bw.write("  FDPort = "+fdPort);
+		bw.write("  FDPort = "+fd_port);
 		bw.newLine();
 		bw.write("  Catalog = "+catalog);
 		bw.newLine();
 		bw.write("  Password = "+password);
 		bw.newLine();
-		bw.write("  File Retention = "+fileRetention);
+		bw.write("  File Retention = "+file_retention);
 		bw.newLine();
-		bw.write("  Job Retention = "+jobRetention);
-		bw.newLine();
-		if(autoPrune == null){
-			bw.write("  AutoPrune = no");
-		}
-		else{
-			bw.write("  AutoPrune = yes");
-		}
+		bw.write("  AutoPrune = "+autoprune);
 		bw.newLine();
 		bw.write("}");
 		bw.newLine();
 		bw.close();
-		writer.println("The client \""+client_name+"\" has been created with succes. ");
+		response.sendRedirect(request.getContextPath() + "/index.jsp");
 	}
 
 	/**

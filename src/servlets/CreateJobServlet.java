@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/createjobservlet.do")
+@WebServlet("/createjobservlet")
 public class CreateJobServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,7 +29,7 @@ public class CreateJobServlet extends HttpServlet {
 		String message_type = request.getParameter("message_type");
 		String location = request.getParameter("location");
 
-		String fileset_conf_path = "/etc/bacula/conf.d/fileSets-Test.conf" ;
+		String fileset_conf_path = "/etc/bacula/conf.d/jobs.conf" ;
 		
 		BufferedWriter bw = new BufferedWriter(new FileWriter(fileset_conf_path, true));
 		
@@ -53,7 +53,7 @@ public class CreateJobServlet extends HttpServlet {
 		bw.write("}");
 		bw.newLine();
 		bw.close();
-		writer.println("The Job \""+job_name+"\" has been created with success ");
+		response.sendRedirect(request.getContextPath() + "/index.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

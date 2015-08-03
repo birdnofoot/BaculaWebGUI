@@ -107,7 +107,7 @@
 		</div>
 
 		<form class="form-horizontal"
-				action="createjobservlet.do" method="post" novalidate>
+				action="createjobservlet" method="post" novalidate>
 
 		<div class = "form-group">
 		<div class="col-xs-3">
@@ -170,11 +170,13 @@
 		<input type="text" class="form-control" name="location" placeholder="location"/>
 		</div>
 		</div>
-
-		<br/>
 		<br/>
 		<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
-
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 		</form>
 		</div>
 </body>

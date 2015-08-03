@@ -108,7 +108,7 @@
 		</div>
 
 			<form class="form-horizontal"
-				action="createscheduleservlet.do" method="post" novalidate>
+				action="addclientservlet" method="post" novalidate>
 				
 				<div class = "form-group">
 				<div class="col-xs-3">
@@ -171,6 +171,11 @@
 
 				<br/>
 				<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
 			</form>
 	</div>
 </body>

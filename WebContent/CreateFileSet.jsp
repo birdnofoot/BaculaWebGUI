@@ -107,7 +107,7 @@
 		</div>
 
 		<form id="form_create_fileset" class="form-horizontal"
-				action="createfilesetservlet.do" method="post" novalidate>
+				action="createfilesetservlet" method="post" novalidate>
 
 		<div class = "form-group">
 		<div class="col-xs-3">
@@ -163,7 +163,11 @@
 		<br/>
 		<br/>
 		<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
-
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 			</form>
 		</div>
 </body>

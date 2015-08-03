@@ -1,3 +1,9 @@
+<%@page import="database.*"%>
+<%@page import="java.sql.*"%>
+<%@page import="table.*"%>
+<%@page import="java.io.*"%>
+<%@page import="java.util.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,31 +104,99 @@
 	<div class = "container">
 	
 	<div class="jumbotron">
- 	<h1>Bacula web monitoring</h1>
-	<p> This is a test page </p>
-
+ 	<h1>Bacula dashboard</h1>
 	</div>
-	
-	<div class="panel panel-danger">
-	<div class="panel-heading">Critical jobs</div>
-	<div class="panel-body">
-	<p>This is jobs status</p>
-	<table class="table">
-		<tr>
-		  <td>NetWS09</td>
-		  <td>down</td>
-		</tr>
-		<tr>
-		  <td>NetWS10</td>
-		  <td>down</td>
-		</tr>
+
+		<div class="panel panel-info">
+		<div class="panel-heading">
+		<h3 class="panel-title">Job</h3>
+		</div>
+		<div class="panel-body" style="max-height: 400px ; overflow: auto ;">
+		<table class="table" >
+
+		<%
+		/*
+		String[] env = {"PATH=/bin:/usr/bin/"};
+		String cmd = "ls";  //e.g test.sh -dparam1 -oout.txt
+		Process process = Runtime.getRuntime().exec(cmd, env);
+		out.println(Runtime.getRuntime().exec(cmd, env).toString());
+		
+		   
+	        Runtime runtime = Runtime.getRuntime();
+	        Process process = runtime.exec("/usr/bin/bconsole");
+	        InputStream is = process.getInputStream();
+	        InputStreamReader isr = new InputStreamReader(is);
+	        BufferedReader br = new BufferedReader(isr);
+	        String line;
+	   
+	        while ((line = br.readLine()) != null) {
+	          out.println("<p>"+line+"</p>");
+	        }
+	    */
+		DatabaseManager m = new DatabaseManager();
+		m.connectoDatabase();
+		String jobQuery = "SELECT * FROM Job; " ;
+		ResultSet job_rs = m.query(jobQuery);
+		
+		out.println("<thead>");
+		out.println("<th> ID </th>");
+		out.println("<th> Name </th>");
+		out.println("<th> Client </th>");
+		out.println("<th> Start Time </th>");
+		out.println("<th> End Time </th>");
+		out.println("</thead>");
+		
+		while(job_rs.next()){
+			out.println("<tr>");
+			out.println("<th scope=\"row\">"+job_rs.getString("JobId"));
+			out.println("</td>");
+			out.println("<td>"+job_rs.getString("Name"));
+			out.println("</td>");
+			out.println("<td>"+job_rs.getString("ClientId"));
+			out.println("</td>");
+			out.println("<td>"+job_rs.getString("StartTime"));
+			out.println("</td>");
+			out.println("<td>"+job_rs.getString("EndTime"));
+			out.println("</td>");
+			out.println("</tr>");
+		}
+	%>
+
     </table>
 	</div>
-	 
-	 
-	 
-</div>
-	
+	</div>
+	<div class="panel panel-info">
+	<div class="panel-heading">
+	<h3 class="panel-title">Client</h3>
+	</div>
+	<div class="panel-body" style="max-height: 400px ; overflow: auto ;">
+	<table class="table">
+			<%
+		String clientQuery = "SELECT * FROM Client; " ;
+		ResultSet client_rs = m.query(clientQuery);
+		
+		out.println("<thead>");
+		out.println("<th> ID </th>");
+		out.println("<th> Name </th>");
+		out.println("<th> OS </th>");
+		out.println("</thead>");
+		
+		while(client_rs.next()){
+			out.println("<tr>");
+			out.println("<th scope=\"row\">"+client_rs.getString("ClientId"));
+			out.println("</td>");
+			out.println("<td>"+client_rs.getString("Name"));
+			out.println("</td>");
+			out.println("<td>"+client_rs.getString("Uname"));
+			out.println("</td>");
+			out.println("</tr>");
+		}
+		m.closeConnection(); 
+	%>
+
+	</table>
+	</div>
+	</div>
 	</div>
 	
 	
