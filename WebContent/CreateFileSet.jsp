@@ -101,9 +101,9 @@
 	</nav>
 
 	<div class="container">
-	
+		<div class = "row">
 		<div class="page-header">
-			<h1>Create a FileSet</h1>
+		<h1>Create a FileSet</h1>
 		</div>
 
 		<form id="form_create_fileset" class="form-horizontal"
@@ -160,15 +160,17 @@
 		    Ignore FileSet Changes
 		  </label>
 		</div>
+
 		<br/>
 		<br/>
 		<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-			</form>
+		</form>
 		</div>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 </body>
 </html>

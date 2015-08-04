@@ -9,8 +9,15 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<script src="js/jquery-2.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/dataTables.bootstrap.css">
+<link rel="stylesheet" href="css/jquery.dataTables.css">
+
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
 <title>Bacula Web GUI</title>
 </head>
 <body>
@@ -34,49 +41,64 @@
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Pool <span class="caret"></span></a>
+						aria-expanded="false">Pool<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="CreatePool.jsp">Create Pool</a></li>
-							<li><a href="#">Delete Pool</a></li>
-							<li><a href="#">Edit Pool</a></li>
+							<li><a href="ViewPool.jsp">View pool</a></li>
+						  	<li role="separator" class="divider"></li>
+							<li><a href="CreatePool.jsp">Create pool</a></li>
+							<li><a href="#">Edit pool</a></li>
+							<li><a href="#">Delete pool</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">FileSet <span class="caret"></span></a>
+						aria-expanded="false">FileSet<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="CreateFileSet.jsp">Create FileSet</a></li>
-							<li><a href="#">Delete FileSet</a></li>
-							<li><a href="#">Edit FileSet</a></li>
+							<li><a href="ViewFileset.jsp">View filesets</a></li>
+						  	<li role="separator" class="divider"></li>
+							<li><a href="CreateFileSet.jsp">Create fileset</a></li>
+							<li><a href="#">Edit fileset</a></li>
+							<li><a href="#">Delete fileset</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Job <span class="caret"></span></a>
+						aria-expanded="false">Job<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="CreateJob.jsp">Create Job</a></li>
-							<li><a href="#">Delete Job</a></li>
-							<li><a href="#">Edit Job</a></li>
+							<li><a href="ViewJob.jsp">View jobs</a></li>
+							<li><a href="ViewRunningJob.jsp">View running jobs</a></li>
+						  	<li role="separator" class="divider"></li>
+							<li><a href="CreateJob.jsp">Create job</a></li>
+							<li><a href="#">Edit job</a></li>
+							<li><a href="#">Delete job</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Schedule <span class="caret"></span></a>
+						aria-expanded="false">Schedule<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="CreateSchedule.jsp">Create Schedule</a></li>
-							<li><a href="#">Delete Schedule</a></li>
-							<li><a href="#">Edit Schedule</a></li>
+							<li><a href="ViewSchedule.jsp">View schedules</a></li>
+						  	<li role="separator" class="divider"></li>
+							<li><a href="CreateSchedule.jsp">Create schedule</a></li>
+							<li><a href="#">Edit schedule</a></li>
+							<li><a href="#">Delete schedule</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Client <span class="caret"></span></a>
+						aria-expanded="false">Client<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="AddClient.jsp">Add Client</a></li>
-							<li><a href="#">Delete Client</a></li>
-							<li><a href="#">Edit Client</a></li>
-						</ul></li>
-
+							<li><a href="ViewClient.jsp">View clients</a></li>
+						  	<li role="separator" class="divider"></li>
+							<li><a href="AddClient.jsp">Add client</a></li>
+							<li><a href="#">Edit client</a></li>
+							<li><a href="#">Delete client</a></li>
+						</ul>
+					</li>
+					
+					<li><a href="ViewLogs.jsp" role="button" aria-haspopup="true"
+						aria-expanded="false">Logs</a>
+					</li>
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
@@ -87,7 +109,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Login <span class="caret"></span></a>
+						aria-expanded="false">Login<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Action</a></li>
 							<li><a href="#">Another action</a></li>
@@ -102,17 +124,29 @@
 		<!-- /.container-fluid -->
 	</nav>
 	<div class = "container">
-	
-	<div class="jumbotron">
- 	<h1>Bacula dashboard</h1>
+
+ 	<div class="page-header">
+  	<h1>Dashboard </h1>
 	</div>
 
 		<div class="panel panel-info">
 		<div class="panel-heading">
 		<h3 class="panel-title">Job</h3>
 		</div>
-		<div class="panel-body" style="max-height: 400px ; overflow: auto ;">
-		<table class="table" >
+		<div class="panel-body">
+		
+		<script type="text/javascript">
+		$(document).ready(function(){
+    	    $('#job_table').dataTable( {
+    	        "pagingType": "full_numbers"
+    	    } );
+    	    
+    	    
+    		$('#client_table').DataTable();
+		});
+		</script>
+		
+		<table id="job_table" class="table">
 
 		<%
 		/*
@@ -169,8 +203,8 @@
 	<div class="panel-heading">
 	<h3 class="panel-title">Client</h3>
 	</div>
-	<div class="panel-body" style="max-height: 400px ; overflow: auto ;">
-	<table class="table">
+	<div class="panel-body">
+	<table id = "client_table" class="table">
 			<%
 		String clientQuery = "SELECT * FROM Client; " ;
 		ResultSet client_rs = m.query(clientQuery);
@@ -198,7 +232,8 @@
 	</div>
 	</div>
 	</div>
-	
-	
+	<br/>
+	<br/>
+	<br/>
 </body>
 </html>

@@ -1,14 +1,11 @@
 <!doctype html>
 <html lang="en">
-
 <head>
 <title>Create a Pool - Bacula Web GUI</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/jquery-2.1.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="description" content="" />
-<meta name="keywords" content="" />
 <script src="js/jquery-2.1.1.min.js"></script>
 </head>
 
@@ -96,27 +93,24 @@
 						</ul></li>
 				</ul>
 			</div>
-			<!-- /.navbar-collapse -->
 		</div>
-		<!-- /.container-fluid -->
 	</nav>
 	
 	<div class="container">
-	
+		<div class = "row">
+		
 		<div class="page-header">
-			<h1>Create a Pool</h1>
+		<h1>Create a Pool</h1>
 		</div>
-
+		
 			<form class="form-horizontal"
 				action="createpoolservlet" method="post" novalidate>
-				
 				<div class = "form-group">
-				<div class="col-xs-3">
+				<div class="col-md-3">
 				<label for="pool_name">Pool name :</label>
 				<input type="text" class="form-control" name="pool_name" placeholder="pool name"
 					required />
 				</div>
-				<br/>
 				</div>
 				
 				<div class = "form-group">
@@ -172,15 +166,16 @@
 					required />
 				</div>
 				</div>
-				
 				<br/>
 				<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
+				</form>
+				</div>
+				</div>
 				<br/>
 				<br/>
 				<br/>
 				<br/>
 				<br/>
-			</form>
-	</div>
+
 </body>
 </html>

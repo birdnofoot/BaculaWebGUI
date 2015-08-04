@@ -144,12 +144,10 @@
 				</select>
 				</div>
 				</div>
-				
-				
-				
 				<br/>
 				<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
 			</form>
 	</div>
+
 </body>
 </html>
