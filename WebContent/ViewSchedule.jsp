@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<title>View Client - Bacula Web GUI</title>
+<title>View Schedule - Bacula Web GUI</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/dataTables.bootstrap.css">
 <link rel="stylesheet" href="css/jquery.dataTables.css">
@@ -26,7 +26,7 @@
 	<div class = "row">
 	
 	<div class="page-header">
-	<h1>Clients</h1>
+	<h1>Schedule</h1>
 	</div>
 	
 	<script type="text/javascript">
