@@ -1,5 +1,0 @@
-body {
-    margin:0;
-    font-family:'Lucida Sans Unicode', 'Lucida Grande','Trebuchet MS',sans-Serif;
-    background-color: rgba(255, 247, 238) ;
-}
