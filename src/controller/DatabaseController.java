@@ -2,10 +2,10 @@ package controller;
 
 import java.sql.*;
 import java.util.*;
-import model.FileSet;
+import model.*;
 
 public class DatabaseController {
-	
+
     private Connection connexion;
     private Statement statement;
 	private static final String url = "jdbc:mysql://localhost:3306/bacula" ;
@@ -13,7 +13,6 @@ public class DatabaseController {
 	private static final String pw = "root" ;
 	
 	public DatabaseController(){
-		
 	}
 
 	public void connectoDatabase() throws SQLException{
@@ -21,23 +20,23 @@ public class DatabaseController {
     		Class.forName("com.mysql.jdbc.Driver").newInstance();
     		connexion = DriverManager.getConnection(url, user, pw);
     		statement = connexion.createStatement();
-    		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e)
+    		}
+    	catch (InstantiationException | IllegalAccessException | ClassNotFoundException e)
     	{
-    			e.printStackTrace();
+    		e.printStackTrace();
     	}
     }
     
     public void closeConnection(){
         try {
-                if (connexion !=null){
-                        connexion.close();
+             if (connexion !=null){
+            	 connexion.close();
              }
         } catch (Exception e){
                 e.printStackTrace();
         }
     }
 
-    // method to run database query
 	public ResultSet query(String request){
 		ResultSet rs;
 		try{
@@ -46,7 +45,7 @@ public class DatabaseController {
 			return rs;
 			} catch (Exception e){
 				e.printStackTrace();
-				}
+			}
 		return null;
 	}
 	
@@ -63,5 +62,77 @@ public class DatabaseController {
                 e.printStackTrace();
         }
         return null;
+    }
+    
+    public ResultSet getClients(){
+		String query = "SELECT * FROM Client; " ;
+		ResultSet resultSet = this.query(query);
+		return resultSet ;
+    }
+    
+    public ResultSet getJobs(){
+		String query = "SELECT * FROM Job; " ;
+		ResultSet resultSet = this.query(query);
+		return resultSet ;
+    }
+    
+    public ResultSet getLogs(){
+		String query = "SELECT * FROM Log ; " ;
+		ResultSet resultSet = this.query(query);
+		return resultSet ;
+    }
+    
+    public ResultSet getFilesets(){
+		String query = "SELECT * FROM FileSet ; " ;
+		ResultSet resultSet = this.query(query);
+		return resultSet ;
+    }
+    
+    public ResultSet getPools(){
+		String query = "SELECT * FROM Pool ; " ;
+		ResultSet resultSet = this.query(query);
+		return resultSet ;
+    }
+    
+    public ResultSet getSchedules(){
+		String query = "SELECT * FROM Pool ; " ;
+		ResultSet resultSet = this.query(query);
+		return resultSet ;
+    }
+    
+    public int getClientNumber() throws SQLException{
+    	String query = "SELECT COUNT(*) FROM Client ; " ;
+		ResultSet resultSet = this.query(query);
+		resultSet.next();
+		int nb = resultSet.getInt("Count(*)");
+    	return nb;
+    }
+    
+    public ResultSet getStorages() throws SQLException{
+    	String query = "SELECT * FROM Storage ; " ;
+		ResultSet resultSet = this.query(query);
+    	return resultSet;
+    }
+    
+    public int getJobNumber() throws SQLException{
+    	String query = "SELECT COUNT(*) FROM Job ; " ;
+		ResultSet resultSet = this.query(query);
+		resultSet.next();
+		int nb = resultSet.getInt("Count(*)");
+    	return nb;
+    }
+    
+    public ResultSet getRunningJobs() throws SQLException{
+    	String query = "SELECT * FROM Job WHERE JobStatus = \"R\" ; " ;
+		ResultSet resultSet = this.query(query);
+    	return resultSet;
+    }
+    
+    public int getRunningJobNumber() throws SQLException{
+    	String query = "SELECT COUNT(*) FROM Job WHERE JobStatus = \"R\" ; " ;
+		ResultSet resultSet = this.query(query);
+		resultSet.next();
+		int nb = resultSet.getInt("Count(*)");
+    	return nb;
     }
 }
