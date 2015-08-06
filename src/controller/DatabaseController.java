@@ -135,4 +135,12 @@ public class DatabaseController {
 		int nb = resultSet.getInt("Count(*)");
     	return nb;
     }
+    
+    public String getClientNameById (String id) throws SQLException {
+    	String query = "SELECT name FROM Client WHERE ClientId = \""+id+"\" LIMIT 1;" ;
+		ResultSet resultSet = this.query(query);
+		resultSet.next();
+		String name = resultSet.getString("name");
+    	return name ;
+    }
 }

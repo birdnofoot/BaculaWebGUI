@@ -77,7 +77,7 @@
 		out.println("<th> ID </th>");
 		out.println("<th> Name </th>");
 		out.println("<th> Client </th>");
-		out.println("<th> Job Status </th>");
+		out.println("<th> File Size </th>");
 		out.println("<th> Start Time </th>");
 		out.println("<th> End Time </th>");
 		out.println("</thead>");
@@ -88,9 +88,9 @@
 			out.println("</td>");
 			out.println("<td>"+job_rs.getString("Name"));
 			out.println("</td>");
-			out.println("<td>"+job_rs.getString("ClientId"));
+			out.println("<td>"+db_controller.getClientNameById(job_rs.getString("ClientId")));
 			out.println("</td>");
-			out.println("<td>"+job_rs.getString("JobStatus"));
+			out.println("<td>"+AppUtils.formatFileSize(job_rs.getString("JobBytes")));
 			out.println("</td>");
 			out.println("<td>"+AppUtils.formatDate(job_rs.getString("StartTime")));
 			out.println("</td>");
@@ -130,7 +130,7 @@
 			out.println("</td>");
 			out.println("<td>"+failed_job_rs.getString("Name"));
 			out.println("</td>");
-			out.println("<td>"+failed_job_rs.getString("ClientId"));
+			out.println("<td>"+db_controller.getClientNameById(failed_job_rs.getString("ClientId")));
 			out.println("</td>");
 			out.println("<td>"+failed_job_rs.getString("JobStatus"));
 			out.println("</td>");

@@ -46,7 +46,7 @@
 	out.println("<thead>");
 	out.println("<th> ID </th>");
 	out.println("<th> Name </th>");
-	out.println("<th> OS </th>");
+	out.println("<th> Agent version </th>");
 	out.println("</thead>");
 	
 	while(client_rs.next()){
