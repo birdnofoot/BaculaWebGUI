@@ -22,7 +22,7 @@
 					  	<li role="separator" class="divider"></li>
 						<li><a href="CreatePool.jsp">Create pool</a></li>
 						<li><a href="EditPool.jsp">Edit pool</a></li>
-						<li><a href="#">Delete pool</a></li>
+						<li><a href="DeletePool.jsp">Delete pool</a></li>
 					</ul>
 				</li>
 

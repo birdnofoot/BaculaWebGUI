@@ -3,8 +3,6 @@ package controller;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +19,6 @@ public class CreateJobServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		PrintWriter writer = response.getWriter() ;
 		String job_name = request.getParameter("job_name");
 		String job_type = request.getParameter("job_type");
 		String client = request.getParameter("client");

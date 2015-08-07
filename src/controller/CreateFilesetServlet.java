@@ -3,7 +3,6 @@ package controller;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +20,6 @@ public class CreateFilesetServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		PrintWriter writer = response.getWriter() ;
 		String fileset_name = request.getParameter("fileset_name");
 		String backup_folder_path = request.getParameter("backup_folder_path");
 		String exclude_folder_path = request.getParameter("exclude_folder_path");

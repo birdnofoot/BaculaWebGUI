@@ -1,38 +1,31 @@
 package utils ;
-import java.io.File;
-import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.regex.*;
 import java.io.*;
 
 public class parse
 {
-public static void main(String[] args) {
-	char []c=new char[90];
-	try{           
-        File f = new File("/home/yuanbo/pools.conf");
-        Scanner fileScanner = new Scanner(f);
-        HashMap<String, Integer> hash = new HashMap<>();
-        
-        int lineNumber = 1;
-        while(fileScanner.hasNextLine()){
-        	String p="\\[(.*?)\\]";
-        	Pattern p1=Pattern.compile(p);
-        	String k = null;
-        	Matcher m = null;
-        	m = p1.matcher(fileScanner.nextLine());
-        	if(m.find()){
-                System.out.println(fileScanner.nextLine());
-                System.out.println(lineNumber+1);
-        	}
-            lineNumber++;
-        	}
-            fileScanner.close();
-	}
-	catch(Exception e)
-	{
-		e.printStackTrace();
+	public static void main(String[] args) throws FileNotFoundException {
+		
+		File f = new File("/home/yuanbo/pools.conf");
+		/*Map<Integer, Integer> lineMap = new TreeMap<Integer, Integer>();
+		lineMap = AppUtils.getBlockStartEnd(f,"Pool");
+		for (Map.Entry<Integer,Integer> entry : lineMap.entrySet()) {
+		  Integer key = entry.getKey();
+		  Integer value = entry.getValue();
+		  System.out.println("start line :"+key+" end line : "+value);
 		}
+		AppUtils.showLineNumber(f,"File");*/
+		
+		Integer[] startEndMapMatched = new Integer[2];
+		startEndMapMatched = AppUtils.getStartEndLineNumberByName(f, "Pool","Name","fff");
+		System.out.println("start : "+startEndMapMatched[0]+" end : "+startEndMapMatched[1]);
+		AppUtils.deleteLinesFromFile("/home/yuanbo/pools.conf",startEndMapMatched[0],1+startEndMapMatched[1]-startEndMapMatched[0]);
 	}
 }

@@ -29,8 +29,7 @@
 		<div class="alert alert-info" role="alert">
 		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 		<%
-       		ServletContext servletContext = request.getServletContext();
-    		DatabaseController db_controller = (DatabaseController)servletContext.getAttribute("db_controller");
+    		DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
     		out.print("<span>&nbsp;&nbsp;You have " +db_controller.getClientNumber()+ 
 			" clients and "+db_controller.getJobNumber()+" jobs. </span>");
 		%>
@@ -70,6 +69,7 @@
           out.println("<p>"+line+"</p>");
         }
         */
+        
 		String jobQuery = "SELECT * FROM Job WHERE JobStatus = \"T\" ORDER BY StartTime DESC LIMIT 10;"; 
 		ResultSet job_rs = db_controller.query(jobQuery);
 		
