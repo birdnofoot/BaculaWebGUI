@@ -16,6 +16,18 @@
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Device<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="ViewDevice.jsp">View devices</a></li>
+					  	<li role="separator" class="divider"></li>
+						<li><a href="CreateDevice.jsp">Create device</a></li>
+						<li><a href="EditPool.jsp">Edit device</a></li>
+						<li><a href="DeleteDevice.jsp">Delete device</a></li>
+					</ul>
+				</li>
+				
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Pool<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="ViewPool.jsp">View pools</a></li>

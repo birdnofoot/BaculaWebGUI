@@ -34,7 +34,7 @@ public class AppUtils {
 	}
 	
 	public static String formatFileSize(String input) {
-		int size = Integer.parseInt(input);
+		long size = Long.parseLong(input);
 	    if(size == 0){
 	    	return "0";
 	    }
