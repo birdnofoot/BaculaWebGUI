@@ -48,6 +48,7 @@
 	<%
 	   	ServletContext servletContext = request.getServletContext();
 		DatabaseController db_controller = (DatabaseController)servletContext.getAttribute("db_controller");
+		db_controller.openConnection();
 		ResultSet client = db_controller.getClients();
 
 		while(client.next()){
@@ -104,6 +105,7 @@
 	<br/>
 	<br/>
 	<br/>
+	<% db_controller.closeConnection(); %>
 	</form>
 	</div>
 </body>

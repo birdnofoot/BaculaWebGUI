@@ -29,9 +29,11 @@
 		<div class="alert alert-info" role="alert">
 		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 		<%
-    		DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
-    		out.print("<span>&nbsp;&nbsp;You have " +db_controller.getClientNumber()+ 
-			" clients and "+db_controller.getJobNumber()+" jobs. </span>");
+    	//DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
+    	DatabaseController db_controller = new DatabaseController();
+    	db_controller.openConnection();
+		//out.print("<span>&nbsp;&nbsp;You have " + db_controller.getClientNumber() + 
+		//	" clients and " + db_controller.getJobNumber()+" jobs. </span>");
 		%>
 		
 		</div>
@@ -57,18 +59,6 @@
 		<table id="job_table" class="table">
 
 		<%
-		/*
-        Runtime runtime = Runtime.getRuntime();
-        Process process = runtime.exec("sudo /usr/sbin/bconsole");
-        InputStream is = process.getInputStream();
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
-        String line;
-        
-        while ((line = br.readLine()) != null) {
-          out.println("<p>"+line+"</p>");
-        }
-        */
         
 		String jobQuery = "SELECT * FROM Job WHERE JobStatus = \"T\" ORDER BY StartTime DESC LIMIT 10;"; 
 		ResultSet job_rs = db_controller.query(jobQuery);
@@ -98,6 +88,8 @@
 			out.println("</td>");
 			out.println("</tr>");
 		}
+		
+		job_rs.close();
 	%>
     </table>
 	</div>
@@ -140,6 +132,7 @@
 			out.println("</td>");
 			out.println("</tr>");
 		}
+		failed_job_rs.close();
 	%>
 
 	</table>
@@ -183,6 +176,8 @@
 				out.println("</tr>");
 			}
 		}
+		running_job_rs.close();
+		db_controller.closeConnection();
 	%>
 	</table>
 	</div>

@@ -15,14 +15,9 @@ public class AppContextListener implements ServletContextListener {
     }
 
     public void contextInitialized(ServletContextEvent servletContextEvent)  { 
-		try {
-			ServletContext servletContext = servletContextEvent.getServletContext();
-			DatabaseController db_controller = new DatabaseController();
-			db_controller.connectoDatabase();
-			servletContext.setAttribute("db_controller", db_controller);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		/*ServletContext servletContext = servletContextEvent.getServletContext();
+		DatabaseController db_controller = new DatabaseController();
+		servletContext.setAttribute("db_controller", db_controller);*/
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent)  { 

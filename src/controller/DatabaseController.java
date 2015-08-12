@@ -7,7 +7,6 @@ import model.*;
 public class DatabaseController {
 
     private Connection connexion;
-    private Statement statement;
 	private static final String url = "jdbc:mysql://localhost:3306/bacula" ;
 	private static final String user = "bacula" ;
 	private static final String pw = "root" ;
@@ -15,11 +14,10 @@ public class DatabaseController {
 	public DatabaseController(){
 	}
 
-	public void connectoDatabase() throws SQLException{
+	public void openConnection() throws SQLException{
     	try {
     		Class.forName("com.mysql.jdbc.Driver").newInstance();
     		connexion = DriverManager.getConnection(url, user, pw);
-    		statement = connexion.createStatement();
     		}
     	catch (InstantiationException | IllegalAccessException | ClassNotFoundException e)
     	{
@@ -37,11 +35,12 @@ public class DatabaseController {
         }
     }
 
-	public ResultSet query(String request){
+	public ResultSet query(String request) throws SQLException{
 		ResultSet rs;
 		try{
-			connectoDatabase();
+    		Statement statement = connexion.createStatement();
 			rs = statement.executeQuery(request);
+			statement.close();
 			return rs;
 			} catch (Exception e){
 				e.printStackTrace();
@@ -49,7 +48,7 @@ public class DatabaseController {
 		return null;
 	}
 	
-    public LinkedList<FileSet> getFileSet(){
+    public LinkedList<FileSet> getFileSet() throws SQLException{
     	String sql = "SELECT * FROM FileSet;";
         LinkedList<FileSet> fileSet = new LinkedList<FileSet>();
         ResultSet rs = query(sql);
@@ -64,37 +63,37 @@ public class DatabaseController {
         return null;
     }
     
-    public ResultSet getClients(){
+    public ResultSet getClients() throws SQLException{
 		String query = "SELECT * FROM Client; " ;
 		ResultSet resultSet = this.query(query);
 		return resultSet ;
     }
     
-    public ResultSet getJobs(){
+    public ResultSet getJobs() throws SQLException{
 		String query = "SELECT * FROM Job; " ;
 		ResultSet resultSet = this.query(query);
 		return resultSet ;
     }
     
-    public ResultSet getLogs(){
+    public ResultSet getLogs() throws SQLException{
 		String query = "SELECT * FROM Log ; " ;
 		ResultSet resultSet = this.query(query);
 		return resultSet ;
     }
     
-    public ResultSet getFilesets(){
+    public ResultSet getFilesets() throws SQLException{
 		String query = "SELECT * FROM FileSet ; " ;
 		ResultSet resultSet = this.query(query);
 		return resultSet ;
     }
     
-    public ResultSet getPools(){
+    public ResultSet getPools() throws SQLException{
 		String query = "SELECT * FROM Pool ; " ;
 		ResultSet resultSet = this.query(query);
 		return resultSet ;
     }
     
-    public ResultSet getSchedules(){
+    public ResultSet getSchedules() throws SQLException{
 		String query = "SELECT * FROM Pool ; " ;
 		ResultSet resultSet = this.query(query);
 		return resultSet ;
