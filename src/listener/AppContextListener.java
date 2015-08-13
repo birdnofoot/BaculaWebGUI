@@ -15,14 +15,11 @@ public class AppContextListener implements ServletContextListener {
     }
 
     public void contextInitialized(ServletContextEvent servletContextEvent)  { 
-		/*ServletContext servletContext = servletContextEvent.getServletContext();
+		ServletContext servletContext = servletContextEvent.getServletContext();
 		DatabaseController db_controller = new DatabaseController();
-		servletContext.setAttribute("db_controller", db_controller);*/
+		servletContext.setAttribute("db_controller", db_controller);
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent)  { 
-        ServletContext servletContext = servletContextEvent.getServletContext();
-        DatabaseController db_controller = (DatabaseController) servletContext.getAttribute("db_controller");
-        db_controller.closeConnection();
     }
 }

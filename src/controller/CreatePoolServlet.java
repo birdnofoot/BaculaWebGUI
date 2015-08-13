@@ -23,7 +23,7 @@ public class CreatePoolServlet extends HttpServlet {
 		boolean isNameExist = false ;
 		DatabaseController m = new DatabaseController();
 		try {
-			m.openConnection();
+			m.connectoDatabase();
 			String nameExistCheckQuery = "SELECT * FROM Pool WHERE NAME = \""+pool_name+"\" ; " ;
 			ResultSet a = m.query(nameExistCheckQuery);
 			if(a.next()){

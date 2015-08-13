@@ -34,13 +34,21 @@
 	
 	<select class="form-control" name="recycle" required>
 	<%
-   	ServletContext servletContext = request.getServletContext();
-	DatabaseController db_controller = (DatabaseController)servletContext.getAttribute("db_controller");
-	ResultSet pool_rs = db_controller.getPools();
+	DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
+	db_controller.connectoDatabase();	
+
+	String failedJobQuery = "SELECT * FROM Pool ; " ;
+	Statement st = db_controller.getConnexion().createStatement();
+	ResultSet pool_rs = st.executeQuery(failedJobQuery);
 
 	while(pool_rs.next()){
 		out.println("<option>"+pool_rs.getString("Name")+"</option>");
 	}
+	
+	
+	pool_rs.close();
+	st.close();
+	db_controller.closeConnection();
 	%>
 	</select>
 	

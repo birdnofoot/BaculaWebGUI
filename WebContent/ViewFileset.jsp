@@ -39,9 +39,12 @@
 	<div class="panel-body">
 	<table id = "fileset_table" class="table">
 	<%
-   	ServletContext servletContext = request.getServletContext();
-	DatabaseController db_controller = (DatabaseController)servletContext.getAttribute("db_controller");
-	ResultSet fileset_rs = db_controller.getFilesets();
+	DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
+	db_controller.connectoDatabase();	
+
+	String failedJobQuery = "SELECT * FROM FileSet ; " ;
+	Statement st = db_controller.getConnexion().createStatement();
+	ResultSet fileset_rs = st.executeQuery(failedJobQuery);
 	
 	out.println("<thead>");
 	out.println("<th> ID </th>");
@@ -59,6 +62,10 @@
 		out.println("</td>");
 		out.println("</tr>");
 	}
+	
+	fileset_rs.close();
+	st.close();
+	db_controller.closeConnection();
 	%>
 	</table>
 	</div>

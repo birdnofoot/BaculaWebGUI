@@ -37,15 +37,24 @@
 	
 	<select class="form-control" name="pool_name" required>
 	<%
+	
 	DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
-	ResultSet pool_rs = db_controller.getPools();
+	db_controller.connectoDatabase();	
+
+	String failedJobQuery = "SELECT * FROM Pool ; " ;
+	Statement st = db_controller.getConnexion().createStatement();
+	ResultSet pool_rs = st.executeQuery(failedJobQuery);
 
 	while(pool_rs.next()){
 		out.println("<option>"+pool_rs.getString("Name")+"</option>");
 	}
+	
+	pool_rs.close();
+	st.close();
+	db_controller.closeConnection();
 	%>
 	</select>
-	
+
 	</div>
 	</div>
 	</form>
