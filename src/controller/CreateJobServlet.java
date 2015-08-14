@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utils.*;
 
 @WebServlet("/createjobservlet")
 public class CreateJobServlet extends HttpServlet {
@@ -25,10 +26,8 @@ public class CreateJobServlet extends HttpServlet {
 		String storage = request.getParameter("storage");
 		String message_type = request.getParameter("message_type");
 		String location = request.getParameter("location");
-
-		String fileset_conf_path = "/etc/bacula/conf.d/jobs.conf" ;
 		
-		BufferedWriter bw = new BufferedWriter(new FileWriter(fileset_conf_path, true));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(Constant.getJobs(), true));
 		
 		bw.newLine();
 		bw.write("Job {");

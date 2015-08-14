@@ -2,36 +2,23 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<%@page import="model.*"%>
-<%@page import="utils.*"%>
-<%@page import="java.sql.*"%>
-<%@page import="controller.*"%>
-<%@page import="java.io.*"%>
-<%@page import="java.util.*"%>
-<title>View all pools - Bacula Web GUI</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/dataTables.bootstrap.css">
-<link rel="stylesheet" href="css/jquery.dataTables.css">
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
-<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+<title>View FileSets - Bacula Web GUI</title>
 </head>
 <body>
-	<div class="container">
-	<div class = "row">
-	<div class="page-header">
-	<h1>FileSets</h1>
-	</div>
 	<script type="text/javascript">
 		$(document).ready(function(){
     	    $('#fileset_table').dataTable( {
     	        "pagingType": "full_numbers",
-        	     "order": [[ 3, "desc" ]]
+        	     "order": [[ 2, "desc" ]]
     	    } );
 		});
 	</script>
+	
+	<div class="container">
+	<div class="page-header">
+	<h1>FileSets</h1>
+	</div>
+	
 	<div class="panel panel-info">
 	<div class="panel-heading">
 	<h3 class="panel-title">FileSet</h3>
@@ -71,7 +58,35 @@
 	</div>
 	</div>
 	</div>
+	
+	<div class="container">
+	<div class="panel-group" id="accordion">
+    <div class="panel panel-info" id="panel3">
+    <div class="panel-heading">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+    	Show Configuration File
+        </a>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+      	<%
+		File f = new File("/etc/bacula/conf.d/filesets.conf");
+		Scanner fileScanner = new Scanner(f);
+		String currentLine = null ;
+		while(fileScanner.hasNext()){
+        	currentLine = fileScanner.nextLine();
+        	out.println(currentLine);
+        	out.println("</br>");
+		}
+		fileScanner.close();
+	%>
 	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	
+	
 	<br/>
 	<br/>
 	<br/>

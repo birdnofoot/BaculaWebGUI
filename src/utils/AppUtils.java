@@ -1,11 +1,15 @@
 package utils;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Stack;
 import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.*;
@@ -85,6 +89,56 @@ public class AppUtils {
             lineNumber++ ;
         	}
         return lineMatch ;
+	}
+	
+	public static ArrayList<String> getName(File f, String option) throws FileNotFoundException{
+		ArrayList<String> name_list = new ArrayList<String>();
+        int lineNumber = 1;
+        String currentLine = null ;
+        @SuppressWarnings("resource")
+		Scanner fileScanner = new Scanner(f);
+        
+        while(fileScanner.hasNextLine()){
+        	currentLine = fileScanner.nextLine();
+        	String regex = "\\s*"+option+"\\s+=\\s+";
+        	Pattern pattern = Pattern.compile(regex);
+        	Matcher matcher = null;
+        	matcher = pattern.matcher(currentLine);
+        	if(matcher.find()){
+        		String[] parts = currentLine.split(" ");
+        		name_list.add(parts[4]);
+        	}
+            lineNumber++ ;
+        	}
+        return name_list ;
+	}
+	
+	public static String formatTime(String in) {
+		String time = "";
+		long seconds = Long.parseLong(in);
+	    int day = (int) TimeUnit.SECONDS.toDays(seconds);
+	    long hours = TimeUnit.SECONDS.toHours(seconds) -
+	                 TimeUnit.DAYS.toHours(day);
+	    long minute = TimeUnit.SECONDS.toMinutes(seconds) - 
+	                  TimeUnit.DAYS.toMinutes(day) -
+	                  TimeUnit.HOURS.toMinutes(hours);
+	    long second = TimeUnit.SECONDS.toSeconds(seconds) -
+	                  TimeUnit.DAYS.toSeconds(day) -
+	                  TimeUnit.HOURS.toSeconds(hours) - 
+	                  TimeUnit.MINUTES.toSeconds(minute);
+	    if(day != 0){
+	    	time += day +" days";
+	    }
+	    if(hours != 0){
+	    	time += hours + " ,hours" ;
+	    }
+	    if(minute != 0){
+	    	time += minute + " ,minutes";
+	    }
+	    if(second != 0){
+	    	time += second + " ,seconds";
+	    }
+	    return time ;
 	}
 
 	public static void showLineNumber(File f, String name) 
@@ -169,6 +223,11 @@ public class AppUtils {
 		}
 	}
 	
+	public static String getDate(){
+		DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy");
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
 	
 	public static Map<Integer, Integer> getBlockStartEnd(File f, String type) 
 			throws FileNotFoundException{
@@ -216,4 +275,5 @@ public class AppUtils {
     	}
 		return lineNumberMap ;
 	}
+	
 }

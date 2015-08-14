@@ -2,18 +2,10 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<%@page import="model.*"%>
-<%@page import="java.sql.*"%>
-<%@page import="controller.*"%>
-<%@page import="java.io.*"%>
-<%@page import="java.util.*"%>
 <title>Create Job - Bacula Web GUI</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<script src="js/jquery-2.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -46,13 +38,14 @@
 	<label for="client">Client :</label>
 	<select class="form-control" name="client" required>
 	<%
-	   	ServletContext servletContext = request.getServletContext();
-		DatabaseController db_controller = (DatabaseController)servletContext.getAttribute("db_controller");
-		ResultSet client = db_controller.getClients();
-
-		while(client.next()){
-			out.println("<option>"+client.getString("Name")+"</option>");
-		}
+	File f = new File("/etc/bacula/conf.d/clients.conf");
+	ArrayList<String> name_list = new ArrayList<String>();
+	name_list = AppUtils.getName(f,"Name");
+	int i = 0 ;
+	for(i=0;i<name_list.size();i++){
+		out.println("<option>"+name_list.get(i)+"</option>");
+		System.out.println();
+	}
 	%>
 	</select>
 	</div>
@@ -62,7 +55,15 @@
 	<div class="col-xs-3">
 	<label for="storage">Storage :</label>
 	<select class="form-control" name="storage" required>
-		<option>Default</option>
+	<%
+	File f3 = new File("/etc/bacula/conf.d/storages.conf");
+	ArrayList<String> storage_list = new ArrayList<String>();
+	storage_list = AppUtils.getName(f3,"Name");
+	for(i=0;i<storage_list.size();i++){
+		out.println("<option>"+storage_list.get(i)+"</option>");
+		System.out.println();
+	}
+	%>
 	</select>
 	</div>
 	</div>
@@ -72,10 +73,13 @@
 	<label for="pool">Pool :</label>
 	<select class="form-control" name="pool" required>
 	<%
-		ResultSet storage = db_controller.getStorages();
-		while(storage.next()){
-			out.println("<option>"+storage.getString("Name")+"</option>");
-		}
+	File f2 = new File("/etc/bacula/conf.d/pools.conf");
+	ArrayList<String> pool_list = new ArrayList<String>();
+	pool_list = AppUtils.getName(f2,"Name");
+	for(i=0;i<pool_list.size();i++){
+		out.println("<option>"+pool_list.get(i)+"</option>");
+		System.out.println();
+	}
 	%>
 	</select>
 	</div>

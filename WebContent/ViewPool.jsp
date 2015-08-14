@@ -2,20 +2,7 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<%@page import="model.*"%>
-<%@page import="java.sql.*"%>
-<%@page import="controller.*"%>
-<%@page import="java.io.*"%>
-<%@page import="java.util.*"%>
 <title>View all pools - Bacula Web GUI</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/dataTables.bootstrap.css">
-<link rel="stylesheet" href="css/jquery.dataTables.css">
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
-<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 </head>
 
 <body>
@@ -26,8 +13,8 @@
 	   	    } );
 		});
 	</script>
+	
 	<div class="container">
-	<div class = "row">
 	<div class="page-header">
 		<h1>Pools</h1>
 	</div>
@@ -64,7 +51,7 @@
 			out.println("</td>");
 			out.println("<td>"+pool_rs.getString("PoolType"));
 			out.println("</td>");
-			out.println("<td>"+pool_rs.getString("VolRetention"));
+			out.println("<td>"+AppUtils.formatTime(pool_rs.getString("VolRetention")));
 			out.println("</td>");
 			out.println("<td>"+pool_rs.getString("UseOnce"));
 			out.println("</td>");
@@ -82,6 +69,33 @@
 		db_controller.closeConnection();
 	%>
 	</table>
+	</div>
+	</div>
+	</div>
+	
+	
+	<div class="container">
+	<div class="panel-group" id="accordion">
+    <div class="panel panel-info" id="panel3">
+    <div class="panel-heading">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+    	Show Configuration File
+        </a>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+      	<%
+		File f = new File("/etc/bacula/conf.d/pools.conf");
+		Scanner fileScanner = new Scanner(f);
+		String currentLine = null ;
+		while(fileScanner.hasNext()){
+        	currentLine = fileScanner.nextLine();
+        	out.println(currentLine);
+        	out.println("</br>");
+		}
+		fileScanner.close();
+	%>
+	</div>
 	</div>
 	</div>
 	</div>

@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<title>View Schedules - Bacula Web GUI</title>
+<title>View Storage - Bacula Web GUI</title>
 </head>
 
 <body>
+
 	<div class="container">
 	<div class="page-header">
-	<h1>Schedules</h1>
+	<h1>Storage</h1>
 	</div>
 	
 	<script>
@@ -29,13 +30,13 @@
     <div class="panel panel-info" id="panel3">
     <div class="panel-heading">
        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-       	Show Configuration File
+       	Show Configuration File [storages.conf]
         </a>
     </div>
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
       	<%
-		File f = new File("/etc/bacula/conf.d/schedules.conf");
+		File f = new File(Constant.getStorages());
 		Scanner fileScanner = new Scanner(f);
 		String currentLine = null ;
 		while(fileScanner.hasNext()){

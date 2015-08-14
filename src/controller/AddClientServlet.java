@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utils.* ;
 
 @WebServlet("/addclientservlet")
 public class AddClientServlet extends HttpServlet {
@@ -26,9 +27,7 @@ public class AddClientServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String file_retention = request.getParameter("file_retention");
 		String autoprune = request.getParameter("autoprune");
-		String fileset_conf_path = "/etc/bacula/conf.d/clients.conf" ;
-		
-		BufferedWriter bw = new BufferedWriter(new FileWriter(fileset_conf_path, true));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(Constant.getClients(), true));
 		
 		bw.newLine();
 		bw.write("Client {");
@@ -53,9 +52,6 @@ public class AddClientServlet extends HttpServlet {
 		response.sendRedirect(request.getContextPath() + "/index.jsp");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

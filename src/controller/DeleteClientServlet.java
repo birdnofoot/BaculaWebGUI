@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import utils.* ;
 
-@WebServlet("/deletepoolservlet")
-public class DeletePoolServlet extends HttpServlet {
+@WebServlet("/deleteclientservlet")
+public class DeleteClientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public DeletePoolServlet() {
+    public DeleteClientServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pool_name = request.getParameter("pool_name");
+		String client_name = request.getParameter("client_name");
 		Integer[] startEndMapMatched = new Integer[2];
-		File f = new File("/etc/bacula/conf.d/pools.conf");
-		startEndMapMatched = AppUtils.getStartEndLineNumberByName(f,"Pool","Name",pool_name);
+		File f = new File("/etc/bacula/conf.d/clients.conf");
+		startEndMapMatched = AppUtils.getStartEndLineNumberByName(f,"Client","Name",client_name);
 		System.out.println("start : "+startEndMapMatched[0]+" end : "+startEndMapMatched[1]);
-		AppUtils.deleteLinesFromFile("/etc/bacula/conf.d/pools.conf",startEndMapMatched[0],1+startEndMapMatched[1]-startEndMapMatched[0]);
+		AppUtils.deleteLinesFromFile("/etc/bacula/conf.d/clients.conf",startEndMapMatched[0],1+startEndMapMatched[1]-startEndMapMatched[0]);
 		response.sendRedirect(request.getContextPath() + "/index.jsp");
 	}
 

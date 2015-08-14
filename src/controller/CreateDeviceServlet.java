@@ -1,12 +1,12 @@
 package controller;
 
 import java.io.*;
-import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utils.* ;
 
 @WebServlet("/createdeviceservlet")
 public class CreateDeviceServlet extends HttpServlet {
@@ -22,9 +22,8 @@ public class CreateDeviceServlet extends HttpServlet {
 		String media_type = request.getParameter("media_type");
 		String labelmedia = request.getParameter("labelmedia");
 		String archieve_device = request.getParameter("archieve_device");
-		String pools_conf_path = "/etc/bacula/devices.conf" ;
 		
-		BufferedWriter bw = new BufferedWriter(new FileWriter(pools_conf_path, true));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(Constant.getDevices(), true));
 		
 		bw.newLine();
 		bw.write("Device {");
@@ -37,13 +36,13 @@ public class CreateDeviceServlet extends HttpServlet {
 		bw.newLine();
 		bw.write("  LabelMedia = "+labelmedia);
 		bw.newLine();
-		bw.write("  Random Access = yes");
+		bw.write("  Random Access = yes;");
 		bw.newLine();
-		bw.write("  AutomaticMount = yes");
+		bw.write("  AutomaticMount = yes;");
 		bw.newLine();
-		bw.write("  RemovableMedia = no");
+		bw.write("  RemovableMedia = no;");
 		bw.newLine();
-		bw.write("  AlwaysOpen = no");
+		bw.write("  AlwaysOpen = no;");
 		bw.newLine();
 		bw.write("}");
 		bw.newLine();

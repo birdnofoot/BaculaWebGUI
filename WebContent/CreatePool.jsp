@@ -3,11 +3,7 @@
 <head>
 <%@ include file="navbar.jsp" %>
 <title>Create a Pool - Bacula Web GUI</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<script src="js/jquery-2.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script src="js/jquery-2.1.1.min.js"></script>
 </head>
 
 <body>

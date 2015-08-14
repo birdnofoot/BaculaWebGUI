@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utils.*;
 
 @WebServlet("/createfilesetservlet")
 public class CreateFilesetServlet extends HttpServlet {
@@ -25,9 +26,8 @@ public class CreateFilesetServlet extends HttpServlet {
 		String exclude_folder_path = request.getParameter("exclude_folder_path");
 		String signature = request.getParameter("signature");
 		String compression = request.getParameter("compression");
-		String fileset_conf_path = "/etc/bacula/conf.d/filesets.conf" ;
 		
-		BufferedWriter bw = new BufferedWriter(new FileWriter(fileset_conf_path, true));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(Constant.getFilesets(), true));
 		
 		bw.newLine();
 		bw.write("FileSet {");

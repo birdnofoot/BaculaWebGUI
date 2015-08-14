@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utils.Constant;
+
 @WebServlet("/createpoolservlet")
 public class CreatePoolServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -16,25 +18,26 @@ public class CreatePoolServlet extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
-		PrintWriter writer = response.getWriter() ;
-		String pool_name = request.getParameter("pool_name");
-		boolean isNameExist = false ;
-		DatabaseController m = new DatabaseController();
 		try {
-			m.connectoDatabase();
+			PrintWriter writer = response.getWriter() ;
+			String pool_name = request.getParameter("pool_name");
+			boolean isNameExist = false ;
+			DatabaseController db_controller = new DatabaseController();
+			db_controller.connectoDatabase();	
+			
 			String nameExistCheckQuery = "SELECT * FROM Pool WHERE NAME = \""+pool_name+"\" ; " ;
-			ResultSet a = m.query(nameExistCheckQuery);
+			Statement st = db_controller.getConnexion().createStatement();
+			ResultSet a = st.executeQuery(nameExistCheckQuery);
+
 			if(a.next()){
 				isNameExist = true ;
 			};
-			m.closeConnection();
+			a.close();
+			st.close();
+			db_controller.closeConnection();
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
 		if(!isNameExist){
 		String pool_type = request.getParameter("pool_type");
 		String recycle = request.getParameter("recycle");
@@ -42,9 +45,8 @@ public class CreatePoolServlet extends HttpServlet {
 		String volume_retention = request.getParameter("volume_retention");
 		String maximum_volume_bytes = request.getParameter("maximum_volume_bytes");
 		String maximum_volumes = request.getParameter("maximum_volumes");
-		String pools_conf_path = "/etc/bacula/conf.d/pools.conf" ;
 		
-		BufferedWriter bw = new BufferedWriter(new FileWriter(pools_conf_path, true));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(Constant.getPools(), true));
 		
 		bw.newLine();
 		bw.write("Pool {");
@@ -66,14 +68,16 @@ public class CreatePoolServlet extends HttpServlet {
 		bw.write("}");
 		bw.newLine();
 		bw.close();
-		writer.println("The pool \""+pool_name+"\" has been created with succes. ");
 		}
 		else{
 			writer.println("The pool name \""+pool_name+"\" is in use, please choose another name.");
 		}
 		response.sendRedirect(request.getContextPath() + "/index.jsp");
+	} catch (SQLException | IOException e) {
+		e.printStackTrace();
 	}
-
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

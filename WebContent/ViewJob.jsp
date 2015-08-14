@@ -2,21 +2,7 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<%@page import="model.*"%>
-<%@page import="utils.*"%>
-<%@page import="java.sql.*"%>
-<%@page import="controller.*"%>
-<%@page import="java.io.*"%>
-<%@page import="java.util.*"%>
 <title>View all jobs - Bacula Web GUI</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/dataTables.bootstrap.css">
-<link rel="stylesheet" href="css/jquery.dataTables.css">
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
-<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 </head>
 <body>
 	<script type="text/javascript">
@@ -27,43 +13,52 @@
     	    } );
 		});
 	</script>
+	
 	<div class="container">
-	<div class = "row">
 	<div class="page-header">
 		<h1>Jobs</h1>
 	</div>
 	<div class="panel panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title">Job</h3>
+		<h3 class="panel-title">All jobs</h3>
 	</div>
 	<div class="panel-body">
 	<table id="job_table" class="table">
 	<%
-   	ServletContext servletContext = request.getServletContext();
-	DatabaseController db_controller = (DatabaseController)servletContext.getAttribute("db_controller");
-	ResultSet job_rs = db_controller.getJobs();
+	DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
+	db_controller.connectoDatabase();
+	
+	String failedJobQuery = "SELECT * FROM Job ; " ;
+	Statement st = db_controller.getConnexion().createStatement();
+	ResultSet job_rs = st.executeQuery(failedJobQuery);
 	
 	out.println("<thead>");
 	out.println("<th> ID </th>");
-	out.println("<th> Name </th>");
+	out.println("<th> Job Name </th>");
+	out.println("<th> Level </th>");
+	out.println("<th> Status </th>");
 	out.println("<th> Client </th>");
-	out.println("<th> Job Status </th>");
 	out.println("<th> File Size </th>");
+	out.println("<th> Scheduled Time </th>");
 	out.println("<th> Start Time </th>");
 	out.println("<th> End Time </th>");
 	out.println("</thead>");
 	
-	while(job_rs.next()){
+	while(job_rs.next()){		
 		out.println("<tr>");
 		out.println("<th scope=\"row\">"+job_rs.getString("JobId"));
 		out.println("</td>");
 		out.println("<td>"+job_rs.getString("Name"));
 		out.println("</td>");
-		out.println("<td>"+db_controller.getClientNameById(job_rs.getString("ClientId")));
+		out.println("<td>"+job_rs.getString("Level"));
 		out.println("</td>");
 		out.println("<td>"+job_rs.getString("JobStatus"));
 		out.println("</td>");
+		out.println("<td>"+db_controller.getClientNameById(job_rs.getString("ClientId")));
+		out.println("</td>");
 		out.println("<td>"+AppUtils.formatFileSize(job_rs.getString("JobBytes")));
+		out.println("</td>");
+		out.println("<td>"+AppUtils.formatDate(job_rs.getString("SchedTime")));
 		out.println("</td>");
 		out.println("<td>"+AppUtils.formatDate(job_rs.getString("StartTime")));
 		out.println("</td>");
@@ -77,12 +72,44 @@
 		}
 		out.println("</tr>");
 	}
+	
+	job_rs.close();
+	st.close();
+	db_controller.closeConnection();
+	
 	%>
     </table>
 	</div>
 	</div>
 	</div>
+
+	<div class="container">
+	<div class="panel-group" id="accordion">
+    <div class="panel panel-info" id="panel3">
+    <div class="panel-heading">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+    	Show Configuration File
+        </a>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+      	<%
+		File f = new File("/etc/bacula/conf.d/jobs.conf");
+		Scanner fileScanner = new Scanner(f);
+		String currentLine = null ;
+		while(fileScanner.hasNext()){
+        	currentLine = fileScanner.nextLine();
+        	out.println(currentLine);
+        	out.println("</br>");
+		}
+		fileScanner.close();
+	%>
 	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	
 	<br/>
 	<br/>
 	<br/>

@@ -5,14 +5,9 @@
 <%@ include file="navbar.jsp" %>
 <title>Create a Schedule - Bacula Web GUI</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<script src="js/jquery-2.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
-<script src="js/jquery-2.1.1.min.js"></script>
-<link rel="stylesheet" href="dist/css/bootstrap-select.css">
-<script src="dist/js/bootstrap-select.js"></script>
 </head>
 
 <body>
@@ -39,6 +34,7 @@
 				<select class="form-control" name="level" required>
 					<option>Full</option>
 					<option>Incremental</option>
+					<option>Differential</option>
 				</select>
 				</div>
 				</div>
