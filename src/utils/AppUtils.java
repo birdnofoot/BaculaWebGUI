@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.*;
+import org.apache.commons.lang.StringEscapeUtils;
+
 
 public class AppUtils {
 	
@@ -69,6 +71,74 @@ public class AppUtils {
         return lineMatchArray ;
 	}
 	
+	public static boolean findName(String type, String currentLine){
+    	String regex = "^\\s*"+type+"\\s+\\{\\s*";
+    	Pattern pattern = Pattern.compile(regex);
+    	Matcher matcher = null;
+    	matcher = pattern.matcher(currentLine);
+    	if(matcher.find()){
+    		return true ;
+    	}
+    	else {
+    		return false ;
+    	}
+	}
+	
+	public static String printConfigHighlight(String filename, String type){
+		
+		StringBuilder sb = new StringBuilder();
+		File f = new File(filename);
+		try {
+		Scanner fileScanner = new Scanner(f);
+		String currentLine = null ;
+		while(fileScanner.hasNext()){
+			currentLine = StringEscapeUtils.escapeHtml(fileScanner.nextLine());
+        	if(currentLine.length() >= 1){
+				if(currentLine.trim().charAt(0) == '#'){
+		        	sb.append("<font color=\"#929492\">"+currentLine+"</font>");
+		        	sb.append("</br>");
+				}
+				else if(currentLine.trim().matches("}")) {
+					sb.append("<b>"+currentLine+"</b>");
+		        	sb.append("</br>");
+				}
+				else if(AppUtils.findName(type, currentLine)){
+		        	sb.append("</br>");
+					sb.append("<b>"+currentLine+"</b>");
+		        	sb.append("</br>");
+				}
+				else
+				{
+					String[] parts = currentLine.split("=");
+					sb.append("&nbsp;&nbsp;<i>"+parts[0]+"</i>");
+		        	if(parts.length > 1){
+						if(parts[1].contains("#")){
+							String[] commentParts = parts[1].split("#");
+							sb.append("<font color=\"#333\">"+" = "+commentParts[0]+"</font>");
+				        	if(commentParts.length>1){
+				        		sb.append("<font color=\"#929492\">"+" # "+commentParts[1]+"</font>");
+				        	}
+				        	else{
+				        		sb.append("<font color=\"#929492\">"+" # "+"</font>");
+				        	}
+						}
+			        	else{
+			        		sb.append("<font color=\"#333\">"+" = "+parts[1]+"</font>");
+			        	}
+		        	}
+		        	sb.append("</br>");
+				}
+        	}
+		}
+		fileScanner.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return sb.toString();
+	}
+	
+	
+	
 	public static int getLineNumberByName(File f, String option, String name)
 			throws FileNotFoundException {
         int lineNumber = 1;
@@ -93,23 +163,41 @@ public class AppUtils {
 	
 	public static ArrayList<String> getName(File f, String option) throws FileNotFoundException{
 		ArrayList<String> name_list = new ArrayList<String>();
-        int lineNumber = 1;
+        @SuppressWarnings("unused")
+		int lineNumber = 1;
         String currentLine = null ;
         @SuppressWarnings("resource")
 		Scanner fileScanner = new Scanner(f);
         
         while(fileScanner.hasNextLine()){
         	currentLine = fileScanner.nextLine();
-        	String regex = "\\s*"+option+"\\s+=\\s+";
-        	Pattern pattern = Pattern.compile(regex);
-        	Matcher matcher = null;
-        	matcher = pattern.matcher(currentLine);
-        	if(matcher.find()){
-        		String[] parts = currentLine.split(" ");
-        		name_list.add(parts[4]);
+        	if(currentLine.length() >= 1){
+				if(currentLine.trim().charAt(0) != '#'){
+		        	String regex = "\\s*"+option+"\\s+=\\s+";
+		        	Pattern pattern = Pattern.compile(regex);
+		        	Matcher matcher = null;
+		        	matcher = pattern.matcher(currentLine);
+		        	if(matcher.find()){
+		        		String name = "" ;
+		        		String[] parts = currentLine.split(" +");
+		        		int j ;
+		        		for(j=3;j<parts.length;j++){
+		        			if(parts[j] != null){
+		        				if(parts[j].charAt(0) == '"'){
+		        					parts[j] = parts[j].substring(1);
+		        				}
+		        			    if (parts[j].length() > 0 && parts[j].charAt(parts[j].length()-1)=='"') {
+		        			    	parts[j] = parts[j].substring(0, parts[j].length()-1);
+		        			      }
+		        			    name = name + " "+ parts[j] ;
+		        			}
+		        		}
+		        		name_list.add(name);
+		        	}
+				}
         	}
-            lineNumber++ ;
-        	}
+        lineNumber++ ;
+        }
         return name_list ;
 	}
 	
@@ -117,15 +205,10 @@ public class AppUtils {
 		String time = "";
 		long seconds = Long.parseLong(in);
 	    int day = (int) TimeUnit.SECONDS.toDays(seconds);
-	    long hours = TimeUnit.SECONDS.toHours(seconds) -
-	                 TimeUnit.DAYS.toHours(day);
-	    long minute = TimeUnit.SECONDS.toMinutes(seconds) - 
-	                  TimeUnit.DAYS.toMinutes(day) -
-	                  TimeUnit.HOURS.toMinutes(hours);
-	    long second = TimeUnit.SECONDS.toSeconds(seconds) -
-	                  TimeUnit.DAYS.toSeconds(day) -
-	                  TimeUnit.HOURS.toSeconds(hours) - 
-	                  TimeUnit.MINUTES.toSeconds(minute);
+	    long hours = TimeUnit.SECONDS.toHours(seconds) - TimeUnit.DAYS.toHours(day);
+	    long minute = TimeUnit.SECONDS.toMinutes(seconds) - TimeUnit.DAYS.toMinutes(day) - TimeUnit.HOURS.toMinutes(hours);
+	    long second = TimeUnit.SECONDS.toSeconds(seconds) - TimeUnit.DAYS.toSeconds(day) -
+	                  TimeUnit.HOURS.toSeconds(hours) - TimeUnit.MINUTES.toSeconds(minute);
 	    if(day != 0){
 	    	time += day +" days";
 	    }
@@ -168,15 +251,11 @@ public class AppUtils {
 	    return stack.empty();
 	}
 	
-	
 	public static Integer[] getStartEndLineNumberByName(File f, String type, String option, String name) 
 			throws FileNotFoundException{
-		
 		Integer[] startEndMapMatched = new Integer[2];
-		
 		Map<Integer, Integer> map = new TreeMap<Integer, Integer>();
 		map = AppUtils.getBlockStartEnd(f,type);
-		
 		for(Map.Entry<Integer,Integer> entry : map.entrySet()) {
 			Integer startLineNumber = entry.getKey();
 			Integer endLineNumber = entry.getValue();
@@ -193,27 +272,17 @@ public class AppUtils {
 		try
 		{
 			BufferedReader br=new BufferedReader(new FileReader(filename));
- 
-			//String buffer to store contents of the file
 			StringBuffer sb=new StringBuffer("");
- 
-			//Keep track of the line number
 			int linenumber=1;
 			String line;
- 
 			while((line=br.readLine())!=null)
 			{
-				//Store each valid line in the string buffer
 				if(linenumber<startline||linenumber>=startline+numlines)
 					sb.append(line+"\n");
 				linenumber++;
 			}
-			if(startline+numlines>linenumber)
-				System.out.println("End of file reached.");
 			br.close();
- 
 			FileWriter fw = new FileWriter(new File(filename));
-			//Write entire string buffer into the file
 			fw.write(sb.toString());
 			fw.close();
 		}
@@ -275,5 +344,4 @@ public class AppUtils {
     	}
 		return lineNumberMap ;
 	}
-	
 }

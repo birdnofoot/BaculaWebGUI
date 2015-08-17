@@ -6,7 +6,6 @@
 </head>
 
 <body>
-
 	<div class="container">
 	<div class="page-header">
 	<h1>Device</h1>
@@ -30,21 +29,14 @@
     <div class="panel panel-info" id="panel3">
     <div class="panel-heading">
        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-       	Show Configuration File [devices.conf]
+       	Show Configuration File
         </a>
     </div>
+
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
-      	<%
-		File f = new File("/etc/bacula/devices.conf");
-		Scanner fileScanner = new Scanner(f);
-		String currentLine = null ;
-		while(fileScanner.hasNext()){
-        	currentLine = fileScanner.nextLine();
-        	out.println(currentLine);
-        	out.println("</br>");
-		}
-		fileScanner.close();
+    <%
+		out.println(AppUtils.printConfigHighlight(Constant.getDevices(),"Device"));
 	%>
 	</div>
 	</div>

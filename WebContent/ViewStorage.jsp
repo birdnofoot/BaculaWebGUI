@@ -35,16 +35,8 @@
     </div>
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
-      	<%
-		File f = new File(Constant.getStorages());
-		Scanner fileScanner = new Scanner(f);
-		String currentLine = null ;
-		while(fileScanner.hasNext()){
-        	currentLine = fileScanner.nextLine();
-        	out.println(currentLine);
-        	out.println("</br>");
-		}
-		fileScanner.close();
+    <%
+		out.println(AppUtils.printConfigHighlight(Constant.getStorages(),"Storage"));
 	%>
 	</div>
 	</div>

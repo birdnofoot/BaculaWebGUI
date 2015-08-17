@@ -76,16 +76,8 @@
     </div>
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
-      	<%
-		File f = new File("/etc/bacula/conf.d/clients.conf");
-		Scanner fileScanner = new Scanner(f);
-		String currentLine = null ;
-		while(fileScanner.hasNext()){
-        	currentLine = fileScanner.nextLine();
-        	out.println(currentLine);
-        	out.println("</br>");
-		}
-		fileScanner.close();
+    <%
+		out.println(AppUtils.printConfigHighlight(Constant.getClients(),"Client"));
 	%>
 	</div>
 	</div>
