@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Stack;
@@ -13,7 +14,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import org.apache.commons.lang.StringEscapeUtils;
+
+import controller.DatabaseController;
+import model.Status;
 
 
 public class AppUtils {
@@ -44,7 +52,7 @@ public class AppUtils {
 	    if(size == 0){
 	    	return "0";
 	    }
-	    String[] units = new String[] { "B", "kB", "MB", "GB", "TB" };
+	    String[] units = new String[] { "B", "KB", "MB", "GB", "TB" };
 	    int group = (int) (Math.log10(size)/Math.log10(1024));
 	    String formatedSize = new DecimalFormat("#,##0.#").format(size/Math.pow(1024, group)) + " " + units[group];
 	    return formatedSize ;
@@ -84,6 +92,30 @@ public class AppUtils {
     	}
 	}
 	
+    public static HashMap<String,Status> getJobStatusLong(){
+    	HashMap<String,Status> statusMap = new HashMap<String,Status>();
+    	String jobStatusLong = null ;
+    	try {
+	    	String query = "SELECT * FROM Status ; " ;
+	    	DatabaseController m = new DatabaseController();
+				m.connectoDatabase();
+			Statement statement = m.getConnexion().createStatement();
+			ResultSet resultset = statement.executeQuery(query);
+			while(resultset.next()){
+				statusMap.put(resultset.getString("JobStatus"), new Status(resultset.getString("JobStatus"),
+						resultset.getString("JobStatusLong"),Integer.parseInt(resultset.getString("Severity"))));
+			}
+    	resultset.close();
+    	statement.close();
+    	m.closeConnection();
+    	return statusMap ;
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+    	return null ;
+    }
+    
+    
 	public static String printConfigHighlight(String filename, String type){
 		
 		StringBuilder sb = new StringBuilder();

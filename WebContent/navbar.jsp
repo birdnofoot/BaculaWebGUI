@@ -18,6 +18,37 @@
 <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
 <script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+<%-- hover text --%>
+<script>
+$(function() {
+    var overPopup = false;
+    $('[rel=popover]').popover({
+        trigger: 'manual',
+        placement: 'top'
+
+    }).mouseover(function (e) {
+        $('[rel=popover]').not('#' + $(this).attr('id')).popover('hide');
+        var $popover = $(this);
+        $popover.popover('show');
+
+        $popover.data('popover').tip().mouseenter(function () {
+            overPopup = true;
+        }).mouseleave(function () {
+            overPopup = false;
+            $popover.popover('hide');
+        });
+
+    }).mouseout(function (e) {
+        var $popover = $(this);
+        setTimeout(function () {
+            if (!overPopup) {
+                $popover.popover('hide');
+            }
+        }, 200);
+    });
+});
+</script>
+
 
 <%-- Navbar --%>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -109,6 +140,14 @@
 					  	<li role="separator" class="divider"></li>
 						<li><a href="AddClient.jsp">Add client</a></li>
 						<li><a href="DeleteClient.jsp">Delete client</a></li>
+					</ul>
+				</li>
+				
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Search<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="SearchFile.jsp">Search File</a></li>
 					</ul>
 				</li>
 				

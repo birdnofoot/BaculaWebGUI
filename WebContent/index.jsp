@@ -41,7 +41,7 @@
     	    } );
 		});
 		</script>
-		
+
 		<%-- Successful jobs --%>
 		<div class = "container">
 		<div class="panel panel-default">
@@ -71,7 +71,7 @@
 			out.println("<th scope=\"row\">"+job_rs.getString("JobId"));
 			out.println("</td>");
 			out.println("<td>"+job_rs.getString("Name"));
-			out.println("</td>");
+			out.println("</td>");    
 			out.println("<td>"+job_rs.getString("Level"));
 			out.println("</td>");
 			out.println("<td>"+db_controller.getClientNameById(job_rs.getString("ClientId")));

@@ -54,8 +54,7 @@ public class DatabaseController {
 		resultset.close();
 		statement.close();
     	return nb;
-    }
-    
+    } 
     
     public int getRunningJobNumber() throws SQLException{
     	String query = "SELECT COUNT(*) FROM Job WHERE JobStatus = \"R\" ; " ;

@@ -25,12 +25,16 @@
 	<div class="panel-body">
 	<table id="job_table" class="table">
 	<%
+	
+	HashMap<String,Status> statusMap = new HashMap<String,Status>();
+	statusMap = AppUtils.getJobStatusLong();
+	
 	DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
 	db_controller.connectoDatabase();
 	
-	String failedJobQuery = "SELECT * FROM Job ; " ;
+	String jobQuery = "SELECT * FROM Job ; " ;
 	Statement st = db_controller.getConnexion().createStatement();
-	ResultSet job_rs = st.executeQuery(failedJobQuery);
+	ResultSet job_rs = st.executeQuery(jobQuery);
 	
 	out.println("<thead>");
 	out.println("<th> ID </th>");
@@ -38,11 +42,12 @@
 	out.println("<th> Level </th>");
 	out.println("<th> Status </th>");
 	out.println("<th> Client </th>");
-	out.println("<th> File Size </th>");
+	out.println("<th> Size </th>");
 	out.println("<th> Scheduled Time </th>");
 	out.println("<th> Start Time </th>");
 	out.println("<th> End Time </th>");
 	out.println("</thead>");
+
 	
 	while(job_rs.next()){		
 		out.println("<tr>");
@@ -52,7 +57,9 @@
 		out.println("</td>");
 		out.println("<td>"+job_rs.getString("Level"));
 		out.println("</td>");
-		out.println("<td>"+job_rs.getString("JobStatus"));
+
+	    out.println("<td><a id=\"popoverOption\" data-content=\" "+statusMap.get(job_rs.getString("JobStatus")).getJobStatusLong()+
+	    "\"rel=\"popover\" data-placement=\"top\">"+job_rs.getString("JobStatus")+"</a>");
 		out.println("</td>");
 		out.println("<td>"+db_controller.getClientNameById(job_rs.getString("ClientId")));
 		out.println("</td>");
