@@ -25,7 +25,7 @@ public class CreatePoolServlet extends HttpServlet {
 			String pool_name = request.getParameter("pool_name");
 			boolean isNameExist = false ;
 			DatabaseController db_controller = new DatabaseController();
-			db_controller.connectoDatabase();	
+			db_controller.openConnection();	
 			
 			String nameExistCheckQuery = "SELECT * FROM Pool WHERE NAME = \""+pool_name+"\" ; " ;
 			Statement st = db_controller.getConnexion().createStatement();
@@ -72,7 +72,7 @@ public class CreatePoolServlet extends HttpServlet {
 		else{
 			writer.println("The pool name \""+pool_name+"\" is in use, please choose another name.");
 		}
-		response.sendRedirect(request.getContextPath() + "/index.jsp");
+		response.sendRedirect(request.getContextPath() + "/"+Constant.getIndexPage());
 	} catch (SQLException | IOException e) {
 		e.printStackTrace();
 	}

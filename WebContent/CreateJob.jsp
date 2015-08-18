@@ -13,19 +13,20 @@
 		<h1>Create Job</h1>
 	</div>
 	
-	<form class="form-horizontal"
+	<form data-toggle="validator" class="form-horizontal"
 			action="createjobservlet" method="post" novalidate>
 	<div class = "form-group">
 	<div class="col-xs-3">
-	<label for="job_name">Job name :</label>
+	<label for="job_name">Job name <font color="red">*</font> :</label>
 	<input type="text" class="form-control" name="job_name" placeholder="job name"
 		required />
+		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 	</div>
 	</div>
 
 	<div class = "form-group">
 	<div class="col-xs-3">
-	<label for="job_type">Job type :</label>
+	<label for="job_type">Job type <font color="red">*</font> :</label>
 	<select class="form-control" name="job_type" required>
 		<option>Backup</option>
 		<option>Restore</option>
@@ -35,7 +36,7 @@
 	
 	<div class = "form-group">
 	<div class="col-xs-3">
-	<label for="client">Client :</label>
+	<label for="client">Client <font color="red">*</font> :</label>
 	<select class="form-control" name="client" required>
 	<%
 	File f = new File("/etc/bacula/conf.d/clients.conf");
@@ -53,7 +54,7 @@
 	
 	<div class = "form-group">
 	<div class="col-xs-3">
-	<label for="storage">Storage :</label>
+	<label for="storage">Storage <font color="red">*</font> :</label>
 	<select class="form-control" name="storage" required>
 	<%
 	File f3 = new File("/etc/bacula/conf.d/storages.conf");
@@ -70,7 +71,7 @@
 	
 	<div class = "form-group">
 	<div class="col-xs-3">
-	<label for="pool">Pool :</label>
+	<label for="pool">Pool <font color="red">*</font> :</label>
 	<select class="form-control" name="pool" required>
 	<%
 	File f2 = new File("/etc/bacula/conf.d/pools.conf");
@@ -84,23 +85,7 @@
 	</select>
 	</div>
 	</div>
-	
-	
-	<div class = "form-group">
-	<div class="col-xs-3">
-	<label for="message_type">Message type :</label>
-	<select class="form-control" name="message_type" required>
-		<option>Standard</option>
-	</select>
-	</div>
-	</div>
-	
-	<div class = "form-group">
-	<div class="col-xs-3">
-	<label for="location">Location (optional) :</label>
-	<input type="text" class="form-control" name="location" placeholder="location"/>
-	</div>
-	</div>
+
 	<br/>
 	<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
 	<br/>

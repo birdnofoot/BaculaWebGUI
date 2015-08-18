@@ -15,33 +15,27 @@
 			<h1>Add Client</h1>
 		</div>
 
-			<form class="form-horizontal"
+			<form data-toggle="validator" class="form-horizontal"
 				action="addclientservlet" method="post" novalidate>
 				
 				<div class = "form-group">
 				<div class="col-xs-3">
-				<label for="client_name">Client name :</label>
+				<label for="client_name">Client name <font color="red">*</font> :</label>
 				<input type="text" class="form-control" name="client_name" placeholder="client name"
 					required />
+				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 				</div>
 				</div>
 				
 				<div class = "form-group">
 				<div class="col-xs-3">
-				<label for="client_ip_address">Client IP Address :</label>
+				<label for="client_ip_address">Client IP Address <font color="red">*</font> :</label>
 				<input type="text" class="form-control" name="client_ip_address" placeholder="client IP address"
 					required />
+					<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 				</div>
 				</div>
-				
-				<div class = "form-group">
-				<div class="col-xs-3">
-				<label for="fd_port">File Daemon Port (9102 By default) :</label>
-				<input type="text" class="form-control" name="fd_port" placeholder="FD Port"
-					required />
-				</div>
-				</div>
-				
+								
 				<div class = "form-group">
 				<div class="col-xs-3">
 				<label for="catalog">Catalog :</label>
@@ -53,17 +47,9 @@
 				
 				<div class = "form-group">
 				<div class="col-xs-3">
-				<label for="password">Password :</label>
-				<input type="text" class="form-control" name="password" placeholder="password"
-					required />
-				</div>
-				</div>
-				
-				<div class = "form-group">
-				<div class="col-xs-3">
 				<label for="file_retention">File Retention (ex. 30 days) :</label>
 				<input type="text" class="form-control" name="file_retention" placeholder="file retention"
-					required />
+					/>
 				</div>
 				</div>
 				

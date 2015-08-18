@@ -2,20 +2,20 @@ package controller;
 
 import java.sql.*;
 
+import utils.Constant;
+
 public class DatabaseController {
 
     private Connection connexion;
-	private static final String url = "jdbc:mysql://localhost:3306/bacula" ;
-	private static final String user = "bacula" ;
-	private static final String pw = "root" ;
+	private static String url = "jdbc:mysql://"+Constant.getDb_url()+":"+Constant.getDb_port()+"/"+Constant.getDb_name() ;
 	
 	public DatabaseController(){
 	}
 
-	public void connectoDatabase() throws SQLException{
+	public void openConnection() throws SQLException{
     	try {
     		Class.forName("com.mysql.jdbc.Driver").newInstance();
-    		connexion = DriverManager.getConnection(url, user, pw);
+    		connexion = DriverManager.getConnection(url, Constant.getDb_user(), Constant.getDb_password());
     		}
     	catch (InstantiationException | IllegalAccessException | ClassNotFoundException e)
     	{
@@ -27,7 +27,6 @@ public class DatabaseController {
         try {
              if (connexion !=null){
             	 connexion.close();
-            	 
              }
         } catch (Exception e){
                 e.printStackTrace();
@@ -67,15 +66,20 @@ public class DatabaseController {
     	return nb;
     }
     
-    public String getClientNameById (String id) throws SQLException {
-    	String query = "SELECT name FROM Client WHERE ClientId = \""+id+"\" LIMIT 1;" ;
-		Statement statement = this.getConnexion().createStatement();
-		ResultSet resultset = statement.executeQuery(query);
-		resultset.next();
-		String name = resultset.getString("name");
-		resultset.close();
-		statement.close();
-    	return name ;
+    public String getClientNameById (String id) {
+    	try {
+	    	String query = "SELECT name FROM Client WHERE ClientId = \""+id+"\" LIMIT 1;" ;
+			Statement statement = this.getConnexion().createStatement();
+			ResultSet resultset = statement.executeQuery(query);
+			resultset.next();
+			String name = resultset.getString("name");
+			resultset.close();
+			statement.close();
+			return name ;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	return null ;
     }
 
 	public Connection getConnexion() {

@@ -16,36 +16,39 @@
 		<h1>Create FileSet</h1>
 		</div>
 
-		<form id="form_create_fileset" class="form-horizontal"
+		<form data-toggle="validator" id="form_create_fileset" class="form-horizontal"
 				action="createfilesetservlet" method="post" novalidate>
 
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="fileset_name">FileSet name :</label>
+		<label for="fileset_name">FileSet name <font color="red">*</font> :</label>
 		<input type="text" class="form-control" name="fileset_name" placeholder="fileset name"
 			required />
+			<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 		</div>
 		</div>
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="backup_folder_path">Backup folder path :</label>
+		<label for="backup_folder_path">Backup folder path <font color="red">*</font> :</label>
 		<input type="text" class="form-control" name="backup_folder_path" placeholder="Backup folder path"
 			required />
+			<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 		</div>
 		</div>
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="exclude_folder_path">Exclude folder path :</label>
+		<label for="exclude_folder_path">Exclude folder path <font color="red">*</font> :</label>
 		<input type="text" class="form-control" name="exclude_folder_path" placeholder="Exclude folder path"
 			required />
+			<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 		</div>
 		</div>
 
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="signature">Choose signature :</label>
+		<label for="signature">Choose signature <font color="red">*</font> :</label>
 		<select class="form-control" name="signature" required>
 			<option>MD5</option>
 			<option>SHA1</option>
@@ -55,7 +58,7 @@
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<label for="compression">Choose compression type :</label>
+		<label for="compression">Choose compression type <font color="red">*</font> :</label>
 		<select class="form-control" name="compression" required>
 			<option>no compression</option>
 			<option>GZIP</option>

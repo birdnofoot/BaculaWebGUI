@@ -98,7 +98,7 @@ public class AppUtils {
     	try {
 	    	String query = "SELECT * FROM Status ; " ;
 	    	DatabaseController m = new DatabaseController();
-				m.connectoDatabase();
+				m.openConnection();
 			Statement statement = m.getConnexion().createStatement();
 			ResultSet resultset = statement.executeQuery(query);
 			while(resultset.next()){

@@ -15,7 +15,7 @@ public class TestDB {
 		String file_name = "bacula";
 		String query = "SELECT Filename.name, Client.Name, Path.Path, Job.JobId, Job.Name, Job.StartTime, Job.EndTime FROM Client JOIN Job ON Client.ClientId = Job.ClientId JOIN File ON Job.JobId = File.JobId JOIN Filename ON Filename.FilenameId = File.FilenameId JOIN Path ON File.PathId = Path.PathId WHERE Filename.Name RLIKE \'"+file_name+"\';";
 		DatabaseController m = new DatabaseController();
-		m.connectoDatabase();
+		m.openConnection();
 		Statement statement = m.getConnexion().createStatement();
 		ResultSet resultset = statement.executeQuery(query);
 		

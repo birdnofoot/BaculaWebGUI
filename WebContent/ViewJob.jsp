@@ -30,7 +30,7 @@
 	statusMap = AppUtils.getJobStatusLong();
 	
 	DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
-	db_controller.connectoDatabase();
+	db_controller.openConnection();
 	
 	String jobQuery = "SELECT * FROM Job ; " ;
 	Statement st = db_controller.getConnexion().createStatement();

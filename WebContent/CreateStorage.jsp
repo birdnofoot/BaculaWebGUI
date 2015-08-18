@@ -14,35 +14,29 @@
 		<h1>Create Storage</h1>
 		</div>
 		
-			<form class="form-horizontal"
+			<form data-toggle="validator" class="form-horizontal"
 				action="createstorageservlet" method="post" novalidate>
 				<div class = "form-group">
 				<div class="col-md-3">
-				<label for="storage_name">Storage name :</label>
+				<label for="storage_name">Storage name <font color="red">*</font> :</label>
 				<input type="text" class="form-control" name="storage_name" placeholder="storage name"
 					required />
+				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 				</div>
 				</div>
 
 				<div class = "form-group">
 				<div class="col-md-3">
-				<label for="storage_name">IP Address : </label>
+				<label for="storage_name">IP Address <font color="red">*</font> : </label>
 				<input type="text" class="form-control" name="ip_address" placeholder="IP"
 					required />
-				</div>
-				</div>
-				
-				<div class = "form-group">
-				<div class="col-md-3">
-				<label for="storage_name">SD Port : </label>
-				<input type="text" class="form-control" name="sd_port" placeholder="Storage Daemon Port"
-					required />
+					<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 				</div>
 				</div>
 				
 				<div class = "form-group">
 				<div class="col-xs-3">
-				<label for="labelmedia">Device :</label>
+				<label for="labelmedia">Device <font color="red">*</font> :</label>
 				<select  class="form-control" name="device" required>
 				<%
 					int i; 
@@ -60,7 +54,7 @@
 				
 				<div class = "form-group">
 				<div class="col-xs-3">
-				<label for="labelmedia">Media Type :</label>
+				<label for="labelmedia">Media Type <font color="red">*</font> :</label>
 				<select  class="form-control" name="media_type" required>
 					<option>File</option>
 				</select>

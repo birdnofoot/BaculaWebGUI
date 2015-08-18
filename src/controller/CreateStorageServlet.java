@@ -21,7 +21,6 @@ public class CreateStorageServlet extends HttpServlet {
 		try {
 		String storage_name = request.getParameter("storage_name");
 		String ip_address = request.getParameter("ip_address");
-		String sd_port = request.getParameter("sd_port");
 		String device = request.getParameter("device");
 		String media_type = request.getParameter("media_type");
 		BufferedWriter bw;
@@ -34,9 +33,9 @@ public class CreateStorageServlet extends HttpServlet {
 		bw.newLine();
 		bw.write("  Address = "+ip_address);
 		bw.newLine();
-		bw.write("  SDPort = "+sd_port);
+		bw.write("  SDPort = "+Constant.getSd_port());
 		bw.newLine();
-		bw.write("  Password = \"baCu52c\"");
+		bw.write("  Password = \""+Constant.getConfig_password()+"\"");
 		bw.newLine();
 		bw.write("  Device = "+device);
 		bw.newLine();
@@ -45,7 +44,7 @@ public class CreateStorageServlet extends HttpServlet {
 		bw.write("}");
 		bw.newLine();
 		bw.close();
-		response.sendRedirect(request.getContextPath() + "/index.jsp");
+		response.sendRedirect(request.getContextPath() + "/"+Constant.getIndexPage());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

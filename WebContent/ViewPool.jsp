@@ -26,7 +26,7 @@
 	<table id = "pool_table" class="table">
 	<%
 		DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
-		db_controller.connectoDatabase();	
+		db_controller.openConnection();	
 
 		String failedJobQuery = "SELECT * FROM Pool ; " ;
 		Statement st = db_controller.getConnexion().createStatement();

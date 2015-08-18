@@ -24,8 +24,7 @@ public class CreateJobServlet extends HttpServlet {
 		String job_type = request.getParameter("job_type");
 		String client = request.getParameter("client");
 		String storage = request.getParameter("storage");
-		String message_type = request.getParameter("message_type");
-		String location = request.getParameter("location");
+		String pool = request.getParameter("pool");
 		
 		BufferedWriter bw = new BufferedWriter(new FileWriter(Constant.getJobs(), true));
 		
@@ -38,18 +37,14 @@ public class CreateJobServlet extends HttpServlet {
 		bw.newLine();
 		bw.write("  Client = "+client);
 		bw.newLine();
+		bw.write("  Pool = "+pool);
+		bw.newLine();
 		bw.write("  Storage = "+storage);
 		bw.newLine();
-		bw.write("  Messages = "+message_type);
-		bw.newLine();
-		if(!location.isEmpty()){
-			bw.write("  Where = "+location);
-			bw.newLine();
-		}
 		bw.write("}");
 		bw.newLine();
 		bw.close();
-		response.sendRedirect(request.getContextPath() + "/index.jsp");
+		response.sendRedirect(request.getContextPath() + "/"+Constant.getIndexPage());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

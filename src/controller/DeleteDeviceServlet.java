@@ -20,10 +20,10 @@ public class DeleteDeviceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String device_name = request.getParameter("device_name");
 		Integer[] startEndMapMatched = new Integer[2];
-		File f = new File("/etc/bacula/devices.conf");
+		File f = new File(Constant.getDevices());
 		startEndMapMatched = AppUtils.getStartEndLineNumberByName(f,"Device","Name",device_name);
 		System.out.println("start : "+startEndMapMatched[0]+" end : "+startEndMapMatched[1]);
-		AppUtils.deleteLinesFromFile("/etc/bacula/devices.conf",startEndMapMatched[0],1+startEndMapMatched[1]-startEndMapMatched[0]);
+		AppUtils.deleteLinesFromFile(Constant.getDevices(),startEndMapMatched[0],1+startEndMapMatched[1]-startEndMapMatched[0]);
 		response.sendRedirect(request.getContextPath() + "/index.jsp");
 	}
 

@@ -17,7 +17,7 @@
 				action="searchfileservlet" method="post" novalidate>
 				<div class = "form-group">
 				<div class="col-md-3">
-				<label for="pool_name">File name <font color="red">*</font>:</label>
+				<label for="pool_name">File name<font color="red"> * </font>:</label>
 				<input type="text" class="form-control" name="file_name" required />
 				</div>
 				</div>

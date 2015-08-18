@@ -22,9 +22,7 @@ public class AddClientServlet extends HttpServlet {
 		
 		String client_name = request.getParameter("client_name");
 		String client_ip_address = request.getParameter("client_ip_address");
-		String fd_port = request.getParameter("fd_port");
 		String catalog = request.getParameter("catalog");
-		String password = request.getParameter("password");
 		String file_retention = request.getParameter("file_retention");
 		String autoprune = request.getParameter("autoprune");
 		BufferedWriter bw = new BufferedWriter(new FileWriter(Constant.getClients(), true));
@@ -36,11 +34,11 @@ public class AddClientServlet extends HttpServlet {
 		bw.newLine();
 		bw.write("  Address = "+client_ip_address);
 		bw.newLine();
-		bw.write("  FDPort = "+fd_port);
+		bw.write("  FDPort = "+Constant.getFd_port());
 		bw.newLine();
 		bw.write("  Catalog = "+catalog);
 		bw.newLine();
-		bw.write("  Password = "+password);
+		bw.write("  Password = "+Constant.getConfig_password());
 		bw.newLine();
 		bw.write("  File Retention = "+file_retention);
 		bw.newLine();
@@ -49,7 +47,7 @@ public class AddClientServlet extends HttpServlet {
 		bw.write("}");
 		bw.newLine();
 		bw.close();
-		response.sendRedirect(request.getContextPath() + "/index.jsp");
+		response.sendRedirect(request.getContextPath() + "/"+Constant.getIndexPage());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

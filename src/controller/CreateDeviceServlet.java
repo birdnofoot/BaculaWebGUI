@@ -47,7 +47,7 @@ public class CreateDeviceServlet extends HttpServlet {
 		bw.write("}");
 		bw.newLine();
 		bw.close();
-		response.sendRedirect(request.getContextPath() + "/index.jsp");
+		response.sendRedirect(request.getContextPath() + "/"+Constant.getIndexPage());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

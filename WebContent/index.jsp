@@ -14,8 +14,11 @@
 		<div class="alert alert-info" role="alert">
 		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 		<%
+			HashMap<String,Status> statusMap = new HashMap<String,Status>();
+			statusMap = AppUtils.getJobStatusLong();
+		
     		DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
-    		db_controller.connectoDatabase();	
+    		db_controller.openConnection();	
 		out.print("<span>&nbsp;&nbsp;Today is "+AppUtils.getDate()+". You have " +db_controller.getClientNumber()+ 
 			" clients and "+db_controller.getJobNumber()+" jobs. </span>");
 		%>
@@ -103,7 +106,7 @@
 	<div class="panel-body">
 	<table id = "failed_job_table" class="table">
 	<%
-		String failedJobQuery = "SELECT * FROM Job WHERE JobStatus = \"f\"; " ;
+		String failedJobQuery = "SELECT * FROM Job WHERE JobStatus = \"f\" or JobStatus = \"e\" or JobStatus = \"E\"; " ;
 		st = db_controller.getConnexion().createStatement();
 		ResultSet failed_job_rs = st.executeQuery(failedJobQuery);
 		
@@ -177,8 +180,6 @@
 				out.println("<td>"+db_controller.getClientNameById(running_job_rs.getString("ClientId")));
 				out.println("</td>");
 				out.println("<td>"+running_job_rs.getString("Level"));
-				out.println("</td>");
-				out.println("<td>"+running_job_rs.getString("JobStatus"));
 				out.println("</td>");
 				out.println("<td>"+AppUtils.formatDate(running_job_rs.getString("StartTime")));
 				out.println("</td>");
