@@ -6,13 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.Stack;
-import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,18 +30,6 @@ public class AppUtils {
 		return formatedDate ;
 	}
 	
-	public static String getDate(String s){
-		String[] parts = formatDate(s).split(" ");
-		String date = parts[0];
-		return date ;
-	}
-	
-	public static String getTime(String s){
-		String[] parts = formatDate(s).split(" ");
-		String time = parts[1];
-		return time ;
-	}
-	
 	public static String formatFileSize(String input) {
 		long size = Long.parseLong(input);
 	    if(size == 0){
@@ -56,40 +39,6 @@ public class AppUtils {
 	    int group = (int) (Math.log10(size)/Math.log10(1024));
 	    String formatedSize = new DecimalFormat("#,##0.#").format(size/Math.pow(1024, group)) + " " + units[group];
 	    return formatedSize ;
-	}
-	
-	public static ArrayList<Integer> getStartLineNumber(File f, String type)
-			throws FileNotFoundException {
-        int lineNumber = 1;
-        ArrayList<Integer> lineMatchArray = new ArrayList<Integer>();
-        String currentLine = null ;
-        @SuppressWarnings("resource")
-		Scanner fileScanner = new Scanner(f);
-        while(fileScanner.hasNextLine()){
-        	currentLine = fileScanner.nextLine();
-        	String regex = "^\\s*"+type+"\\s+\\{\\s*";
-        	Pattern pattern = Pattern.compile(regex);
-        	Matcher matcher = null;
-        	matcher = pattern.matcher(currentLine);
-        	if(matcher.find()){
-        		lineMatchArray.add(lineNumber);
-        	}
-            lineNumber++ ;
-        	}
-        return lineMatchArray ;
-	}
-	
-	public static boolean findName(String type, String currentLine){
-    	String regex = "^\\s*"+type+"\\s+\\{\\s*";
-    	Pattern pattern = Pattern.compile(regex);
-    	Matcher matcher = null;
-    	matcher = pattern.matcher(currentLine);
-    	if(matcher.find()){
-    		return true ;
-    	}
-    	else {
-    		return false ;
-    	}
 	}
 	
     public static HashMap<String,Status> getJobStatusLong(){
@@ -109,12 +58,23 @@ public class AppUtils {
     	statement.close();
     	m.closeConnection();
     	return statusMap ;
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
     	return null ;
     }
-    
+	
+	public static String getDate(String s){
+		String[] parts = formatDate(s).split(" ");
+		String date = parts[0];
+		return date ;
+	}
+	
+	public static String getTime(String s){
+		String[] parts = formatDate(s).split(" ");
+		String time = parts[1];
+		return time ;
+	}
     
 	public static String printConfigHighlight(String filename, String type){
 		
@@ -134,7 +94,7 @@ public class AppUtils {
 					sb.append("<b>"+currentLine+"</b>");
 		        	sb.append("</br>");
 				}
-				else if(AppUtils.findName(type, currentLine)){
+				else if(BaculaParser.findName(type, currentLine)){
 		        	sb.append("</br>");
 					sb.append("<b>"+currentLine+"</b>");
 		        	sb.append("</br>");
@@ -169,111 +129,6 @@ public class AppUtils {
 		return sb.toString();
 	}
 	
-	
-	
-	public static int getLineNumberByName(File f, String option, String name)
-			throws FileNotFoundException {
-        int lineNumber = 1;
-        int lineMatch = 0 ;
-        String currentLine = null ;
-        @SuppressWarnings("resource")
-		Scanner fileScanner = new Scanner(f);
-        
-        while(fileScanner.hasNextLine()){
-        	currentLine = fileScanner.nextLine();
-        	String regex = "\\s*"+option+"\\s+=\\s+"+name+"\\s*";
-        	Pattern pattern = Pattern.compile(regex);
-        	Matcher matcher = null;
-        	matcher = pattern.matcher(currentLine);
-        	if(matcher.find()){
-        		lineMatch = lineNumber ;
-        	}
-            lineNumber++ ;
-        	}
-        return lineMatch ;
-	}
-	
-	public static ArrayList<String> getName(File f, String option) throws FileNotFoundException{
-		ArrayList<String> name_list = new ArrayList<String>();
-        @SuppressWarnings("unused")
-		int lineNumber = 1;
-        String currentLine = null ;
-        @SuppressWarnings("resource")
-		Scanner fileScanner = new Scanner(f);
-        
-        while(fileScanner.hasNextLine()){
-        	currentLine = fileScanner.nextLine();
-        	if(currentLine.length() >= 1){
-				if(currentLine.trim().charAt(0) != '#'){
-		        	String regex = "\\s*"+option+"\\s+=\\s+";
-		        	Pattern pattern = Pattern.compile(regex);
-		        	Matcher matcher = null;
-		        	matcher = pattern.matcher(currentLine);
-		        	if(matcher.find()){
-		        		String name = "" ;
-		        		String[] parts = currentLine.split(" +");
-		        		int j ;
-		        		for(j=3;j<parts.length;j++){
-		        			if(parts[j] != null){
-		        				if(parts[j].charAt(0) == '"'){
-		        					parts[j] = parts[j].substring(1);
-		        				}
-		        			    if (parts[j].length() > 0 && parts[j].charAt(parts[j].length()-1)=='"') {
-		        			    	parts[j] = parts[j].substring(0, parts[j].length()-1);
-		        			      }
-		        			    name = name + " "+ parts[j] ;
-		        			}
-		        		}
-		        		name_list.add(name);
-		        	}
-				}
-        	}
-        lineNumber++ ;
-        }
-        return name_list ;
-	}
-	
-	public static String printSelectOptionByType(String type){
-		StringBuilder sb = new StringBuilder();
-		String path = null ;
-		if(type.equals("client")){
-			path = Constant.getClients();
-		}
-		if(type.equals("fileset")){
-			path = Constant.getFilesets();
-		}
-		if(type.equals("storage")){
-			path = Constant.getStorages();
-		}
-		if(type.equals("schedule")){
-			path = Constant.getSchedules();
-		}
-		if(type.equals("pool")){
-			path = Constant.getPools();
-		}
-		if(type.equals("jobdef")){
-			path = Constant.getJobdefs();
-		}
-		if(type.equals("device")){
-			path = Constant.getDevices();
-		}
-		
-		File f = new File(path);
-		ArrayList<String> name_list = new ArrayList<String>();
-		try {
-			name_list = AppUtils.getName(f,"Name");
-			int i = 0 ;
-			for(i=0;i<name_list.size();i++){
-				sb.append("<option>"+name_list.get(i)+"</option>");
-			}
-			System.out.println(sb.toString());
-			return sb.toString() ;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return null ;
-	}
-	
 	public static String formatTime(String in) {
 		String time = "";
 		long seconds = Long.parseLong(in);
@@ -297,124 +152,59 @@ public class AppUtils {
 	    return time ;
 	}
 
-	public static void showLineNumber(File f, String name) 
-			throws FileNotFoundException {
-		ArrayList<Integer> lineMatchArray = new ArrayList<Integer>();
-		lineMatchArray = getStartLineNumber(f,name);
-		for (Integer nb : lineMatchArray){
-			System.out.println(nb) ;
-		}
-	}
-	
-	public static boolean isBracketMatch(String str) {
-	    Stack<Character> stack = new Stack<Character>();
-	    char c;
-	    for(int i=0; i < str.length(); i++) {
-	        c = str.charAt(i);
-	        if(c == '{')
-	            stack.push(c);
-	        else if(c == '}')
-	            if(stack.empty())
-	                return false;
-	            else if(stack.peek() == '{')
-	                stack.pop();
-	            else
-	                return false;
-	    }
-	    return stack.empty();
-	}
-	
-	public static Integer[] getStartEndLineNumberByName(File f, String type, String option, String name) 
-			throws FileNotFoundException{
-		Integer[] startEndMapMatched = new Integer[2];
-		Map<Integer, Integer> map = new TreeMap<Integer, Integer>();
-		map = AppUtils.getBlockStartEnd(f,type);
-		for(Map.Entry<Integer,Integer> entry : map.entrySet()) {
-			Integer startLineNumber = entry.getKey();
-			Integer endLineNumber = entry.getValue();
-			Integer matchedLineNumber = AppUtils.getLineNumberByName(f, option, name);
-			if((matchedLineNumber < endLineNumber) && (matchedLineNumber > startLineNumber)){
-				startEndMapMatched[0]=startLineNumber ;
-				startEndMapMatched[1]=endLineNumber;
-			}
-		}
-		return startEndMapMatched ;
-	}
-	
-	public static void deleteLinesFromFile(String filename, int startline, int numlines){
-		try
-		{
-			BufferedReader br=new BufferedReader(new FileReader(filename));
-			StringBuffer sb=new StringBuffer("");
-			int linenumber=1;
-			String line;
-			while((line=br.readLine())!=null)
-			{
-				if(linenumber<startline||linenumber>=startline+numlines)
-					sb.append(line+"\n");
-				linenumber++;
-			}
-			br.close();
-			FileWriter fw = new FileWriter(new File(filename));
-			fw.write(sb.toString());
-			fw.close();
-		}
-		catch (Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-	}
 	
 	public static String getDate(){
 		DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy");
 		Date date = new Date();
 		return dateFormat.format(date);
 	}
-	
-	public static Map<Integer, Integer> getBlockStartEnd(File f, String type) 
-			throws FileNotFoundException{
-		
-	    Stack<String> stack = new Stack<String>();
-		ArrayList<Integer> startLineArray = new ArrayList<Integer>();
-		
-		boolean found = false ;
-		boolean findPoolStartLine = false ;
-		
-        int lineNumber = 1;
-		int counter = 0 ;
-        String currentLine = null ;
-        
-    	@SuppressWarnings("resource")
-    	Scanner fileScanner = new Scanner(f);
-    	Map<Integer, Integer> lineNumberMap = new TreeMap<Integer, Integer>();
-		startLineArray = getStartLineNumber(f,type);
 
-		for (Integer i : startLineArray){
-		        while(fileScanner.hasNextLine() && !found){
-		        	while(lineNumber != startLineArray.get(counter) && !findPoolStartLine){
-			        	currentLine = fileScanner.nextLine();
-						lineNumber++;
-		        	}
-					findPoolStartLine = true ;
-		        	currentLine = fileScanner.nextLine();
 
-		        	if(currentLine.contains("{")){
-		        		stack.push("{");
-		        	}
-		        	
-		        	if(currentLine.contains("}")){
-		    			stack.pop();
-		        	}
-		        	
-		        	if(lineNumber > i && stack.empty()){
-		        		lineNumberMap.put(i, lineNumber);
-		        		found = true ;
-		        	}
-		            lineNumber++ ;
-		        }
-				found = false ;
-				counter ++ ;
-    	}
-		return lineNumberMap ;
+	public static String getConfigPathByType(String type){
+		String path = null ;
+		if(type.equals("Client")){
+			path = Constant.getClients();
+		}
+		if(type.equals("FileSet")){
+			path = Constant.getFilesets();
+		}
+		if(type.equals("Storage")){
+			path = Constant.getStorages();
+		}
+		if(type.equals("Schedule")){
+			path = Constant.getSchedules();
+		}
+		if(type.equals("Pool")){
+			path = Constant.getPools();
+		}
+		if(type.equals("JobDef")){
+			path = Constant.getJobdefs();
+		}
+		if(type.equals("Device")){
+			path = Constant.getDevices();
+		}
+		if(type.equals("Job")){
+			path = Constant.getJobs();
+		}
+		return path ;
 	}
+	
+	public static String printSelectOptionByType(String type){
+		StringBuilder sb = new StringBuilder();
+		File f = new File(getConfigPathByType(type));
+		ArrayList<String> name_list = new ArrayList<String>();
+		try {
+			name_list = BaculaParser.getName(f,"Name");
+			int i = 0 ;
+			for(i=0;i<name_list.size();i++){
+				sb.append("<option>"+name_list.get(i)+"</option>");
+			}
+			return sb.toString() ;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null ;
+	}
+	
 }
+	

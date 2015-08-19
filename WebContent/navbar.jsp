@@ -104,7 +104,7 @@ $(".manual").tooltip({
 		<li><a href="ViewDevice.jsp">View devices</a></li>
 		<li role="separator" class="divider"></li>
 		<li><a href="CreateDevice.jsp">Create device</a></li>
-		<li><a href="DeleteDevice.jsp">Delete device</a></li>
+		<li><a href="Delete.jsp?type=Device">Delete device</a></li>
 		</ul>
 		</li>
 		
@@ -115,7 +115,7 @@ $(".manual").tooltip({
 				<li><a href="ViewStorage.jsp">View storages</a></li>
 				<li role="separator" class="divider"></li>
 				<li><a href="CreateStorage.jsp">Create storage</a></li>
-				<li><a href="DeleteStorage.jsp">Delete storage</a></li>
+				<li><a href="Delete.jsp?type=Storage">Delete storage</a></li>
 				</ul>
 				</li>
 				
@@ -126,7 +126,7 @@ $(".manual").tooltip({
 						<li><a href="ViewPool.jsp">View pools</a></li>
 					  	<li role="separator" class="divider"></li>
 						<li><a href="CreatePool.jsp">Create pool</a></li>
-						<li><a href="DeletePool.jsp">Delete pool</a></li>
+						<li><a href="Delete.jsp?type=Pool">Delete pool</a></li>
 					</ul>
 				</li>
 
@@ -137,7 +137,7 @@ $(".manual").tooltip({
 						<li><a href="ViewFileSet.jsp">View filesets</a></li>
 					  	<li role="separator" class="divider"></li>
 						<li><a href="CreateFileSet.jsp">Create fileset</a></li>
-						<li><a href="DeleteFileSet.jsp">Delete fileset</a></li>
+						<li><a href="Delete.jsp?type=FileSet">Delete fileset</a></li>
 					</ul>
 				</li>
 
@@ -148,7 +148,7 @@ $(".manual").tooltip({
 						<li><a href="ViewJobDef.jsp">View JobDef</a></li>
 					  	<li role="separator" class="divider"></li>
 						<li><a href="CreateJobDef.jsp">Create JobDef</a></li>
-						<li><a href="CreateJobDef.jsp">Delete JobDef</a></li>
+						<li><a href="Delete.jsp?type=JobDef">Delete JobDef</a></li>
 					</ul>
 				</li>
 				
@@ -159,7 +159,7 @@ $(".manual").tooltip({
 						<li><a href="ViewJob.jsp">View jobs</a></li>
 					  	<li role="separator" class="divider"></li>
 						<li><a href="CreateJob.jsp">Create job</a></li>
-						<li><a href="DeleteJob.jsp">Delete job</a></li>
+						<li><a href="Delete.jsp?type=Job">Delete job</a></li>
 					</ul>
 				</li>
 
@@ -170,7 +170,7 @@ $(".manual").tooltip({
 						<li><a href="ViewSchedule.jsp">View schedules</a></li>
 					  	<li role="separator" class="divider"></li>
 						<li><a href="CreateSchedule.jsp">Create schedule</a></li>
-						<li><a href="DeleteSchedule.jsp">Delete schedule</a></li>
+						<li><a href="Delete.jsp?type=Schedule">Delete schedule</a></li>
 					</ul>
 				</li>
 
@@ -181,7 +181,7 @@ $(".manual").tooltip({
 						<li><a href="ViewClient.jsp">View clients</a></li>
 					  	<li role="separator" class="divider"></li>
 						<li><a href="AddClient.jsp">Add client</a></li>
-						<li><a href="DeleteClient.jsp">Delete client</a></li>
+						<li><a href="Delete.jsp?type=Client">Delete client</a></li>
 					</ul>
 				</li>
 				

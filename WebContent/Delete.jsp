@@ -2,33 +2,38 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<title>Delete storage - Bacula Web GUI</title>
+<% String type = request.getParameter("type") ;%>
+<title>Delete <%=type %> - Bacula Web GUI</title>
+
 </head>
 
 <body>
 	<div class="container">
 	<div class="page-header">
-	<h1>Delete storage</h1>
+	<h1>Delete <%=type %></h1>
 	</div>
-
+	
 	<form class="form-horizontal"
-		action="deletestorageservlet" method="post" novalidate>
+		action="deleteservlet" method="post" novalidate>
 
 	<div class = "form-group">
 	<div class="col-xs-3">
-	<label for="device">Choose a storage to delete :</label>
+	<input type="hidden" id="thisField" name="deleteType" value="<%=type %>">
+	<label for="job">Choose a <%=type %> to delete :</label>
 	<br/>
 	
-	<select class="form-control" name="storage_name" required>
+	<select class="form-control" name="name" required>
 	<%
-	File f = new File("/etc/bacula/conf.d/storages.conf");
+	String path = AppUtils.getConfigPathByType(type);
+	System.out.println(type);
+	File f = new File(path);
 	ArrayList<String> name_list = new ArrayList<String>();
-	name_list = AppUtils.getName(f,"Name");
+	name_list = BaculaParser.getName(f,"Name");
 	int i = 0 ;
 	for(i=0;i<name_list.size();i++){
 		out.println("<option>"+name_list.get(i)+"</option>");
-		System.out.println();
 	}
+	
 	%>
 	</select>
 	<br/>

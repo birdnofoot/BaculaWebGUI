@@ -14,7 +14,7 @@ public class parse
 	public static void main(String[] args) throws FileNotFoundException {
 		Integer[] startEndMapMatched = new Integer[2];
 		File f = new File(Constant.getFilesets());
-		startEndMapMatched = AppUtils.getStartEndLineNumberByName(f,"FileSet","Name","\"Test\"");
+		startEndMapMatched = BaculaParser.getStartEndLineNumberByName(f,"FileSet","Name","\"Test\"");
 		System.out.println("start : "+startEndMapMatched[0]+" end : "+startEndMapMatched[1]);
 }
 }
