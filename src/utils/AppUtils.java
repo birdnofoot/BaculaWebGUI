@@ -233,6 +233,47 @@ public class AppUtils {
         return name_list ;
 	}
 	
+	public static String printSelectOptionByType(String type){
+		StringBuilder sb = new StringBuilder();
+		String path = null ;
+		if(type.equals("client")){
+			path = Constant.getClients();
+		}
+		if(type.equals("fileset")){
+			path = Constant.getFilesets();
+		}
+		if(type.equals("storage")){
+			path = Constant.getStorages();
+		}
+		if(type.equals("schedule")){
+			path = Constant.getSchedules();
+		}
+		if(type.equals("pool")){
+			path = Constant.getPools();
+		}
+		if(type.equals("jobdef")){
+			path = Constant.getJobdefs();
+		}
+		if(type.equals("device")){
+			path = Constant.getDevices();
+		}
+		
+		File f = new File(path);
+		ArrayList<String> name_list = new ArrayList<String>();
+		try {
+			name_list = AppUtils.getName(f,"Name");
+			int i = 0 ;
+			for(i=0;i<name_list.size();i++){
+				sb.append("<option>"+name_list.get(i)+"</option>");
+			}
+			System.out.println(sb.toString());
+			return sb.toString() ;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null ;
+	}
+	
 	public static String formatTime(String in) {
 		String time = "";
 		long seconds = Long.parseLong(in);

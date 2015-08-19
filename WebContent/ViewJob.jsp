@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<title>View all jobs - Bacula Web GUI</title>
+<title>View jobs - Bacula Web GUI</title>
 </head>
 <body>
 	<script type="text/javascript">
@@ -16,7 +16,7 @@
 	
 	<div class="container">
 	<div class="page-header">
-		<h1>Jobs</h1>
+		<h1>Job</h1>
 	</div>
 	<div class="panel panel-info">
 	<div class="panel-heading">
@@ -47,7 +47,6 @@
 	out.println("<th> Start Time </th>");
 	out.println("<th> End Time </th>");
 	out.println("</thead>");
-
 	
 	while(job_rs.next()){		
 		out.println("<tr>");
@@ -58,8 +57,8 @@
 		out.println("<td>"+job_rs.getString("Level"));
 		out.println("</td>");
 
-	    out.println("<td><a id=\"popoverOption\" data-content=\" "+statusMap.get(job_rs.getString("JobStatus")).getJobStatusLong()+
-	    "\"rel=\"popover\" data-placement=\"top\">"+job_rs.getString("JobStatus")+"</a>");
+	    out.println("<td><span id=\"popoverOption\" data-content=\" "+statusMap.get(job_rs.getString("JobStatus")).getJobStatusLong()+
+	    "\"rel=\"popover\" data-placement=\"top\">"+job_rs.getString("JobStatus")+"</span>");
 		out.println("</td>");
 		out.println("<td>"+db_controller.getClientNameById(job_rs.getString("ClientId")));
 		out.println("</td>");

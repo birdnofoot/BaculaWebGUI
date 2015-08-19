@@ -8,6 +8,7 @@
 <%@page import="com.sun.org.apache.xml.internal.serializer.utils.Utils"%>
 
 <%-- CSS --%>
+<link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/dataTables.bootstrap.css">
 <link rel="stylesheet" href="css/jquery.dataTables.css">
@@ -19,7 +20,8 @@
 <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
 <script type="text/javascript" src="js/validator.js"></script>
 <script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-<%-- hover text --%>
+
+<%-- JS hover text --%>
 <script>
 $(function() {
     var overPopup = false;
@@ -50,7 +52,22 @@ $(function() {
 });
 </script>
 
+<%-- JS hide form --%>
+<script type="text/javascript">
+	function toggleContent() {
+	var contentId = document.getElementById("advanced_form");
+	contentId.style.display == "none" ? contentId.style.display = "block" : 
+	contentId.style.display = "none"; 
+	}
+</script>
 
+<%-- JS tooltip --%>
+<script>
+$(".manual").tooltip({
+	placement: "top"
+	});
+</script>		
+				
 <%-- Navbar --%>
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
@@ -64,29 +81,42 @@ $(function() {
 			</button>
 			<a class="navbar-brand" href="index.jsp">Bacula Web GUI v1.0</a>
 		</div>
+		
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Device<span class="caret"></span></a>
+					aria-expanded="false">Director<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="ViewDevice.jsp">View devices</a></li>
-					  	<li role="separator" class="divider"></li>
-						<li><a href="CreateDevice.jsp">Create device</a></li>
-						<li><a href="DeleteDevice.jsp">Delete device</a></li>
-					</ul>
-				</li>
-				
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Storage<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="ViewStorage.jsp">View storages</a></li>
-					  	<li role="separator" class="divider"></li>
-						<li><a href="CreateStorage.jsp">Create storage</a></li>
-						<li><a href="DeleteStorage.jsp">Delete storage</a></li>
-					</ul>
+						<li><a href="CreateDevice.jsp">Director info</a></li>
+						<li><a href="SearchFile.jsp">Search</a></li>
+              			<li role="separator" class="divider"></li>
+              			<li><a href="SearchFile.jsp">Settings</a></li>
+              			<li><a href="ViewLogs.jsp">Logs</a></li>
+					</ul>		</li>
+
+		
+		<li class="dropdown"><a href="#" class="dropdown-toggle"
+		data-toggle="dropdown" role="button" aria-haspopup="true"
+		aria-expanded="false">Device<span class="caret"></span></a>
+		<ul class="dropdown-menu">
+		<li><a href="ViewDevice.jsp">View devices</a></li>
+		<li role="separator" class="divider"></li>
+		<li><a href="CreateDevice.jsp">Create device</a></li>
+		<li><a href="DeleteDevice.jsp">Delete device</a></li>
+		</ul>
+		</li>
+		
+		<li class="dropdown"><a href="#" class="dropdown-toggle"
+			data-toggle="dropdown" role="button" aria-haspopup="true"
+			aria-expanded="false">Storage<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li><a href="ViewStorage.jsp">View storages</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a href="CreateStorage.jsp">Create storage</a></li>
+				<li><a href="DeleteStorage.jsp">Delete storage</a></li>
+				</ul>
 				</li>
 				
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -104,13 +134,24 @@ $(function() {
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">FileSet<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="ViewFileset.jsp">View filesets</a></li>
+						<li><a href="ViewFileSet.jsp">View filesets</a></li>
 					  	<li role="separator" class="divider"></li>
 						<li><a href="CreateFileSet.jsp">Create fileset</a></li>
 						<li><a href="DeleteFileSet.jsp">Delete fileset</a></li>
 					</ul>
 				</li>
 
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">JobDef<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="ViewJobDef.jsp">View JobDef</a></li>
+					  	<li role="separator" class="divider"></li>
+						<li><a href="CreateJobDef.jsp">Create JobDef</a></li>
+						<li><a href="CreateJobDef.jsp">Delete JobDef</a></li>
+					</ul>
+				</li>
+				
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Job<span class="caret"></span></a>
@@ -144,18 +185,11 @@ $(function() {
 					</ul>
 				</li>
 				
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Search<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="SearchFile.jsp">Search File</a></li>
-					</ul>
+				<li><a href="SearchFile.jsp" role="button" aria-haspopup="true"
+					aria-expanded="false">Search</a>
 				</li>
 				
-				<li><a href="ViewLogs.jsp" role="button" aria-haspopup="true"
-					aria-expanded="false">Logs</a>
-				</li>
-				
+											
 				<li><a href="Console.jsp" role="button" aria-haspopup="true"
 					aria-expanded="false">Console</a>
 				</li>
@@ -163,6 +197,7 @@ $(function() {
 
 		</div>
 	</div>
+
 </nav>
 <br/>
 <br/>

@@ -2,16 +2,14 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<title>Delete Device - Bacula Web GUI</title>
+<title>Delete device - Bacula Web GUI</title>
 
 </head>
 
 <body>
 	<div class="container">
-	<div class = "row">
-	
 	<div class="page-header">
-	<h1>Delete Device</h1>
+	<h1>Delete device</h1>
 	</div>
 
 	<form class="form-horizontal"
@@ -43,7 +41,6 @@
 	</div>
 	</div>
 	</form>
-	</div>
 	</div>
 	<br/>
 	<br/>

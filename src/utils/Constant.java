@@ -10,12 +10,14 @@ public class Constant {
 	private static String jobs = "/etc/bacula/conf.d/jobs.conf";
 	private static String schedules = "/etc/bacula/conf.d/schedules.conf";
 	private static String clients = "/etc/bacula/conf.d/clients.conf";
+	private static String jobdefs = "/etc/bacula/conf.d/jobdefs.conf";
 	private static String indexPage = "index.jsp";
 	
 	/* Bacula config variables*/
 	private static String config_password = "baCu52c";
 	private static String fd_port = "9102";
 	private static String sd_port = "9103";
+	private static String localhost_ip = "10.0.15.45";
 	
 	/* Database variables*/
 	private static String db_user = "bacula";
@@ -72,6 +74,12 @@ public class Constant {
 	}
 	public static String getSd_port() {
 		return sd_port;
+	}
+	public static String getJobdefs() {
+		return jobdefs;
+	}
+	public static String getLocalhost_ip() {
+		return localhost_ip;
 	}
 	
 	

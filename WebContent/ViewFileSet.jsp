@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<title>View FileSets - Bacula Web GUI</title>
+<title>View filesets - Bacula Web GUI</title>
 </head>
 <body>
 	<script type="text/javascript">
@@ -16,7 +16,7 @@
 	
 	<div class="container">
 	<div class="page-header">
-	<h1>FileSets</h1>
+	<h1>FileSet</h1>
 	</div>
 	
 	<div class="panel panel-info">

@@ -2,15 +2,13 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<title>Delete Pool - Bacula Web GUI</title>
+<title>Delete pool - Bacula Web GUI</title>
 </head>
 
 <body>
-	<div class="container">
-	<div class = "row">
-	
+	<div class="container">	
 	<div class="page-header">
-	<h1>Delete Pool</h1>
+	<h1>Delete pool</h1>
 	</div>
 
 	<form class="form-horizontal"
@@ -42,7 +40,6 @@
 	</div>
 	</div>
 	</form>
-	</div>
 	</div>
 	<br/>
 	<br/>

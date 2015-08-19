@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<title>Create Job - Bacula Web GUI</title>
+<title>Create job - Bacula Web GUI</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -10,7 +10,7 @@
 <body>
 	<div class="container">
 	<div class="page-header">
-		<h1>Create Job</h1>
+		<h1>Create job</h1>
 	</div>
 	
 	<form data-toggle="validator" class="form-horizontal"
@@ -38,16 +38,7 @@
 	<div class="col-xs-3">
 	<label for="client">Client <font color="red">*</font> :</label>
 	<select class="form-control" name="client" required>
-	<%
-	File f = new File("/etc/bacula/conf.d/clients.conf");
-	ArrayList<String> name_list = new ArrayList<String>();
-	name_list = AppUtils.getName(f,"Name");
-	int i = 0 ;
-	for(i=0;i<name_list.size();i++){
-		out.println("<option>"+name_list.get(i)+"</option>");
-		System.out.println();
-	}
-	%>
+		<% out.println(AppUtils.printSelectOptionByType("client")); %>
 	</select>
 	</div>
 	</div>
@@ -56,15 +47,7 @@
 	<div class="col-xs-3">
 	<label for="storage">Storage <font color="red">*</font> :</label>
 	<select class="form-control" name="storage" required>
-	<%
-	File f3 = new File("/etc/bacula/conf.d/storages.conf");
-	ArrayList<String> storage_list = new ArrayList<String>();
-	storage_list = AppUtils.getName(f3,"Name");
-	for(i=0;i<storage_list.size();i++){
-		out.println("<option>"+storage_list.get(i)+"</option>");
-		System.out.println();
-	}
-	%>
+		<% out.println(AppUtils.printSelectOptionByType("storage")); %>
 	</select>
 	</div>
 	</div>
@@ -73,15 +56,7 @@
 	<div class="col-xs-3">
 	<label for="pool">Pool <font color="red">*</font> :</label>
 	<select class="form-control" name="pool" required>
-	<%
-	File f2 = new File("/etc/bacula/conf.d/pools.conf");
-	ArrayList<String> pool_list = new ArrayList<String>();
-	pool_list = AppUtils.getName(f2,"Name");
-	for(i=0;i<pool_list.size();i++){
-		out.println("<option>"+pool_list.get(i)+"</option>");
-		System.out.println();
-	}
-	%>
+		<% out.println(AppUtils.printSelectOptionByType("pool")); %>
 	</select>
 	</div>
 	</div>

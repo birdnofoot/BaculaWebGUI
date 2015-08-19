@@ -40,7 +40,7 @@ public class CreateFilesetServlet extends HttpServlet {
 		bw.newLine();
 		bw.write("      signature = "+signature);
 		bw.newLine();
-		if (!compression.equals("no compression")){
+		if (!compression.equals("No compression")){
 			bw.write("      compression = "+compression);
 			bw.newLine();
 		}

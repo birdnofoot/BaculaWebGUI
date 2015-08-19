@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utils.AppUtils;
 import utils.Constant;
 
 @WebServlet("/createstorageservlet")
@@ -20,9 +21,11 @@ public class CreateStorageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
 		String storage_name = request.getParameter("storage_name");
-		String ip_address = request.getParameter("ip_address");
 		String device = request.getParameter("device");
-		String media_type = request.getParameter("media_type");
+		String ip_address = request.getParameter("ip_address");
+		if(ip_address.length()==0){
+			ip_address = Constant.getLocalhost_ip();
+		}
 		BufferedWriter bw;
 
 		bw = new BufferedWriter(new FileWriter(Constant.getStorages(), true));
@@ -39,7 +42,7 @@ public class CreateStorageServlet extends HttpServlet {
 		bw.newLine();
 		bw.write("  Device = "+device);
 		bw.newLine();
-		bw.write("  Media Type = "+media_type);
+		bw.write("  Media Type = File");
 		bw.newLine();
 		bw.write("}");
 		bw.newLine();

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<title>Delete FileSet - Bacula Web GUI</title>
+<title>Delete fileset - Bacula Web GUI</title>
 
 </head>
 
@@ -11,7 +11,7 @@
 	<div class = "row">
 	
 	<div class="page-header">
-	<h1>Delete FileSet</h1>
+	<h1>Delete fileset</h1>
 	</div>
 
 	<form class="form-horizontal"

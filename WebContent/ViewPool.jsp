@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<title>View all pools - Bacula Web GUI</title>
+<title>View pools - Bacula Web GUI</title>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
 	
 	<div class="container">
 	<div class="page-header">
-		<h1>Pools</h1>
+		<h1>Pool</h1>
 	</div>
 	<div class="panel panel-info">
 	<div class="panel-heading">

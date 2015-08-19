@@ -19,9 +19,8 @@ public class CreateDeviceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String device_name = request.getParameter("device_name");
-		String media_type = request.getParameter("media_type");
-		String labelmedia = request.getParameter("labelmedia");
-		String archieve_device = request.getParameter("archieve_device");
+		String label_media = request.getParameter("label_media");
+		String archive_device = request.getParameter("archive_device");
 		
 		BufferedWriter bw = new BufferedWriter(new FileWriter(Constant.getDevices(), true));
 		
@@ -30,11 +29,11 @@ public class CreateDeviceServlet extends HttpServlet {
 		bw.newLine();
 		bw.write("  Name = "+device_name);
 		bw.newLine();
-		bw.write("  Media Type = "+media_type);
+		bw.write("  Media Type = File");
 		bw.newLine();
-		bw.write("  Archive Device = "+archieve_device);
+		bw.write("  Archive Device = "+archive_device);
 		bw.newLine();
-		bw.write("  LabelMedia = "+labelmedia);
+		bw.write("  LabelMedia = "+label_media);
 		bw.newLine();
 		bw.write("  Random Access = yes;");
 		bw.newLine();

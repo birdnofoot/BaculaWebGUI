@@ -19,11 +19,12 @@ public class DeleteFilesetServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String fileset_name = request.getParameter("fileset_name");
+		System.out.println("Here :   "+fileset_name);
 		Integer[] startEndMapMatched = new Integer[2];
-		File f = new File("/etc/bacula/conf.d/filesets.conf");
-		startEndMapMatched = AppUtils.getStartEndLineNumberByName(f,"FileSet","Name",fileset_name);
+		File f = new File(Constant.getFilesets());
+		startEndMapMatched = AppUtils.getStartEndLineNumberByName(f,"FileSet","Name","\""+fileset_name+"\"");
 		System.out.println("start : "+startEndMapMatched[0]+" end : "+startEndMapMatched[1]);
-		AppUtils.deleteLinesFromFile("/etc/bacula/conf.d/filesets.conf",startEndMapMatched[0],1+startEndMapMatched[1]-startEndMapMatched[0]);
+		AppUtils.deleteLinesFromFile(Constant.getFilesets(),startEndMapMatched[0],1+startEndMapMatched[1]-startEndMapMatched[0]);
 		response.sendRedirect(request.getContextPath() + "/index.jsp");
 	}
 

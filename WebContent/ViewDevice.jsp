@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<title>View all pools - Bacula Web GUI</title>
+<title>View devices - Bacula Web GUI</title>
 </head>
 
 <body>
