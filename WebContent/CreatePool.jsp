@@ -41,9 +41,9 @@
 				<div class = "form-group">
 
 				<div class="col-xs-3">
-				<span class="manual" title="<%= Manual.getPoolLabelFormatInfo() %>">
-				<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-				</span>
+				<%
+				out.println(PrintJSP.printFieldInfo(Manual.getPoolLabelFormatInfo()));
+				%>
 				<label for="label_format">Label Format :</label>
 				<input type="text" class="form-control" name="label_format"/>
 				</div>
@@ -51,9 +51,9 @@
 
 				<div class = "form-group">
 				<div class="col-xs-3">
-				<span class="manual" title="<%= Manual.getPoolVolumeRetentionInfo() %>">
-				<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-				</span>
+				<%
+				out.println(PrintJSP.printFieldInfo(Manual.getPoolVolumeRetentionInfo()));
+				%>
 				<label for="volume_retention">Volume Retention :</label>
 				<input type="text" class="form-control" name="volume_retention"/>
 				</div>
@@ -61,18 +61,18 @@
 				
 				<div class = "form-group">
 				<div class="col-xs-3">
-				<span class="manual" title="<%= Manual.getPoolMaxVolumeBytes() %>">
-				<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-				</span>
+				<%
+				out.println(PrintJSP.printFieldInfo(Manual.getPoolMaxVolumeBytes()));
+				%>
 				<label for="maximum_volume_bytes">Maximum Volume Bytes :</label>
 				<input type="text" class="form-control" name="maximum_volume_bytes"/>
 				</div>
 				</div>
 				<div class = "form-group">
 				<div class="col-xs-3">
-				<span class="manual" title="<%= Manual.getPoolMaxVolume() %>">
-				<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-				</span>
+				<%
+				out.println(PrintJSP.printFieldInfo(Manual.getPoolMaxVolume()));
+				%>
 				<label for="maximum_volumes">Maximum Volumes :</label>
 				<input type="text" class="form-control" name="maximum_volumes"/>
 				</div>

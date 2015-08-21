@@ -7,6 +7,7 @@
 </head>
 
 <body>
+
 	<div class="container">	
 		<div class="page-header">
 		<h1>Create device</h1>
@@ -24,9 +25,9 @@
 				
 				<div class = "form-group">
 				<div class="col-xs-3">
-				<span class="manual" title="<%= Manual.getDeviceLabelMediaInfo() %>">
-				<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-				</span>
+				<%
+				out.println(PrintJSP.printFieldInfo(Manual.getDeviceLabelMediaInfo()));
+				 %>
 				<label for="label_media">Label Media <font color="red">*</font> :</label>
 				<select  class="form-control" name="label_media">
 					<option>yes</option>
@@ -37,9 +38,10 @@
 				
 				<div class = "form-group">
 				<div class="col-xs-3">
-				<span class="manual" title="<%= Manual.getDeviceArchiveDeviceInfo() %>">
-				<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-				</span>
+				
+			    <%
+				out.println(PrintJSP.printFieldInfo(Manual.getDeviceArchiveDeviceInfo()));
+				 %>
 				<label for="archive_device">Archive Device <font color="red">*</font> :</label>
 				<input type="text" class="form-control" name="archive_device" required/>
 				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>

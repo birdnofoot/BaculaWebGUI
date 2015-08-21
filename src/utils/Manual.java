@@ -63,5 +63,35 @@ public class Manual {
 		return info ;
 	}
 	
+	/* Client */
 	
+	public static String getClientFileRetentionInfo(){
+		String info = "The File Retention defines the length of time that Bacula will keep File records in the Catalog database after the End time of the Job corresponding to the File records. "
+				+ "When this time period expires, and if AutoPrune is set to yes Bacula will prune (remove) File records that are older than the specified File Retention period. "+
+				"This affects only records in the catalog database. It does not affect your archive backups."+
+				"The default is 60 days.";
+		return info ;
+	}
+	
+	/* Search */
+	
+	public static String getSearchFilenameInfo(){
+		String info = "Support name sub-string match";
+		return info ;
+	}
+	
+	/* Wizard */
+	
+	public static String getWizardOptionInfo(){
+		String info = "Support name sub-string match";
+		return info ;
+	}
+	
+	
+	/* Job */
+	
+	public static String getJobScheduleInfo(){
+		String info = "This option will disable and overwrite the schedule already defined in JobDefs";
+		return info ;
+	}
 }

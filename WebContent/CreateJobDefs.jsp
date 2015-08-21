@@ -18,7 +18,7 @@
 	<div class = "form-group">
 	<div class="col-xs-3">
 	<label for="jobdef_name">JobDef name <font color="red">*</font> :</label>
-	<input type="text" class="form-control" name="job_name" required />
+	<input type="text" class="form-control" name="jobdef_name" required />
 		<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 	</div>
 	</div>
@@ -26,7 +26,7 @@
 	<div class = "form-group">
 	<div class="col-xs-3">
 	<label for="jobdef_type">JobDef type <font color="red">*</font> :</label>
-	<select class="form-control" name="job_type" required>
+	<select class="form-control" name="jobdef_type" required>
 		<option>Backup</option>
 		<option>Restore</option>
 	</select>
@@ -48,7 +48,7 @@
 	<div class="col-xs-3">
 	<label for="client">Client <font color="red">*</font> :</label>
 	<select class="form-control" name="client" required>
-		<% out.println(AppUtils.printSelectOptionByType("client")); %>
+		<% out.println(PrintJSP.printSelectOptionByType("Client")); %>
 	</select>
 	</div>
 	</div>
@@ -57,7 +57,7 @@
 	<div class="col-xs-3">
 	<label for="fileset">FileSet <font color="red">*</font> :</label>
 	<select class="form-control" name="fileset" required>
-		<% out.println(AppUtils.printSelectOptionByType("fileset")); %>
+		<% out.println(PrintJSP.printSelectOptionByType("FileSet")); %>
 	</select>
 	</div>
 	</div>
@@ -66,7 +66,7 @@
 	<div class="col-xs-3">
 	<label for="schedule">Schedule <font color="red">*</font> :</label>
 	<select class="form-control" name="schedule" required>
-		<% out.println(AppUtils.printSelectOptionByType("schedule")); %>
+		<% out.println(PrintJSP.printSelectOptionByType("Schedule")); %>
 	</select>
 	</div>
 	</div>
@@ -75,7 +75,7 @@
 	<div class="col-xs-3">
 	<label for="storage">Storage <font color="red">*</font> :</label>
 	<select class="form-control" name="storage" required>
-		<% out.println(AppUtils.printSelectOptionByType("storage")); %>
+		<% out.println(PrintJSP.printSelectOptionByType("Storage")); %>
 	</select>
 	</div>
 	</div>
@@ -84,7 +84,7 @@
 	<div class="col-xs-3">
 	<label for="pool">Pool <font color="red">*</font> :</label>
 	<select class="form-control" name="pool" required>
-		<% out.println(AppUtils.printSelectOptionByType("pool")); %>
+		<% out.println(PrintJSP.printSelectOptionByType("Pool")); %>
 	</select>
 	</div>
 	</div>
@@ -95,9 +95,10 @@
 	<br/>
 	<div class = "form-group">
 	<div class="col-xs-3">
-	<span class="manual" title="<%= Manual.getJobDefPriorityInfo() %>">
-	<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-	</span>
+	
+	<%
+	out.println(PrintJSP.printFieldInfo(Manual.getJobDefPriorityInfo()));
+	%>
 	<label for="priority">Priority :</label>
 	<input type="text" class="form-control" name="priority" placeholder="Default value : 10"/>
 	</div>

@@ -25,7 +25,7 @@
 	<div class="col-xs-3">
 	<label for="device">Device <font color="red">*</font> :</label>
 	<select  class="form-control" name="device" required>
-	<% out.println(AppUtils.printSelectOptionByType("device")); %>
+	<% out.println(PrintJSP.printSelectOptionByType("Device")); %>
 	</select>
 	</div>
 	</div>

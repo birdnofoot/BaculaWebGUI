@@ -24,16 +24,7 @@
 	
 	<select class="form-control" name="name" required>
 	<%
-	String path = AppUtils.getConfigPathByType(type);
-	System.out.println(type);
-	File f = new File(path);
-	ArrayList<String> name_list = new ArrayList<String>();
-	name_list = BaculaParser.getName(f,"Name");
-	int i = 0 ;
-	for(i=0;i<name_list.size();i++){
-		out.println("<option>"+name_list.get(i)+"</option>");
-	}
-	
+		out.println(PrintJSP.printNameJSP(type));
 	%>
 	</select>
 	<br/>

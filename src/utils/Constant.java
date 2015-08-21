@@ -18,6 +18,7 @@ public class Constant {
 	private static String fd_port = "9102";
 	private static String sd_port = "9103";
 	private static String localhost_ip = "10.0.15.45";
+	private static String default_backup_path = "/bacula/bacula/backup/";
 	
 	/* Database variables*/
 	private static String db_user = "bacula";
@@ -80,6 +81,9 @@ public class Constant {
 	}
 	public static String getLocalhost_ip() {
 		return localhost_ip;
+	}
+	public static String getDefault_backup_path() {
+		return default_backup_path;
 	}
 	
 	

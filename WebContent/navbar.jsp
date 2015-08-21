@@ -2,6 +2,7 @@
 <%@page import="controller.*"%>
 <%@page import="model.*"%>
 <%@page import="utils.*"%>
+<%@page import="view.*"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.io.*"%>
 <%@page import="java.util.*"%>
@@ -89,103 +90,104 @@ $(".manual").tooltip({
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Director<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="CreateDevice.jsp">Director info</a></li>
-						<li><a href="SearchFile.jsp">Search</a></li>
+						<li><a href="CreateDevice.jsp">Information</a></li>
               			<li role="separator" class="divider"></li>
+              			
+              			<li class="dropdown-submenu">
+              			
+              			<a href="#">Device</a>
+              			<ul class="dropdown-menu">
+                    	<li><a href="View.jsp?type=Device">View Device</a></li>
+                    	<li role="separator" class="divider"></li>
+                    	<li><a href="CreateDevice.jsp">Create Device</a></li>
+                    	<li><a href="Delete.jsp?type=Device">Delete Device</a></li>
+                    	</ul>
+                    	</li>
+                    	
+                    	<li class="dropdown-submenu">
+                    	<a href="#">Storage</a>
+              			<ul class="dropdown-menu">
+						<li><a href="View.jsp?type=Storage">View Storage</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="CreateStorage.jsp">Create Storage</a></li>
+						<li><a href="Delete.jsp?type=Storage">Delete Storage</a></li>
+                    	</ul>
+                    	</li>
+                    	
+                    	<li class="dropdown-submenu">
+                    	<a href="#">Pool</a>
+              			<ul class="dropdown-menu">
+						<li><a href="View.jsp?type=Pool">View Pool</a></li>
+					  	<li role="separator" class="divider"></li>
+						<li><a href="CreatePool.jsp">Create Pool</a></li>
+						<li><a href="Delete.jsp?type=Pool">Delete Pool</a></li>
+                    	</ul>
+                    	</li>
+                    	
+                    	<li class="dropdown-submenu">
+                    	<a href="#">FileSet</a>
+              			<ul class="dropdown-menu">
+						<li><a href="View.jsp?type=FileSet">View FileSet</a></li>
+					  	<li role="separator" class="divider"></li>
+						<li><a href="CreateFileSet.jsp">Create FileSet</a></li>
+						<li><a href="Delete.jsp?type=FileSet">Delete FileSet</a></li>
+                    	</ul>
+                    	</li>
+                    	
+                    	<li class="dropdown-submenu">
+                    	<a href="#">JobDefs</a>
+              			<ul class="dropdown-menu">
+						<li><a href="View.jsp?type=JobDefs">View JobDefs</a></li>
+					  	<li role="separator" class="divider"></li>
+						<li><a href="CreateJobDefs.jsp">Create JobDefs</a></li>
+						<li><a href="Delete.jsp?type=JobDefs">Delete JobDefs</a></li>
+                    	</ul>
+                    	</li>
+                    	                    	
+                    	<li class="dropdown-submenu">
+                    	<a href="#">Job</a>
+              			<ul class="dropdown-menu">
+						<li><a href="View.jsp?type=Job">View Job</a></li>
+					  	<li role="separator" class="divider"></li>
+						<li><a href="CreateJob.jsp">Create Job</a></li>
+						<li><a href="Delete.jsp?type=Job">Delete Job</a></li>
+                    	</ul>
+                    	</li>
+
+                    	<li class="dropdown-submenu">
+                    	<a href="#">Schedule</a>
+              			<ul class="dropdown-menu">
+						<li><a href="View.jsp?type=Schedule">View Schedule</a></li>
+					  	<li role="separator" class="divider"></li>
+						<li><a href="CreateSchedule.jsp">Create Schedule</a></li>
+						<li><a href="Delete.jsp?type=Schedule">Delete Schedule</a></li>
+                    	</ul>
+                    	</li>
+
+                    	<li class="dropdown-submenu">
+                    	<a href="#">Client</a>
+              			<ul class="dropdown-menu">
+						<li><a href="View.jsp?type=Client">View Client</a></li>
+					  	<li role="separator" class="divider"></li>
+						<li><a href="CreateClient.jsp">Create Client</a></li>
+						<li><a href="Delete.jsp?type=Client">Delete Client</a></li>
+                    	</ul>
+                    	</li>
+
+	                    <li role="separator" class="divider"></li>
               			<li><a href="SearchFile.jsp">Settings</a></li>
-              			<li><a href="ViewLogs.jsp">Logs</a></li>
+              			<li><a href="Logs.jsp">Logs</a></li>
 					</ul>		</li>
 
-		
-		<li class="dropdown"><a href="#" class="dropdown-toggle"
-		data-toggle="dropdown" role="button" aria-haspopup="true"
-		aria-expanded="false">Device<span class="caret"></span></a>
-		<ul class="dropdown-menu">
-		<li><a href="ViewDevice.jsp">View devices</a></li>
-		<li role="separator" class="divider"></li>
-		<li><a href="CreateDevice.jsp">Create device</a></li>
-		<li><a href="Delete.jsp?type=Device">Delete device</a></li>
-		</ul>
-		</li>
-		
-		<li class="dropdown"><a href="#" class="dropdown-toggle"
-			data-toggle="dropdown" role="button" aria-haspopup="true"
-			aria-expanded="false">Storage<span class="caret"></span></a>
-			<ul class="dropdown-menu">
-				<li><a href="ViewStorage.jsp">View storages</a></li>
-				<li role="separator" class="divider"></li>
-				<li><a href="CreateStorage.jsp">Create storage</a></li>
-				<li><a href="Delete.jsp?type=Storage">Delete storage</a></li>
-				</ul>
-				</li>
-				
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Pool<span class="caret"></span></a>
+					aria-expanded="false">Wizard<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="ViewPool.jsp">View pools</a></li>
-					  	<li role="separator" class="divider"></li>
-						<li><a href="CreatePool.jsp">Create pool</a></li>
-						<li><a href="Delete.jsp?type=Pool">Delete pool</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">FileSet<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="ViewFileSet.jsp">View filesets</a></li>
-					  	<li role="separator" class="divider"></li>
-						<li><a href="CreateFileSet.jsp">Create fileset</a></li>
-						<li><a href="Delete.jsp?type=FileSet">Delete fileset</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">JobDef<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="ViewJobDef.jsp">View JobDef</a></li>
-					  	<li role="separator" class="divider"></li>
-						<li><a href="CreateJobDef.jsp">Create JobDef</a></li>
-						<li><a href="Delete.jsp?type=JobDef">Delete JobDef</a></li>
-					</ul>
-				</li>
-				
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Job<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="ViewJob.jsp">View jobs</a></li>
-					  	<li role="separator" class="divider"></li>
-						<li><a href="CreateJob.jsp">Create job</a></li>
-						<li><a href="Delete.jsp?type=Job">Delete job</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Schedule<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="ViewSchedule.jsp">View schedules</a></li>
-					  	<li role="separator" class="divider"></li>
-						<li><a href="CreateSchedule.jsp">Create schedule</a></li>
-						<li><a href="Delete.jsp?type=Schedule">Delete schedule</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Client<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="ViewClient.jsp">View clients</a></li>
-					  	<li role="separator" class="divider"></li>
-						<li><a href="AddClient.jsp">Add client</a></li>
-						<li><a href="Delete.jsp?type=Client">Delete client</a></li>
-					</ul>
-				</li>
-				
-				<li><a href="SearchFile.jsp" role="button" aria-haspopup="true"
+						<li><a href="Wizard.jsp">Add new host</a></li>
+						</ul>
+						</li>
+					
+				<li><a href="Search.jsp" role="button" aria-haspopup="true"
 					aria-expanded="false">Search</a>
 				</li>
 				
@@ -194,7 +196,8 @@ $(".manual").tooltip({
 					aria-expanded="false">Console</a>
 				</li>
 			</ul>
-
+        
+        
 		</div>
 	</div>
 

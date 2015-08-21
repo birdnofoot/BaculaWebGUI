@@ -36,9 +36,27 @@
 	
 	<div class = "form-group">
 	<div class="col-xs-3">
+	<label for="jobdefs">JobDefs <font color="red">*</font> :</label>
+	<select class="form-control" name="jobdefs" required>
+		<% out.println(PrintJSP.printSelectOptionByType("JobDefs")); %>
+	</select>
+	</div>
+	</div>
+	
+	<div class = "form-group">
+	<div class="col-xs-3">
 	<label for="client">Client <font color="red">*</font> :</label>
 	<select class="form-control" name="client" required>
-		<% out.println(AppUtils.printSelectOptionByType("client")); %>
+		<% out.println(PrintJSP.printSelectOptionByType("Client")); %>
+	</select>
+	</div>
+	</div>
+
+	<div class = "form-group">
+	<div class="col-xs-3">
+	<label for="pool">Pool <font color="red">*</font> :</label>
+	<select class="form-control" name="pool" required>
+		<% out.println(PrintJSP.printSelectOptionByType("Pool")); %>
 	</select>
 	</div>
 	</div>
@@ -47,20 +65,39 @@
 	<div class="col-xs-3">
 	<label for="storage">Storage <font color="red">*</font> :</label>
 	<select class="form-control" name="storage" required>
-		<% out.println(AppUtils.printSelectOptionByType("storage")); %>
+		<% out.println(PrintJSP.printSelectOptionByType("Storage")); %>
 	</select>
 	</div>
 	</div>
 	
 	<div class = "form-group">
 	<div class="col-xs-3">
-	<label for="pool">Pool <font color="red">*</font> :</label>
-	<select class="form-control" name="pool" required>
-		<% out.println(AppUtils.printSelectOptionByType("pool")); %>
+	<label for="fileset">FileSet <font color="red">*</font> :</label>
+	<select class="form-control" name="fileset" required>
+		<% out.println(PrintJSP.printSelectOptionByType("FileSet")); %>
 	</select>
 	</div>
 	</div>
-
+	<br/>
+	<button type="button" class="btn btn-default" onclick="toggleContent()">Show advanced options</button>
+	<div ID="advanced_form" style="display:none;">
+	<br/>			
+	<div class = "form-group">
+	<div class="col-xs-3">
+	<%
+	out.println(PrintJSP.printFieldInfo(Manual.getJobScheduleInfo()));
+	%>
+	<label for="schedule">Schedule :</label>
+	<select class="form-control" name="schedule">
+		<option>None</option>
+		<% out.println(PrintJSP.printSelectOptionByType("Schedule")); %>
+	</select>
+	</div>
+	</div>
+	
+	</div>
+	
+	<br/>
 	<br/>
 	<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
 	<br/>

@@ -25,7 +25,7 @@ public class DeleteServlet extends HttpServlet {
 		String deleteType = request.getParameter("deleteType");
 		String path = AppUtils.getConfigPathByType(deleteType);
 		
-		if(deleteType.equals("Job")|deleteType.equals("Schedule")){
+		if(deleteType.equals("Job")|| deleteType.equals("Schedule")||deleteType.equals("JobDefs")){
 			name = "\""+name+"\"";
 		}
 		

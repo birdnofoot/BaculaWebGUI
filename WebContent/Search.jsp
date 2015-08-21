@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<title>Search File - Bacula Web GUI</title>
+<title>Search - Bacula Web GUI</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
@@ -10,18 +10,37 @@
 	<div class="container">
 		
 		<div class="page-header">
-		<h1>Search File</h1>
+		<h1>Search</h1>
 		</div>
 		
-			<form class="form-horizontal"
-				action="searchfileservlet" method="post" novalidate>
-				<div class = "form-group">
-				<div class="col-md-3">
-				<label for="pool_name">File name<font color="red"> * </font>:</label>
-				<input type="text" class="form-control" name="file_name" required />
-				</div>
-				</div>
-					
+		<form class="form-horizontal"
+			action="searchservlet" method="post" novalidate>
+			
+			<div class = "form-group">
+			<div class="col-md-3">
+			<%
+				out.println(PrintJSP.printFieldInfo(Manual.getSearchFilenameInfo()));
+			%>
+			<label for="file_name">File name<font color="red"> * </font>:</label>
+			<input type="text" class="form-control" name="file_name" required />
+			</div>
+			</div>
+			<br/>
+			<button type="button" class="btn btn-default" onclick="toggleContent()">Show advanced options</button>
+			<div ID="advanced_form" style="display:none;">
+			<br/>
+			<div class = "form-group">
+			<div class="col-xs-3">
+			<label for="client">Client :</label>
+			<select class="form-control" name="client" required>
+				<option>All</option>
+				<% out.println(PrintJSP.printSelectOptionByTypeNameInDB("Client")); %>
+			</select>
+			</div>
+			</div>
+			</div>
+			<br/>
+			<br/>
 			<br/>
 			<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Search" />
 			</form>

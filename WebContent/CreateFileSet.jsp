@@ -28,10 +28,10 @@
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<span class="manual" title="<%= Manual.getFilesetBackupPath() %>">
-		<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-		</span>
-		<label for="backup_folder_path">Backup folder path <font color="red">*</font> :</label>
+		<%
+		out.println(PrintJSP.printFieldInfo(Manual.getFilesetBackupPath()));
+		%>
+		<label for="backup_folder_path">Path to backup <font color="red">*</font> :</label>
 		<input type="text" class="form-control" name="backup_folder_path" required />
 			<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 		</div>
@@ -39,10 +39,10 @@
 		
 		<div class = "form-group">
 		<div class="col-xs-3">
-		<span class="manual" title="<%= Manual.getFilesetExcludePath() %>">
-		<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-		</span>
-		<label for="exclude_folder_path">Exclude folder path <font color="red">*</font> :</label>
+		<%
+		out.println(PrintJSP.printFieldInfo(Manual.getFilesetExcludePath()));
+		%>
+		<label for="exclude_folder_path">Path to exclude <font color="red">*</font> :</label>
 		<input type="text" class="form-control" name="exclude_folder_path" required />
 			<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 		</div>

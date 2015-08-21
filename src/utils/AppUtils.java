@@ -158,7 +158,7 @@ public class AppUtils {
 		Date date = new Date();
 		return dateFormat.format(date);
 	}
-
+	
 
 	public static String getConfigPathByType(String type){
 		String path = null ;
@@ -177,7 +177,7 @@ public class AppUtils {
 		if(type.equals("Pool")){
 			path = Constant.getPools();
 		}
-		if(type.equals("JobDef")){
+		if(type.equals("JobDefs")){
 			path = Constant.getJobdefs();
 		}
 		if(type.equals("Device")){
@@ -188,23 +188,6 @@ public class AppUtils {
 		}
 		return path ;
 	}
-	
-	public static String printSelectOptionByType(String type){
-		StringBuilder sb = new StringBuilder();
-		File f = new File(getConfigPathByType(type));
-		ArrayList<String> name_list = new ArrayList<String>();
-		try {
-			name_list = BaculaParser.getName(f,"Name");
-			int i = 0 ;
-			for(i=0;i<name_list.size();i++){
-				sb.append("<option>"+name_list.get(i)+"</option>");
-			}
-			return sb.toString() ;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return null ;
-	}
-	
+
 }
 	
