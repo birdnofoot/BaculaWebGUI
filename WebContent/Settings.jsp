@@ -1,22 +1,20 @@
 <!doctype html>
 <html lang="en">
-
 <head>
 <%@ include file="navbar.jsp" %>
-<title>Create fileset - Bacula Web GUI</title>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<title>Settings - Bacula Web GUI</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="description" content="" />
-<meta name="keywords" content="" />
 </head>
 
 <body>
-	<div class="container">
+		<div class = "container">
 		<div class="page-header">
-		<h1>Create fileset</h1>
+		<h1>Settings</h1>
 		</div>
-
-		<form data-toggle="validator" id="form_create_fileset" class="form-horizontal"
-				action="createfilesetservlet" method="post" novalidate>
+		
+		<form data-toggle="validator" id="form" class="form-horizontal"
+		action="settingsservlet" method="post" novalidate>
 
 		<div class = "form-group">
 		<div class="col-xs-3">
@@ -72,11 +70,10 @@
 		<br/>
 		<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
 		</form>
+		
 		</div>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
+		
+		
+
 </body>
 </html>

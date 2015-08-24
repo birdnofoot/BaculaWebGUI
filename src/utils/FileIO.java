@@ -1,6 +1,7 @@
 package utils;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -70,6 +71,10 @@ public class FileIO {
 	
 	public static void createFilesetToConfig(String fileset_name, String backup_folder_path, String exclude_folder_path,
 			String signature, String compression){
+		String[] backup_paths = backup_folder_path.trim().split(",");
+		String[] exclude_paths = exclude_folder_path.trim().split(",");
+		int i = 0 ;
+		
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(Constant.getFilesets(), true));
 			bw.newLine();
@@ -89,15 +94,19 @@ public class FileIO {
 			}
 			bw.write("    }");
 			bw.newLine();
-			bw.write("    File = "+backup_folder_path);
-			bw.newLine();
+			for(i=0;i<backup_paths.length;i++){
+				bw.write("    File = "+backup_paths[i]);
+				bw.newLine();
+			}
 			bw.write("  }");
 			bw.newLine();
 			if(!exclude_folder_path.isEmpty()){
 				bw.write("    Exclude { ");
 				bw.newLine();
-				bw.write("      File = "+exclude_folder_path);
-				bw.newLine();
+				for(i=0;i<exclude_paths.length;i++){
+					bw.write("      File = "+exclude_paths[i]);
+					bw.newLine();
+				}
 				bw.write("    }");
 				bw.newLine();
 			}
@@ -259,5 +268,24 @@ public class FileIO {
 	}
 	}
 	
-	
+	public static void writeToWebGUIConfig(String name, String value){
+		try {
+			
+		BufferedWriter bw;
+		bw = new BufferedWriter(new FileWriter(Constant.getStorages(), true));
+		
+		bw.newLine();
+		bw.write(name+" {");
+		bw.newLine();
+		bw.write("  value = "+value);
+		bw.newLine();
+		bw.write("}");
+		bw.newLine();
+		bw.close();
+	}catch (IOException e) {
+		e.printStackTrace();
+	}
+	}
+
+
 }

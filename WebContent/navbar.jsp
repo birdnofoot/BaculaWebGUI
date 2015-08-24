@@ -16,6 +16,7 @@
 
 <%-- JavaScript --%>
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/highchart.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
@@ -90,7 +91,7 @@ $(".manual").tooltip({
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Director<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="CreateDevice.jsp">Information</a></li>
+						<li><a href="Information.jsp">Information</a></li>
               			<li role="separator" class="divider"></li>
               			
               			<li class="dropdown-submenu">
@@ -175,7 +176,7 @@ $(".manual").tooltip({
                     	</li>
 
 	                    <li role="separator" class="divider"></li>
-              			<li><a href="SearchFile.jsp">Settings</a></li>
+              			<li><a href="Settings.jsp">Settings</a></li>
               			<li><a href="Logs.jsp">Logs</a></li>
 					</ul>		</li>
 

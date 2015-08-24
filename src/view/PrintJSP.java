@@ -415,8 +415,8 @@ public class PrintJSP {
 		sb.append(" <div class = \"form-group\">");
 		sb.append(" <div class=\"col-md-3\">");
 		sb.append(PrintJSP.printFieldInfo(Manual.getFilesetExcludePath()));
-		sb.append(" <label for=\"device_name\"> Path to exclude <font color=\"red\">*</font> :</label>");
-		sb.append(" <input type=\"text\" class=\"form-control\" name=\"exclude_path\" required />");
+		sb.append(" <label for=\"device_name\"> Path to exclude :</label>");
+		sb.append(" <input type=\"text\" class=\"form-control\" name=\"exclude_path\" />");
 		sb.append(" <span class=\"glyphicon form-control-feedback\" aria-hidden=\"true\"></span>");
 		sb.append(" </div>");
 		sb.append(" </div>");

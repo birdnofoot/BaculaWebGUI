@@ -29,14 +29,17 @@
 		if(type.equals("Job")){
 			out.println(PrintJSP.printViewJob());
 		}
-		if(type.equals("Client")){
+		else if(type.equals("Client")){
 			out.println(PrintJSP.printViewClient());
 		}
-		if(type.equals("FileSet")){
+		else if(type.equals("FileSet")){
 			out.println(PrintJSP.printViewFileset());
 		}
-		if(type.equals("Pool")){
+		else if(type.equals("Pool")){
 			out.println(PrintJSP.printViewPool());
+		}
+		else{
+			out.println("See configuration file below for detail.");
 		}
 	%>
     </table>

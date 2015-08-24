@@ -1,0 +1,86 @@
+
+# BaculaWebGUI configuration file
+
+root {
+  value = /
+}
+
+hostname {
+  value = lxsauve
+}
+
+pools {
+  value = /etc/bacula/conf.d/pools.conf
+}
+
+filesets {
+  value = /etc/bacula/conf.d/filesets.conf
+}
+
+storages {
+  value = /etc/bacula/conf.d/storages.conf
+}
+
+devices {
+  value = /etc/bacula/devices.conf
+}
+
+jobs {
+  value = /etc/bacula/conf.d/jobs.conf
+}
+
+schedules {
+  value = /etc/bacula/conf.d/schedules.conf
+}
+
+clients {
+  value = /etc/bacula/conf.d/clients.conf
+}
+
+jobdefs {
+  value = /etc/bacula/conf.d/jobdefs.conf
+}
+
+indexPage {
+  value = index.jsp
+}
+
+config_password {
+  value = baCu52c
+}
+
+fd_port {
+  value = 9102
+}
+
+sd_port {
+  value = 9103
+}
+
+localhost_ip {
+  value = 10.0.15.45
+}
+
+default_backup_path {
+  value = /bacula/bacula/backup/
+}
+
+db_user {
+  value = bacula
+}
+
+db_password {
+  value = root
+}
+
+db_url {
+  value = localhost ;
+}
+
+db_port {
+  value = 3306
+}
+
+db_name {
+  value = bacula
+}

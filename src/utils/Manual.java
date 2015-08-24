@@ -47,12 +47,12 @@ public class Manual {
 	/* FileSet */
 	
 	public static String getFilesetBackupPath(){
-		String info = "Devide path by comma. ex : /usr/local, /home";
+		String info = "Devide paths by comma. ex : /usr/local, /home";
 		return info ;
 	}
 	
 	public static String getFilesetExcludePath(){
-		String info = "Devide path by comma. ex : /usr/local/apache*, /var/log";
+		String info = "Devide paths by comma. ex : /usr/local/apache*, /var/log. Leave this field blank if no path is to be excluded.";
 		return info ;
 	}
 	

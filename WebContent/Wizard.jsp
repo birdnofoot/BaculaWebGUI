@@ -15,7 +15,14 @@
 	}
 	else{
 		if(status.equals("finish")){
-			out.println("created with success");
+			out.println("<div class=\"container\">");
+			out.println("<div class=\"page-header\">");
+			out.println("<h1>Success</h1>");
+			out.println("</div>");
+			out.println("<div class=\"alert alert-info\" role=\"alert\">");
+			out.println("<span> All configuration files are created with success. </span>");
+			out.println("</div>");
+			out.println("</div>");
 		}
 		if(status.equals("default")){
 			out.println(PrintJSP.printWizardForm());
