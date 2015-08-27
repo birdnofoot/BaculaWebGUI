@@ -3,17 +3,25 @@ package utils;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.Comparator;
 import org.apache.commons.lang.StringEscapeUtils;
-
 import controller.DatabaseController;
 import model.Status;
 
@@ -186,6 +194,56 @@ public class AppUtils {
 		}
 		return path ;
 	}
+	
+	public static long folderSize(File directory) {
+	    long length = 0;
+	    for (File file : directory.listFiles()) {
+	        if (file.isFile())
+	            length += file.length();
+	        else
+	            length += folderSize(file);
+	    }
+	    return length;
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static Map sortByValue(Map unsortMap) {	 
+		List list = new LinkedList(unsortMap.entrySet());
+	 
+		Collections.sort(list, new Comparator() {
+			public int compare(Object o1, Object o2) {
+				return ((Comparable) ((Map.Entry) (o1)).getValue()).compareTo(((Map.Entry) (o2)).getValue());
+			}
+		});
+		Map sortedMap = new LinkedHashMap();
+		for (Iterator it = list.iterator(); it.hasNext();) {
+			Map.Entry entry = (Map.Entry) it.next();
+			sortedMap.put(entry.getKey(), entry.getValue());
+		}
+		return sortedMap;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static HashMap<String,Long> getSortedClientSizeMap(String f){
+		return (HashMap<String, Long>) AppUtils.sortByValue(AppUtils.getClientSize(f));
+	}
+	
+	public static HashMap<String,Long> getClientSize(String file){
+		HashMap<String,Long> clientSizeList = new HashMap<String,Long>();
+		File folder = new File(file);
+		File[] listOfFiles = folder.listFiles();
+		int i ;
+		for (i = 0; i < listOfFiles.length; i++) {
+			if (listOfFiles[i].isFile()) {
+				// on ne fait rien
+			}
+			else if (listOfFiles[i].isDirectory()) {
+				clientSizeList.put(listOfFiles[i].getName(),
+						AppUtils.folderSize(listOfFiles[i]));
+			}
+		}
+		return clientSizeList;
+	}	
 
 }
 	

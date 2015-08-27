@@ -88,6 +88,10 @@ public class Constant {
 	public static String getDefault_backup_path() {
 		return default_backup_path;
 	}
+	public static String getDefault_backup_path_test() {
+		String path = "/home/yuanbo/backup/";
+		return path ;
+	}
 	public static void setPools(String pools) {
 		Constant.pools = pools;
 	}

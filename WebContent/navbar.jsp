@@ -177,7 +177,6 @@ $(".manual").tooltip({
                     	</li>
 
 	                    <li role="separator" class="divider"></li>
-              			<li><a href="Settings.jsp">Settings</a></li>
               			<li><a href="Logs.jsp">Logs</a></li>
 					</ul>		</li>
 

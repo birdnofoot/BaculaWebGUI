@@ -13,6 +13,7 @@ public class Client {
 	private int fdPort ;
 	private String catalog ;
 	private String password ;
+	private String fileSize ;
 	
 	public Client(String name, int isAutoPrune, int fileRetention, int jobRetention, String address, int fdPort,
 			String catalog, String password) {
@@ -25,6 +26,11 @@ public class Client {
 		this.fdPort = fdPort;
 		this.catalog = catalog;
 		this.password = password;
+	}
+	
+	public Client(String name, String fileSize){
+		this.name=name;
+		this.fileSize=fileSize;
 	}
 
 	public int getClientId() {
@@ -105,6 +111,14 @@ public class Client {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
 	}
 
 }
