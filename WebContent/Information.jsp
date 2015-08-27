@@ -18,8 +18,10 @@
     	long usable = root.getUsableSpace();
     	long used = total - usable ;
     	String used_space =  Objects.toString((used), null);
+
 		%>
 		<br/>
+		
 		<div class="col-xs-3">
 		<div class="well" >
 		<h4><b>Space</b></h4>
@@ -29,6 +31,7 @@
 		<p>Free space : <%=AppUtils.formatFileSize(Objects.toString(usable,null)) %></p>
 		</div>
 		</div>
+		<div align="right">
 		<div id="pie" style="min-width: 310px; height: 400px; max-width: 600px">
 		<script type="text/javascript">
 		$(function () {
@@ -75,6 +78,7 @@
     });
 });
 		</script>
+		</div>
 		</div>
 			
 		</div>

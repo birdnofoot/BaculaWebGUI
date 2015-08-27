@@ -1,7 +1,6 @@
 package utils;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -108,6 +107,30 @@ public class FileIO {
 					bw.newLine();
 				}
 				bw.write("    }");
+				bw.newLine();
+			}
+			bw.write("}");
+			bw.newLine();
+			bw.close();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void createScheduleToConfig(String schedule_name, String run){
+		String[] runs = run.replaceAll("\\s+","").trim().split(",");
+		int i = 0 ;
+		
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(Constant.getSchedules(), true));
+			bw.newLine();
+			bw.write("Schedule {");
+			bw.newLine();
+			bw.write("  Name = \""+schedule_name+"\"");
+			bw.newLine();
+			for(i=0;i<runs.length;i++){
+				System.out.println(runs[i]);
+				bw.write("  "+runs[i]);
 				bw.newLine();
 			}
 			bw.write("}");
@@ -267,25 +290,5 @@ public class FileIO {
 		e.printStackTrace();
 	}
 	}
-	
-	public static void writeToWebGUIConfig(String name, String value){
-		try {
-			
-		BufferedWriter bw;
-		bw = new BufferedWriter(new FileWriter(Constant.getStorages(), true));
-		
-		bw.newLine();
-		bw.write(name+" {");
-		bw.newLine();
-		bw.write("  value = "+value);
-		bw.newLine();
-		bw.write("}");
-		bw.newLine();
-		bw.close();
-	}catch (IOException e) {
-		e.printStackTrace();
-	}
-	}
-
 
 }

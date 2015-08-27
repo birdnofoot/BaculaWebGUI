@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/dataTables.bootstrap.css">
 <link rel="stylesheet" href="css/jquery.dataTables.css">
+<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 
 <%-- JavaScript --%>
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <%@ include file="navbar.jsp" %>
-<title>View all clients - Bacula Web GUI</title>
+<title>Logs - Bacula Web GUI</title>
 </head>
 <body>
 	<script type="text/javascript">
@@ -30,7 +30,7 @@
 	DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
 	db_controller.openConnection();
 	
-	String jobQuery = "SELECT * FROM Log ; " ; 
+	String jobQuery = "SELECT * FROM Log LIMIT 4000 ;"; 
 	Statement st = db_controller.getConnexion().createStatement();
 	ResultSet log_rs = st.executeQuery(jobQuery);
 	

@@ -1,9 +1,9 @@
-
 @font-face {
-    font-family: 'HelveticaNeue';
-         url('../fonts/HelveticaNeue.ttf') format('truetype'),
-    font-weight: normal;
-    font-style: normal;
+  	font-family: 'Helvetica';
+  	src: url('../fonts/helvetica.eot');
+	src: url('../fonts/helvetica.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/helvetica.woff') format('woff'),
+       url('../fonts/helvetica.ttf') format('truetype'),
 }
 
 .dropdown-submenu {

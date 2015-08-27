@@ -3,8 +3,7 @@
 
 <head>
 <%@ include file="navbar.jsp" %>
-<title>Create a Schedule - Bacula Web GUI</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<title>Create Schedule - Bacula Web GUI</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -12,51 +11,41 @@
 
 <body>
 	<div class="container">
-	
 		<div class="page-header">
-			<h1>Create Schedule</h1>
+		<h1>Create Schedule</h1>
 		</div>
 
-			<form class="form-horizontal"
+		<form data-toggle="validator" id="form_create_fileset" class="form-horizontal"
 				action="createscheduleservlet" method="post" novalidate>
-				
-				<div class = "form-group">
-				<div class="col-xs-3">
-				<label for="schedule_name">Schedule name :</label>
-				<input type="text" class="form-control" name="schedule_name" placeholder="schedule name"
-					required />
-				</div>
-				</div>
-				
-				<div class = "form-group">
-				<div class="col-xs-3">
-				<label for="level">Level :</label>
-				<select class="form-control" name="level" required>
-					<option>Full</option>
-					<option>Incremental</option>
-					<option>Differential</option>
-				</select>
-				</div>
-				</div>
-				
-				<div class = "form-group">
-				<div class="col-xs-3">
-				<label for="level">Weekday :</label>
-				<select class="selectpicker" multiple>
-				<option>Monday</option>
-				<option>Tuesday</option>
-				<option>Wednesday</option>
-				<option>Thursday</option>
-				<option>Friday</option>
-				<option>Saturday</option>
-				<option>Sunday</option>
-				</select>
-				</div>
-				</div>
-				<br/>
-				<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
-			</form>
-	</div>
 
+		<div class = "form-group">
+		<div class="col-xs-3">
+		<label for="fileset_name">Schedule name <font color="red">*</font> :</label>
+		<input type="text" class="form-control" name="schedule_name" required />
+			<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+		</div>
+		</div>
+		
+		<div class = "form-group">
+		<div class="col-xs-3">
+		<%
+		out.println(PrintJSP.printFieldInfo(Manual.getScheduleRunInfo()));
+		%>
+		<label for="backup_folder_path">Run <font color="red">*</font> :</label>
+		<input type="text" class="form-control" name="run" required />
+			<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+		</div>
+		</div>
+		
+		<br/>
+		<br/>
+		<input class = "btn btn-primary" type="submit" id="submit" name="submit" value="Create" />
+		</form>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 </body>
 </html>

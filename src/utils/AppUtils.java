@@ -3,7 +3,6 @@ package utils;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -43,7 +42,6 @@ public class AppUtils {
 	
     public static HashMap<String,Status> getJobStatusLong(){
     	HashMap<String,Status> statusMap = new HashMap<String,Status>();
-    	String jobStatusLong = null ;
     	try {
 	    	String query = "SELECT * FROM Status ; " ;
 	    	DatabaseController m = new DatabaseController();

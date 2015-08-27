@@ -94,4 +94,11 @@ public class Manual {
 		String info = "This option will disable and overwrite the schedule already defined in JobDefs";
 		return info ;
 	}
+	
+	/* Schedule */
+	
+	public static String getScheduleRunInfo(){
+		String info = "Devide multiple runs by comma. ex : Run = Full 1st sun at 23:05, Run = Differential 2nd-5th sun at 23:05";
+		return info ;
+	}
 }
