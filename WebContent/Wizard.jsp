@@ -11,7 +11,7 @@
 	<%
 	String status = (String)request.getAttribute("status") ;
 	if(status == null){
-		out.println(PrintJSP.printWizardOption()); 
+		out.println(PrintJSP.printWizardForm()); 
 	}
 	else{
 		if(status.equals("finish")){

@@ -3,7 +3,7 @@
 
 <head>
 <%@ include file="navbar.jsp" %>
-<title>Create Schedule - Bacula Web GUI</title>
+<title>Create schedule - Bacula Web GUI</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />

@@ -2,6 +2,7 @@
 <html>
 <head>
 <%@include file="navbar.jsp" %>
+<script src="http://code.highcharts.com/highcharts.js"></script>
 <meta charset="UTF-8">
 
 <title>Bacula Web GUI</title>
@@ -25,6 +26,7 @@
 		</div>
 		</div>
 		
+		
 		<%-- DataTables --%>
 		<script type="text/javascript">
 		$(document).ready(function(){
@@ -45,6 +47,7 @@
 		});
 		</script>
 
+
 		<%-- Successful jobs --%>
 		<div class = "container">
 		<div class="panel panel-default">
@@ -54,7 +57,7 @@
 		<div class="panel-body">
 		<table id="job_table" class="table">
 		<%
-		String jobQuery = "SELECT * FROM Job WHERE JobStatus = \"T\";"; 
+		String jobQuery = "SELECT * FROM Job WHERE JobStatus = \"T\" order by StartTime DESC LIMIT 300 ;"; 
 		Statement st = db_controller.getConnexion().createStatement();
 		ResultSet job_rs = st.executeQuery(jobQuery);
 		
@@ -141,57 +144,11 @@
 			out.println("</td>");
 			out.println("</tr>");
 		}
+		st.close();
+		failed_job_rs.close();
+		db_controller.closeConnection();
 	%>
 
-	</table>
-	</div>
-	</div>
-	
-	<div class="panel panel-info">
-	<div class="panel-heading">
-	<h3 class="panel-title">Running jobs</h3>
-	</div>
-	<div class="panel-body">
-	<table id = "running_job_table" class="table">
-	<%
-	st = db_controller.getConnexion().createStatement();
-	ResultSet running_job_rs = st.executeQuery(jobQuery);
-
-	if(db_controller.getRunningJobNumber() == 0){
-			out.println("<p> No running job at the moment. </p>");
-		}
-		else {
-			out.println("<thead>");
-			out.println("<th> ID </th>");
-			out.println("<th> Name </th>");
-			out.println("<th> Client </th>");
-			out.println("<th> Level </th>");
-			out.println("<th> Job Status </th>");
-			out.println("<th> Scheduled Time </th>");
-			out.println("<th> Start Time </th>");
-			out.println("</thead>");
-	
-			while(running_job_rs.next()){
-				out.println("<tr>");
-				out.println("<th scope=\"row\">"+running_job_rs.getString("JobId"));
-				out.println("</td>");
-				out.println("<td>"+running_job_rs.getString("Name"));
-				out.println("</td>");
-				out.println("<td>"+db_controller.getClientNameById(running_job_rs.getString("ClientId")));
-				out.println("</td>");
-				out.println("<td>"+running_job_rs.getString("Level"));
-				out.println("</td>");
-				out.println("<td>"+AppUtils.formatDate(running_job_rs.getString("StartTime")));
-				out.println("</td>");
-				out.println("<td>"+AppUtils.formatDate(running_job_rs.getString("SchedTime")));
-				out.println("</td>");
-				out.println("</tr>");
-			}
-		}
-	running_job_rs.close();
-	st.close();
-	db_controller.closeConnection();
-	%>
 	</table>
 	</div>
 	</div>

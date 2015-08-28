@@ -42,7 +42,7 @@ public class PrintJSP {
 		DatabaseController db_controller = new DatabaseController();
 		try {
 			db_controller.openConnection();
-			String jobQuery = "SELECT * FROM Job ; " ;
+			String jobQuery = "SELECT * FROM Job ORDER BY StartTime DESC LIMIT 2000 ; " ;
 			Statement st = db_controller.getConnexion().createStatement();
 			ResultSet job_rs = st.executeQuery(jobQuery);
 			

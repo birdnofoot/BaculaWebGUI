@@ -12,6 +12,7 @@
 		<div class="page-header">
 		<h1>Information</h1>
 		</div>
+		
 		<%
 	    	File root = new File(Constant.getRoot());
 	    	long total = root.getTotalSpace();
@@ -21,8 +22,7 @@
 	    	Map<String,Long> listClientSize = AppUtils.getSortedClientSizeMap(Constant.getDefault_backup_path());
 		%>
 		<br/>
-		
-		<div align = "left">
+		<div class="row">
 		<div class="col-xs-3">
 		<div class="well" >
 		<h4><b>Space</b></h4>
@@ -33,6 +33,7 @@
 		</div>
 		</div>
 		
+		<div class="col-xs-6">
 		<div id="pie" style="min-width: 450px; height: 450px; max-width: 450px">
 		<script type="text/javascript">
 		$(function () {
@@ -45,7 +46,7 @@
         },
         credits: false,
         title: {
-            text: 'Space usage on <%=Constant.getHost_name()%>'
+            text: 'Total space usage'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -83,9 +84,11 @@
 		</div>
 		<br/>
 		<br/>
-		
-		
-		<div align="left">
+		</div>
+
+
+
+		<div class="row">
 		<div class="col-xs-3">
 		<div class="well" >
 		<h4><b>Space per client</b></h4>
@@ -100,7 +103,7 @@
 		%>
 		</div>
 		</div>
-		
+		<div class="col-xs-6">
 		<div id="pie2" style="min-width: 500px; height: 500px; max-width: 500px">
 		<script type="text/javascript">
 		$(function () {
@@ -113,7 +116,7 @@
         },
         credits: false,
         title: {
-            text: 'Space per client'
+            text: 'Space usage per client'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -156,6 +159,7 @@
 	    	});
 		});
 		</script>
+		</div>
 		</div>
 		</div>
 		</div>

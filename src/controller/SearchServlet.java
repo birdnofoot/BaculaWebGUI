@@ -27,10 +27,10 @@ public class SearchServlet extends HttpServlet {
 		System.out.println("I got client as : "+client);
 		String query = null ;
 		if(client.equals("All")){
-			query = "SELECT DISTINCT Filename.name, Client.Name, Path.Path, Job.JobId, Job.Name, Job.StartTime, Job.EndTime FROM Client JOIN Job ON Client.ClientId = Job.ClientId JOIN File ON Job.JobId = File.JobId JOIN Filename ON Filename.FilenameId = File.FilenameId JOIN Path ON File.PathId = Path.PathId WHERE Filename.Name LIKE \'%"+file_name+"%\';";
+			query = "SELECT DISTINCT Filename.name, Client.Name, Path.Path, Job.JobId, Job.Name, Job.StartTime, Job.EndTime FROM Client JOIN Job ON Client.ClientId = Job.ClientId JOIN File ON Job.JobId = File.JobId JOIN Filename ON Filename.FilenameId = File.FilenameId JOIN Path ON File.PathId = Path.PathId WHERE Filename.Name LIKE \'%"+file_name+"%\' LIMIT 2000 ;";
 		}
 		else{
-			query = "SELECT DISTINCT Filename.name, Client.Name, Path.Path, Job.JobId, Job.Name, Job.StartTime, Job.EndTime FROM Client JOIN Job ON Client.ClientId = Job.ClientId JOIN File ON Job.JobId = File.JobId JOIN Filename ON Filename.FilenameId = File.FilenameId JOIN Path ON File.PathId = Path.PathId WHERE Filename.Name LIKE \'%"+file_name+"%\' AND Client.Name = \""+client+"\" ;";
+			query = "SELECT DISTINCT Filename.name, Client.Name, Path.Path, Job.JobId, Job.Name, Job.StartTime, Job.EndTime FROM Client JOIN Job ON Client.ClientId = Job.ClientId JOIN File ON Job.JobId = File.JobId JOIN Filename ON Filename.FilenameId = File.FilenameId JOIN Path ON File.PathId = Path.PathId WHERE Filename.Name LIKE \'%"+file_name+"%\' AND Client.Name = \""+client+"\" LIMIT 2000 ;";
 		}
 		DatabaseController m = new DatabaseController();
 		try {

@@ -85,17 +85,18 @@ $(".manual").tooltip({
 			<a class="navbar-brand" href="index.jsp">Bacula Web GUI v1.0</a>
 		</div>
 		
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
+				<li class="dropdown">
+				<a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Director<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="Information.jsp">Information</a></li>
-              			<li role="separator" class="divider"></li>
-              			
-              			<li class="dropdown-submenu">
+					aria-expanded="false">Director<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="Information.jsp">Information</a></li>
+              		<li role="separator" class="divider"></li>
+
+              		<li class="dropdown-submenu">
               			
               			<a href="#">Device</a>
               			<ul class="dropdown-menu">
@@ -178,30 +179,38 @@ $(".manual").tooltip({
 
 	                    <li role="separator" class="divider"></li>
               			<li><a href="Logs.jsp">Logs</a></li>
-					</ul>		</li>
+					</ul>
+				</li>
 
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Wizard<span class="caret"></span></a>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Wizard<span class="caret"></span>
+					</a>
 					<ul class="dropdown-menu">
 						<li><a href="Wizard.jsp">Add new host</a></li>
-						</ul>
-						</li>
+					</ul>
+				</li>
 					
 				<li><a href="Search.jsp" role="button" aria-haspopup="true"
 					aria-expanded="false">Search</a>
 				</li>
-				
-											
-				<li><a href="Console.jsp" role="button" aria-haspopup="true"
-					aria-expanded="false">Console</a>
+						
+				<li class="dropdown">
+				<a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Bacula<span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="Guide.jsp">Quick guide</a></li>
+						<li><a href="./files/Console.pdf">Bacula Console Commands</a></li>
+						<li><a href="http://blog.bacula.org/documentation/documentation/">Bacula online manual</a></li>
+					</ul>
 				</li>
+
 			</ul>
-        
-        
 		</div>
 	</div>
-
 </nav>
 <br/>
 <br/>

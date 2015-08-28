@@ -30,7 +30,7 @@
 	DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
 	db_controller.openConnection();
 	
-	String jobQuery = "SELECT * FROM Log LIMIT 4000 ;"; 
+	String jobQuery = "SELECT * FROM Log LIMIT 2000 ;"; 
 	Statement st = db_controller.getConnexion().createStatement();
 	ResultSet log_rs = st.executeQuery(jobQuery);
 	
