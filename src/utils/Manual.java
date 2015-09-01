@@ -101,4 +101,14 @@ public class Manual {
 		String info = "Devide multiple runs by comma. ex : Run = Full 1st sun at 23:05, Run = Differential 2nd-5th sun at 23:05";
 		return info ;
 	}
+
+	public static String getWizardExtraBackupPathInfo() {
+		String info = "If you have extra path to back up besides /home, /etc and /usr/local, put it here. Devide multiple paths by comma. ex : /bin, /usr/bin";
+		return info ;
+	}
+	
+	public static String getWizardExtraExcludePathInfo() {
+		String info = "If you have extra path to exclude besides /home/apachelogs, /usr/local/apache*/logs, put it here. Devide multiple paths by comma. ex : /glassfish/logs, /home/logs";
+		return info ;
+	}
 }

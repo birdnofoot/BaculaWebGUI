@@ -11,7 +11,7 @@
 	<%
 	String status = (String)request.getAttribute("status") ;
 	if(status == null){
-		out.println(PrintJSP.printWizardForm()); 
+		out.println(PrintJSP.printWizardOption()); 
 	}
 	else{
 		if(status.equals("finish")){
@@ -24,8 +24,11 @@
 			out.println("</div>");
 			out.println("</div>");
 		}
+		if(status.equals("advanced")){
+			out.println(PrintJSP.printAdvancedWizardForm());
+		}
 		if(status.equals("default")){
-			out.println(PrintJSP.printWizardForm());
+			out.println(PrintJSP.printDefaultWizardForm());
 		}
 	}
 	%>

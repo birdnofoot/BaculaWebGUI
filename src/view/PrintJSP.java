@@ -380,7 +380,7 @@ public class PrintJSP {
 		return sb.toString();
 	}
 	
-	public static String printWizardForm(){
+	public static String printAdvancedWizardForm(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("<div class=\"container\">	");
 		sb.append("<div class=\"page-header\">");
@@ -392,7 +392,7 @@ public class PrintJSP {
 		sb.append("<div class=\"col-md-3\">");
 		sb.append("<label for=\"device_name\">Host name <font color=\"red\">*</font> :</label>");
 		sb.append("<input type=\"text\" class=\"form-control\" name=\"host_name\" required />");
-		sb.append("<input type=\"hidden\" name=\"type\" value=\"form\">") ;
+		sb.append("<input type=\"hidden\" name=\"type\" value=\"advanced_form\">") ;
 		sb.append("<span class=\"glyphicon form-control-feedback\" aria-hidden=\"true\"></span>");
 		sb.append("</div>");
 		sb.append("</div>");
@@ -437,4 +437,61 @@ public class PrintJSP {
 		return sb.toString();
 	}
 	
+	public static String printDefaultWizardForm(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("<div class=\"container\">	");
+		sb.append("<div class=\"page-header\">");
+		sb.append("<h1>Add new host</h1>");
+		sb.append("</div>");
+		sb.append("<form data-toggle=\"validator\" class=\"form-horizontal\"");
+		sb.append("action=\"wizardservlet\" method=\"post\" novalidate>");
+		sb.append("<div class = \"form-group\">");
+		sb.append("<div class=\"alert alert-info\" role=\"alert\">Note : /home, /etc and /usr/local will be backed up. /usr/local/apache*/logs, /home/apachelogs folders (if exist) will be excluded.</div>");
+		sb.append("<div class=\"col-md-3\">");
+		sb.append("<label for=\"device_name\">Host name <font color=\"red\">*</font> :</label>");
+		sb.append("<input type=\"text\" class=\"form-control\" name=\"host_name\" required />");
+		sb.append("<input type=\"hidden\" name=\"type\" value=\"form\">") ;
+		sb.append("<span class=\"glyphicon form-control-feedback\" aria-hidden=\"true\"></span>");
+		sb.append("</div>");
+		sb.append("</div>");
+		sb.append("<div class = \"form-group\">");
+		sb.append("<div class=\"col-md-3\">");
+		sb.append("<label for=\"device_name\">IP address <font color=\"red\">*</font> :</label>");
+		sb.append("<input type=\"text\" class=\"form-control\" name=\"host_ip\" required />");
+		sb.append("<span class=\"glyphicon form-control-feedback\" aria-hidden=\"true\"></span>");
+		sb.append("</div>");
+		sb.append("</div>");
+		
+		sb.append("<div class = \"form-group\">");
+		sb.append("<div class=\"col-md-3\">");
+		sb.append(PrintJSP.printFieldInfo(Manual.getWizardExtraBackupPathInfo()));
+		sb.append(" <label for=\"device_name\"> Extra path to backup :</label>");
+		sb.append(" <input type=\"text\" class=\"form-control\" name=\"backup_path\" />");
+		sb.append(" <span class=\"glyphicon form-control-feedback\" aria-hidden=\"true\"></span>");
+		sb.append(" </div>");
+		sb.append(" </div>");
+		
+		sb.append("<div class = \"form-group\">");
+		sb.append("<div class=\"col-md-3\">");
+		sb.append(PrintJSP.printFieldInfo(Manual.getWizardExtraExcludePathInfo()));
+		sb.append(" <label for=\"device_name\"> Extra path to exclude :</label>");
+		sb.append(" <input type=\"text\" class=\"form-control\" name=\"exclude_path\" />");
+		sb.append(" <span class=\"glyphicon form-control-feedback\" aria-hidden=\"true\"></span>");
+		sb.append(" </div>");
+		sb.append(" </div>");
+		sb.append("<div class = \"form-group\">");
+		sb.append("<div class=\"col-xs-3\">");
+		sb.append("<label for=\"label_media\">Schedule <font color=\"red\">*</font> :</label>");
+		sb.append("<select class=\"form-control\" name=\"schedule\" required>");
+		sb.append("<option>None</option>");
+		sb.append(PrintJSP.printNameJSP("Schedule"));
+		sb.append("	</select>");
+		sb.append("	</div>");
+		sb.append("</div>");
+		sb.append("<br/>");
+		sb.append("	<input class = \"btn btn-primary\" type=\"submit\" id=\"submit\" name=\"submit\" value=\"Create all configuration files\" />");
+		sb.append("	</form>");
+		sb.append("</div>");
+		return sb.toString();
+	}
 }
