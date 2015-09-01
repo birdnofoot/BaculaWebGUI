@@ -9,7 +9,7 @@ public class FileIO {
 	public static void createClientToConfig(String client_name, String client_ip_address, 
 		String catalog, String file_retention, String autoprune){
 		if(file_retention.length()==0){
-			file_retention = "60 days";
+			file_retention = "30 days";
 		}
 		try {
 		BufferedWriter bw = new BufferedWriter(new FileWriter(Constant.getClients(), true));
@@ -27,6 +27,8 @@ public class FileIO {
 			bw.write("  Password = \""+Constant.getConfig_password()+"\"");
 			bw.newLine();
 			bw.write("  File Retention = "+file_retention);
+			bw.newLine();
+			bw.write("  Job Retention = 6 months");
 			bw.newLine();
 			bw.write("  AutoPrune = "+autoprune);
 			bw.newLine();

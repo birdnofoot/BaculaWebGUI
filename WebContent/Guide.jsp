@@ -16,7 +16,7 @@
 		<h3>1. Bacula process</h3>
 		<br/>
 		<h4>Start, stop or restart bacula daemons :</h4>
-		<p>Bacula doesn't take account of configuration file modification when it's not related to a job. So no changes will happen in database after modifications. As BaculaWebGUI only shows records in database, you can't see newly modified items directly from GUI.</p>
+		<p>Bacula doesn't take account of configuration file modification when it's not related to a job. So no changes will happen in database after modifications. As BaculaWebGUI only shows records in database, you can't see newly modified items directly from GUI datatables.</p>
 		<p>Every time an entity (Client,Storage,Job...) has been created, edited or removed, bacula daemons should be restarted to make changes effective.
 		<pre># service bacula-fd restart
 # service bacula-sd restart
