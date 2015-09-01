@@ -42,7 +42,7 @@ public class PrintJSP {
 		DatabaseController db_controller = new DatabaseController();
 		try {
 			db_controller.openConnection();
-			String jobQuery = "SELECT * FROM Job ORDER BY StartTime DESC LIMIT 2000 ; " ;
+			String jobQuery = "SELECT * FROM Job ORDER BY SchedTime DESC LIMIT 2000 ; " ;
 			Statement st = db_controller.getConnexion().createStatement();
 			ResultSet job_rs = st.executeQuery(jobQuery);
 			
@@ -76,15 +76,21 @@ public class PrintJSP {
 				sb.append("</td>");
 				sb.append("<td>"+AppUtils.formatDate(job_rs.getString("SchedTime")));
 				sb.append("</td>");
-				sb.append("<td>"+AppUtils.formatDate(job_rs.getString("StartTime")));
-				sb.append("</td>");
-				if(!job_rs.getString("JobStatus").equals("R")){
-					sb.append("<td>"+AppUtils.formatDate(job_rs.getString("EndTime")));
-					sb.append("</td>");
+				if(job_rs.getString("JobStatus").equals("C")){
+					sb.append("<td> Not started yet </td>");
+					sb.append("<td> Not started yet </td>");
 				}
 				else{
-					sb.append("<td> running...");
+					sb.append("<td>"+AppUtils.formatDate(job_rs.getString("StartTime")));
 					sb.append("</td>");
+					if(!job_rs.getString("JobStatus").equals("R")){
+						sb.append("<td>"+AppUtils.formatDate(job_rs.getString("EndTime")));
+						sb.append("</td>");
+					}
+					else{
+						sb.append("<td> running...");
+						sb.append("</td>");
+					}
 				}
 				sb.append("</tr>");
 			}
@@ -328,6 +334,36 @@ public class PrintJSP {
 		}
 		return null ;
 	}
+	
+	public static String printSelectOptionByJobId(){
+		StringBuilder sb = new StringBuilder();
+		ArrayList<String> name_list = new ArrayList<String>();
+    	String query = "SELECT JobId FROM Job ";
+    	try{
+			DatabaseController db = new DatabaseController() ;
+			db.openConnection();
+	
+			Statement statement = db.getConnexion().createStatement();
+			ResultSet resultset = statement.executeQuery(query);
+			while(resultset.next()){
+				name_list.add(resultset.getString("JobId"));
+			};
+			
+			resultset.close();
+			statement.close();
+			db.closeConnection();
+			int i ;
+			for(i=0;i<name_list.size();i++){
+				sb.append("<option>"+name_list.get(i)+"</option>");
+			}
+			return sb.toString() ;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null ;
+	}
+	
+	
 	
 	public static String printSelectOptionByType(String type){
 		StringBuilder sb = new StringBuilder();

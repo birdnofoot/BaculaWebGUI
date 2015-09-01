@@ -7,7 +7,7 @@ import utils.Constant;
 public class DatabaseController {
 
     private Connection connexion;
-	private static String url = "jdbc:mysql://"+Constant.getDb_url()+":"+Constant.getDb_port()+"/"+Constant.getDb_name() ;
+	private static String url = "jdbc:mysql://"+Constant.getDb_url()+":"+Constant.getDb_port()+"/"+Constant.getDb_name();
 	
 	public DatabaseController(){
 	}

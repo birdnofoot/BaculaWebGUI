@@ -24,14 +24,30 @@ public class SearchServlet extends HttpServlet {
 		ArrayList<FileRecord> fileList = new ArrayList<FileRecord>();
 		String file_name = request.getParameter("file_name");
 		String client = request.getParameter("client");
-		System.out.println("I got client as : "+client);
-		String query = null ;
-		if(client.equals("All")){
-			query = "SELECT DISTINCT Filename.name, Client.Name, Path.Path, Job.JobId, Job.Name, Job.StartTime, Job.EndTime FROM Client JOIN Job ON Client.ClientId = Job.ClientId JOIN File ON Job.JobId = File.JobId JOIN Filename ON Filename.FilenameId = File.FilenameId JOIN Path ON File.PathId = Path.PathId WHERE Filename.Name LIKE \'%"+file_name+"%\' LIMIT 2000 ;";
+		String jobId = request.getParameter("JobId");
+		String query = "SELECT DISTINCT Filename.name, Client.Name, Path.Path, Job.JobId, Job.Name, Job.StartTime, Job.EndTime FROM Client JOIN Job ON Client.ClientId = Job.ClientId JOIN File ON Job.JobId = File.JobId JOIN Filename ON Filename.FilenameId = File.FilenameId JOIN Path ON File.PathId = Path.PathId " ;
+		if(file_name.length() != 0 || !client.equals("All") || !jobId.equals("All")){
+			query = query + " WHERE " ;
 		}
-		else{
-			query = "SELECT DISTINCT Filename.name, Client.Name, Path.Path, Job.JobId, Job.Name, Job.StartTime, Job.EndTime FROM Client JOIN Job ON Client.ClientId = Job.ClientId JOIN File ON Job.JobId = File.JobId JOIN Filename ON Filename.FilenameId = File.FilenameId JOIN Path ON File.PathId = Path.PathId WHERE Filename.Name LIKE \'%"+file_name+"%\' AND Client.Name = \""+client+"\" LIMIT 2000 ;";
+		if (file_name.length() != 0){
+			query = query + " Filename.Name LIKE \'%"+file_name+"%\' ";
+			if(!client.equals("All") || !jobId.equals("All")){
+				query = query + " AND " ;
+			}
 		}
+		
+		if(!client.equals("All")){
+			query = query + " Client.Name = \"" + client + "\" ";
+			if(!jobId.equals("All")){
+				query = query + " AND " ;
+			}
+		}
+
+		if(!jobId.equals("All")){
+			query = query + " Job.JobId = \"" + jobId + "\" ";
+		}
+		query = query + " LIMIT 2000 ; ";
+		
 		DatabaseController m = new DatabaseController();
 		try {
 			m.openConnection();
@@ -40,10 +56,12 @@ public class SearchServlet extends HttpServlet {
 		ResultSet resultset = statement.executeQuery(query);
 		
 		while(resultset.next()){
+			if(resultset.getString(1).length()!=0){
 			fileList.add(new FileRecord(resultset.getString(1),resultset.getString(2),
 					resultset.getString(3),resultset.getString(4),
 					resultset.getString(5),resultset.getString(6),
 					resultset.getString(7)));
+			}
 		}
     	resultset.close();
     	statement.close();

@@ -36,6 +36,13 @@
 				<option>All</option>
 				<% out.println(PrintJSP.printSelectOptionByTypeNameInDB("Client")); %>
 			</select>
+			<br/>
+			<label for="JobId">JobId :</label>
+			<select class="form-control" name="JobId" required>
+				<option>All</option>
+				<% out.println(PrintJSP.printSelectOptionByJobId()); %>
+			</select>
+			
 			</div>
 			</div>
 			</div>
