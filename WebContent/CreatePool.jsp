@@ -77,26 +77,6 @@
 				<input type="text" class="form-control" name="maximum_volumes"/>
 				</div>
 				</div>
-				
-				<div class = "form-group">
-				<div class="col-xs-3">
-				<label for="recycle">Recycle :</label>
-				<select class="form-control" name="recycle">
-					<option>no</option>
-					<option>yes</option>
-				</select>
-				</div>
-				</div>
-				
-				<div class = "form-group">
-				<div class="col-xs-3">
-				<label for="autoprune">Autoprune :</label>
-				<select class="form-control" name="autoprune">
-					<option>no</option>
-					<option>yes</option>
-				</select>
-				</div>
-				</div>	
 				</div>
 				<br/>
 				<br/>

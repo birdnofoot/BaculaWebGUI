@@ -53,9 +53,7 @@ public class WizardServlet extends HttpServlet {
 			
 			String pool_name = host_name ;
 			String pool_type = "Backup";
-			String recycle = "yes";
-			String autoprune = "yes";
-			FileIO.createPoolToConfig(pool_name, pool_type, "", "", "", "", recycle, autoprune);
+			FileIO.createPoolToConfig(pool_name, pool_type, "", "", "", "");
 			
 			/* Create FileSet config */
 			
@@ -70,7 +68,7 @@ public class WizardServlet extends HttpServlet {
 			
 			/* Create Client config */
 			String client_name = host_name+"-fd";
-			FileIO.createClientToConfig(client_name, host_ip, "MyCatalog", "", autoprune);
+			FileIO.createClientToConfig(client_name, host_ip, "MyCatalog", "", "yes");
 			
 			/* Create Job config */
 			String job_name = host_name + "_backup" ;
@@ -97,9 +95,7 @@ public class WizardServlet extends HttpServlet {
 			
 			String pool_name = host_name ;
 			String pool_type = "Backup";
-			String recycle = "yes";
-			String autoprune = "yes";
-			FileIO.createPoolToConfig(pool_name, pool_type, "", "", "", "", recycle, autoprune);
+			FileIO.createPoolToConfig(pool_name, pool_type, "", "", "", "");
 			
 			/* Create FileSet config */
 			String fileset_name ;
@@ -131,7 +127,7 @@ public class WizardServlet extends HttpServlet {
 			
 			/* Create Client config */
 			String client_name = host_name+"-fd";
-			FileIO.createClientToConfig(client_name, host_ip, "MyCatalog", "", autoprune);
+			FileIO.createClientToConfig(client_name, host_ip, "MyCatalog", "", "yes");
 			
 			/* Create Job config */
 			String job_name = host_name + "_backup" ;

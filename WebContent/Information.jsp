@@ -38,7 +38,7 @@ table {
 		<div class="row">
 		<div class="col-xs-3">
 		<div class="well" >
-		<h4 align="center"><b>Space</b></h4>
+		<h4 align="center"><b>Disk usage</b></h4>
 		<br/>
 		<p>Total space : <%=AppUtils.formatFileSize(Objects.toString(total,null))%></p>
 		<p>Used space : <%=AppUtils.formatFileSize(Objects.toString(used,null)) %></p>
@@ -47,7 +47,7 @@ table {
 		</div>
 		
 		<div class="col-xs-6">
-		<div id="pie" style="min-width: 450px; height: 450px; max-width: 450px">
+		<div id="pie" style="min-width: 420px; height: 420px; max-width: 420px">
 		<script type="text/javascript">
 		$(function () {
     	$('#pie').highcharts({
@@ -59,7 +59,7 @@ table {
         },
         credits: false,
         title: {
-            text: 'Total space usage'
+            text: ''
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -78,7 +78,7 @@ table {
             }
         },
         series: [{
-            name: "Disk",
+            name: "Disk usage",
             colorByPoint: true,
             data: [{
                 name: "Used space",
@@ -107,7 +107,7 @@ table {
 		<div class="col-xs-3">
 		<div class="panel panel-default">
 		<br/>
-		<h4 align="center"><b>Space per client</b></h4>
+		<h4 align="center"><b>Disk usage per client</b></h4>
 		<br/>
     	<table class="table table-hover" >
         <thead>
@@ -137,7 +137,7 @@ table {
 		</div>
 		
 		<div class="col-xs-6">
-		<div id="pie2" style="min-width: 500px; height: 500px; max-width: 500px">
+		<div id="pie2" style="min-width: 550px; height: 550px; max-width: 550px">
 		<script type="text/javascript">
 		$(function () {
     	$('#pie2').highcharts({
@@ -149,7 +149,7 @@ table {
         },
         credits: false,
         title: {
-            text: 'Space usage per client'
+            text: ''
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -168,7 +168,7 @@ table {
             }
         },
         series: [{
-            name: "Disk usage percentage",
+            name: "Disk usage",
             colorByPoint: true,
             
             data: [

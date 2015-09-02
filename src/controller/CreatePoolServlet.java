@@ -26,9 +26,7 @@ public class CreatePoolServlet extends HttpServlet {
 		String volume_retention = request.getParameter("volume_retention");
 		String maximum_volume_bytes = request.getParameter("maximum_volume_bytes");
 		String maximum_volumes = request.getParameter("maximum_volumes");
-		String recycle = request.getParameter("recycle");
-		String autoprune = request.getParameter("autoprune");
-		FileIO.createPoolToConfig(pool_name, pool_type, label_format, volume_retention, maximum_volume_bytes, maximum_volumes, recycle, autoprune);
+		FileIO.createPoolToConfig(pool_name, pool_type, label_format, volume_retention, maximum_volume_bytes, maximum_volumes);
 		response.sendRedirect(request.getContextPath() + "/"+Constant.getIndexPage());
 	} catch(IOException e){
 		

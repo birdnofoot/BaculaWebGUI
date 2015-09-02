@@ -216,15 +216,14 @@ public class FileIO {
 	}
 	
 	public static void createPoolToConfig(String pool_name, String pool_type, String label_format,
-			String volume_retention, String maximum_volume_bytes, String maximum_volumes, String recycle,
-			String autoprune){
+			String volume_retention, String maximum_volume_bytes, String maximum_volumes){
 		try {
 
 			if(label_format.length()==0){
 				label_format = pool_name + "-${Year}${Month:p/2/0/r}${Day:p/2/0/r}";
 			}
 			if(volume_retention.length()==0){
-				volume_retention = "365 days";
+				volume_retention = "60 days";
 			}
 			if(maximum_volume_bytes.length()==0){
 				maximum_volume_bytes = "50G";
@@ -244,15 +243,15 @@ public class FileIO {
 			bw.newLine();
 			bw.write("  Label format = \""+label_format+"\"");
 			bw.newLine();
-			bw.write("  Recycle = "+recycle);
-			bw.newLine();
-			bw.write("  AutoPrune = "+autoprune);
+			bw.write("  AutoPrune = yes");
 			bw.newLine();
 			bw.write("  Volume Retention = "+volume_retention);
 			bw.newLine();
 			bw.write("  Maximum Volume Bytes = "+maximum_volume_bytes);
 			bw.newLine();
 			bw.write("  Maximum Volumes = "+maximum_volumes);
+			bw.newLine();
+			bw.write("  Maximum Volume Jobs = 1");
 			bw.newLine();
 			bw.write("}");
 			bw.newLine();

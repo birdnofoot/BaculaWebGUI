@@ -76,10 +76,13 @@
 					out.println("<div class=\"panel panel-default\">");					
 					out.println("<div class = \"panel-body\">");
 					out.println("<div class=\"alert alert-info\" role=\"alert\">");
-					out.println("Match file number : "+list.size());
+					if(list.size() != 3000){
+						out.println("Matched file number : "+list.size());
+					}
+					else{
+						out.println("Max matched file display number : "+list.size());
+					}
 					out.println("</div>");
-					
-
 					out.println("<table id=\"file_table\" class=\"table\">");
 					
 					out.println("<thead>");
@@ -107,18 +110,19 @@
 						out.println("</td>");
 						out.println("<td>"+fileList.getJobName());
 						out.println("</td>");
-						out.println("<td>"+fileList.getStartTime());
+						out.println("<td>"+AppUtils.formatDate(fileList.getStartTime()));
 						out.println("</td>");
-						out.println("<td>"+fileList.getEndTime());
+						out.println("<td>"+AppUtils.formatDate(fileList.getEndTime()));
 						out.println("</td>");
 						out.println("</tr>");
 					    out.println();
 					}			
-				out.println("</table>");
-				out.println("</div>");
-				out.println("</div>");
-				out.println("</div>");
+					out.println("</table>");
+					out.println("</div>");
+					out.println("</div>");
+					out.println("</div>");
 				}
+
 				%>
 
 				<br/>

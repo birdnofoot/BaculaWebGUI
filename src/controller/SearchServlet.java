@@ -22,10 +22,23 @@ public class SearchServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		ArrayList<FileRecord> fileList = new ArrayList<FileRecord>();
-		String file_name = request.getParameter("file_name");
-		String client = request.getParameter("client");
-		String jobId = request.getParameter("JobId");
+		
+		String file_name = "" ;
+		String client = "All" ;
+		String jobId = "All" ;
+		
+		if(request.getParameter("file_name")!= null){
+			file_name = request.getParameter("file_name");
+		}
+		if(request.getParameter("client")!= null){
+			client = request.getParameter("client");
+		}
+		if(request.getParameter("JobId")!=null){
+			jobId = request.getParameter("JobId");
+		}
+
 		String query = "SELECT DISTINCT Filename.name, Client.Name, Path.Path, Job.JobId, Job.Name, Job.StartTime, Job.EndTime FROM Client JOIN Job ON Client.ClientId = Job.ClientId JOIN File ON Job.JobId = File.JobId JOIN Filename ON Filename.FilenameId = File.FilenameId JOIN Path ON File.PathId = Path.PathId " ;
+		
 		if(file_name.length() != 0 || !client.equals("All") || !jobId.equals("All")){
 			query = query + " WHERE " ;
 		}
@@ -46,7 +59,7 @@ public class SearchServlet extends HttpServlet {
 		if(!jobId.equals("All")){
 			query = query + " Job.JobId = \"" + jobId + "\" ";
 		}
-		query = query + " LIMIT 2000 ; ";
+		query = query + " LIMIT 3000 ; ";
 		
 		DatabaseController m = new DatabaseController();
 		try {
@@ -56,12 +69,10 @@ public class SearchServlet extends HttpServlet {
 		ResultSet resultset = statement.executeQuery(query);
 		
 		while(resultset.next()){
-			if(resultset.getString(1).length()!=0){
 			fileList.add(new FileRecord(resultset.getString(1),resultset.getString(2),
 					resultset.getString(3),resultset.getString(4),
 					resultset.getString(5),resultset.getString(6),
 					resultset.getString(7)));
-			}
 		}
     	resultset.close();
     	statement.close();

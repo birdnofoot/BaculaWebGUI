@@ -62,8 +62,8 @@ public class PrintJSP {
 				sb.append("<tr>");
 				sb.append("<th scope=\"row\">"+job_rs.getString("JobId"));
 				sb.append("</td>");
-				sb.append("<td>"+job_rs.getString("Name"));
-				sb.append("</td>");
+				sb.append("<td><a style=\"color:#333\" href=\"searchservlet?JobId="+job_rs.getString("JobId")+"\">"+job_rs.getString("Name"));
+				sb.append("</a></td>");
 				sb.append("<td>"+job_rs.getString("Level"));
 				sb.append("</td>");
 
@@ -206,7 +206,7 @@ public class PrintJSP {
 		sb.append("<th> Name </th>");
 		sb.append("<th> Type </th>");
 		sb.append("<th> Volume Retention </th>");
-		sb.append("<th> Use Once </th>");
+		sb.append("<th> Maximum Volume Jobs </th>");
 		sb.append("<th> Recycle </th>");
 		sb.append("<th> AutoPrune </th>");
 		sb.append("<th> Label Format </th>");
@@ -222,7 +222,7 @@ public class PrintJSP {
 			sb.append("</td>");
 			sb.append("<td>"+AppUtils.formatTime(pool_rs.getString("VolRetention")));
 			sb.append("</td>");
-			sb.append("<td>"+pool_rs.getString("UseOnce"));
+			sb.append("<td>"+pool_rs.getString("MaxVolJobs"));
 			sb.append("</td>");
 			sb.append("<td>"+pool_rs.getString("Recycle"));
 			sb.append("</td>");
