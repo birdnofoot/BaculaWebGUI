@@ -1,7 +1,6 @@
 package view;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,20 +16,16 @@ public class PrintJSP {
 	
 	public static String printNameJSP(String type){
 		String jsp = null ;
-		try {
-			sb = new StringBuilder();
-			String path = AppUtils.getConfigPathByType(type);
-			File f = new File(path);
-			ArrayList<String> name_list = new ArrayList<String>();
-			name_list = BaculaParser.getName(f,"Name");
-			int i = 0 ;
-			for(i=0;i<name_list.size();i++){
-				sb.append("<option>"+name_list.get(i)+"</option>");
-			}
-			jsp = sb.toString();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		sb = new StringBuilder();
+		String path = AppUtils.getConfigPathByType(type);
+		File f = new File(path);
+		ArrayList<String> name_list = new ArrayList<String>();
+		name_list = BaculaParser.getName(f,"Name");
+		int i = 0 ;
+		for(i=0;i<name_list.size();i++){
+			sb.append("<option>"+name_list.get(i)+"</option>");
 		}
+		jsp = sb.toString();
 		return jsp ;
 	}
 	
@@ -369,17 +364,12 @@ public class PrintJSP {
 		StringBuilder sb = new StringBuilder();
 		File f = new File(AppUtils.getConfigPathByType(type));
 		ArrayList<String> name_list = new ArrayList<String>();
-		try {
-			name_list = BaculaParser.getName(f,"Name");
-			int i = 0 ;
-			for(i=0;i<name_list.size();i++){
-				sb.append("<option>"+name_list.get(i)+"</option>");
-			}
-			return sb.toString() ;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		name_list = BaculaParser.getName(f,"Name");
+		int i = 0 ;
+		for(i=0;i<name_list.size();i++){
+			sb.append("<option>"+name_list.get(i)+"</option>");
 		}
-		return null ;
+		return sb.toString() ;
 	}
 	
 	public static String printWizardOption(){

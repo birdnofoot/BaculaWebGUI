@@ -91,7 +91,8 @@ public class AppUtils {
 		String currentLine = null ;
 		while(fileScanner.hasNext()){
 			currentLine = StringEscapeUtils.escapeHtml(fileScanner.nextLine());
-        	if(currentLine.length() >= 1){
+			currentLine = currentLine.replaceAll("\\s+","");
+			if(currentLine.length() >= 1){
 				if(currentLine.trim().charAt(0) == '#'){
 		        	sb.append("<font color=\"#929492\">"+currentLine+"</font>");
 		        	sb.append("</br>");
@@ -243,7 +244,39 @@ public class AppUtils {
 			}
 		}
 		return clientSizeList;
-	}	
-
+	}
+	
+	public static String runShell(String cmd, String param){
+		String commands = null ;
+		StringBuilder sb = new StringBuilder();
+		try {
+			
+			Runtime rt = Runtime.getRuntime();
+			if(param.length()!=0){
+				commands = cmd ;
+			}
+			else{
+				commands = cmd + " " + param ;
+			}
+			Process proc;
+			proc = rt.exec(commands);
+			BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+			BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+			System.out.println("Here is the standard output of the command:\n");
+			String s = null;
+			
+			while ((s = stdInput.readLine()) != null) {
+			    sb.append(s);
+			}
+			System.out.println("Here is the standard error of the command (if any):\n");
+			while ((s = stdError.readLine()) != null) {
+				sb.append(s);
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+			return sb.toString() ;
+		}
 }
 	

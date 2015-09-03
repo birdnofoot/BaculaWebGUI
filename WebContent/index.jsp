@@ -25,6 +25,7 @@
 		%>
 		</div>
 		</div>
+		<% //out.println(AppUtils.runShell("/bin/bash", "/etc/bacula/script/connect.sh"));%> 
 		
 		
 		<%-- DataTables --%>
@@ -100,7 +101,7 @@
 	</div>
 	</div>
 	</div>
-	
+
 	<div class="container">
 	<div class="panel panel-danger">
 	<div class="panel-heading">

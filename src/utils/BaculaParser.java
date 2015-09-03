@@ -130,17 +130,19 @@ public class BaculaParser {
 	 * @param	type	Bacula configuration file type. ex. "Pool"
 	 * @return	ArrayList<String> containing all names of given type
 	 */
-	public static ArrayList<String> getName(File f, String type) throws FileNotFoundException{
+	public static ArrayList<String> getName(File f, String type) {
 		ArrayList<String> name_list = new ArrayList<String>();
 	    @SuppressWarnings("unused")
 		int lineNumber = 1;
 	    String currentLine = null ;
+	    try{
 	    @SuppressWarnings("resource")
 		Scanner fileScanner = new Scanner(f);
 	    
 	    while(fileScanner.hasNextLine()){
 	    	currentLine = fileScanner.nextLine();
-	    	if(currentLine.length() >= 1){
+	    	if(currentLine != null && currentLine.trim().length() >= 1){
+	    		currentLine = currentLine.replaceAll("\\s+","");
 				if(currentLine.trim().charAt(0) != '#'){
 		        	String regex = "\\s*"+type+"\\s+=\\s+";
 		        	Pattern pattern = Pattern.compile(regex);
@@ -166,6 +168,9 @@ public class BaculaParser {
 				}
 	    	}
 	    lineNumber++ ;
+	    }
+	    }catch(Exception e){
+	    	e.printStackTrace();
 	    }
 	    return name_list ;
 	}
