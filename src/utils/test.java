@@ -1,25 +1,18 @@
 package utils;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.ProcessBuilder.Redirect;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class test {
 
 	public static void main(String[] args)  {
 		try {
 		 Runtime rt = Runtime.getRuntime();
-		 String[] commands = {"/usr/bin/whoami"};
+		 String[] commands = {"/bin/bash", "/etc/bacula/scripts/connect.sh"};
 		 Process proc;
 
-			proc = rt.exec(commands);
-
-
+		 proc = rt.exec(commands);
 		 BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
 		 BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
 		 System.out.println("Here is the standard output of the command:\n");

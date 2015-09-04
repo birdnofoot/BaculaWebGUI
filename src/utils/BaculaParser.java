@@ -141,8 +141,7 @@ public class BaculaParser {
 	    
 	    while(fileScanner.hasNextLine()){
 	    	currentLine = fileScanner.nextLine();
-	    	if(currentLine != null && currentLine.trim().length() >= 1){
-	    		currentLine = currentLine.replaceAll("\\s+","");
+	    	if(currentLine.trim().length() >= 1){
 				if(currentLine.trim().charAt(0) != '#'){
 		        	String regex = "\\s*"+type+"\\s+=\\s+";
 		        	Pattern pattern = Pattern.compile(regex);

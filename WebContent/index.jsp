@@ -23,7 +23,16 @@
 		out.print("<span>&nbsp;&nbsp;Today is "+AppUtils.getDate()+". You have " +db_controller.getClientNumber()+ 
 			" clients and "+db_controller.getJobNumber()+" jobs. </span>");
 		%>
+
 		</div>
+				<%
+		if(db_controller.getRunningJobNumber() != 0){
+			out.println("<div class=\"alert alert-info\" role=\"alert\">");
+			out.println("<span class=\"glyphicon glyphicon-time\" aria-hidden=\"true\"></span>");
+			out.print("<span>&nbsp;&nbsp; You have " + db_controller.getRunningJobNumber() + " running jobs at this moment. </span>");
+			out.println("</div>");
+		}
+		%>
 		</div>
 		<% //out.println(AppUtils.runShell("/bin/bash", "/etc/bacula/script/connect.sh"));%> 
 		

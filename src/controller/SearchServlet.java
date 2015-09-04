@@ -59,7 +59,7 @@ public class SearchServlet extends HttpServlet {
 		if(!jobId.equals("All")){
 			query = query + " Job.JobId = \"" + jobId + "\" ";
 		}
-		query = query + " LIMIT 3000 ; ";
+		query = query + " LIMIT 10000 ; ";
 		
 		DatabaseController m = new DatabaseController();
 		try {

@@ -12,8 +12,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.io.*;
@@ -24,7 +22,6 @@ import java.util.Comparator;
 import org.apache.commons.lang.StringEscapeUtils;
 import controller.DatabaseController;
 import model.Status;
-
 
 public class AppUtils {
 	
@@ -91,7 +88,6 @@ public class AppUtils {
 		String currentLine = null ;
 		while(fileScanner.hasNext()){
 			currentLine = StringEscapeUtils.escapeHtml(fileScanner.nextLine());
-			currentLine = currentLine.replaceAll("\\s+","");
 			if(currentLine.length() >= 1){
 				if(currentLine.trim().charAt(0) == '#'){
 		        	sb.append("<font color=\"#929492\">"+currentLine+"</font>");
@@ -246,37 +242,32 @@ public class AppUtils {
 		return clientSizeList;
 	}
 	
-	public static String runShell(String cmd, String param){
-		String commands = null ;
-		StringBuilder sb = new StringBuilder();
+	public static ArrayList<String>[] runShell(String cmd, String file, String param){
+		@SuppressWarnings("unchecked")
+		ArrayList<String>[] result = (ArrayList<String>[])new ArrayList[2];
+		ArrayList<String> cmd_output = new ArrayList<String>();
+		ArrayList<String> error_output = new ArrayList<String>();
 		try {
-			
 			Runtime rt = Runtime.getRuntime();
-			if(param.length()!=0){
-				commands = cmd ;
-			}
-			else{
-				commands = cmd + " " + param ;
-			}
+			String[] commands = {cmd, file, param};
+
 			Process proc;
 			proc = rt.exec(commands);
 			BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
 			BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-			System.out.println("Here is the standard output of the command:\n");
 			String s = null;
-			
 			while ((s = stdInput.readLine()) != null) {
-			    sb.append(s);
+				cmd_output.add(s);
 			}
-			System.out.println("Here is the standard error of the command (if any):\n");
 			while ((s = stdError.readLine()) != null) {
-				sb.append(s);
+			    error_output.add(s);
 			}
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-			return sb.toString() ;
-		}
+		result[0] = cmd_output;
+		result[1] =  error_output;
+		return result;
+	}
 }
 	

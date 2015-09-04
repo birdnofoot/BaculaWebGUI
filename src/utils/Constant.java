@@ -31,6 +31,10 @@ public class Constant {
 	private static String db_port = "3306";
 	private static String db_name = "bacula";
 	
+	/* Unix command */
+	private static String bash = "/bin/bash" ;
+	private static String runJobScritpt = "/etc/bacula/scripts/runjob.sh";
+	
 	public static String getPools() {
 		return pools;
 	}
@@ -154,5 +158,17 @@ public class Constant {
 	}
 	public static String getHost_name() {
 		return host_name;
+	}
+	public static String getRunJobScritpt() {
+		return runJobScritpt;
+	}
+	public static void setRunJobScritpt(String runJobScritpt) {
+		Constant.runJobScritpt = runJobScritpt;
+	}
+	public static String getBash() {
+		return bash;
+	}
+	public static void setBash(String bash) {
+		Constant.bash = bash;
 	}
 }

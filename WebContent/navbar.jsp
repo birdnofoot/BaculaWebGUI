@@ -191,9 +191,23 @@ $(".manual").tooltip({
 						<li><a href="Wizard.jsp">Add new host</a></li>
 					</ul>
 				</li>
+				
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Run<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="RunJob.jsp">Run job</a></li>
+					</ul>
+				</li>
 					
 				<li><a href="Search.jsp" role="button" aria-haspopup="true"
 					aria-expanded="false">Search</a>
+				</li>
+				
+				<li><a href="Console.jsp" role="button" aria-haspopup="true"
+					aria-expanded="false">Console</a>
 				</li>
 						
 				<li class="dropdown">
@@ -207,7 +221,6 @@ $(".manual").tooltip({
 						<li><a href="http://blog.bacula.org/documentation/documentation/">Bacula online manual</a></li>
 					</ul>
 				</li>
-
 			</ul>
 		</div>
 	</div>

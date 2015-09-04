@@ -76,7 +76,7 @@
 					out.println("<div class=\"panel panel-default\">");					
 					out.println("<div class = \"panel-body\">");
 					out.println("<div class=\"alert alert-info\" role=\"alert\">");
-					if(list.size() != 3000){
+					if(list.size() != 10000){
 						out.println("Matched file number : "+list.size());
 					}
 					else{
