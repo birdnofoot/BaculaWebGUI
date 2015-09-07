@@ -25,18 +25,21 @@
 		%>
 
 		</div>
-				<%
+		<%
 		if(db_controller.getRunningJobNumber() != 0){
 			out.println("<div class=\"alert alert-info\" role=\"alert\">");
 			out.println("<span class=\"glyphicon glyphicon-time\" aria-hidden=\"true\"></span>");
-			out.print("<span>&nbsp;&nbsp; You have " + db_controller.getRunningJobNumber() + " running jobs at this moment. </span>");
+			if(db_controller.getRunningJobNumber() == 1){
+				out.print("<span>&nbsp;&nbsp; You have " + db_controller.getRunningJobNumber() + " running job at this moment. </span>");
+			}
+			else{
+				out.print("<span>&nbsp;&nbsp; You have " + db_controller.getRunningJobNumber() + " running jobs at this moment. </span>");
+			}
 			out.println("</div>");
 		}
 		%>
-		</div>
-		<% //out.println(AppUtils.runShell("/bin/bash", "/etc/bacula/script/connect.sh"));%> 
-		
-		
+		</div>		
+
 		<%-- DataTables --%>
 		<script type="text/javascript">
 		$(document).ready(function(){
