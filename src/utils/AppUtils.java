@@ -88,7 +88,7 @@ public class AppUtils {
 		String currentLine = null ;
 		while(fileScanner.hasNext()){
 			currentLine = StringEscapeUtils.escapeHtml(fileScanner.nextLine());
-			if(currentLine.length() >= 1){
+			if(currentLine.trim().length() >= 1){
 				if(currentLine.trim().charAt(0) == '#'){
 		        	sb.append("<font color=\"#929492\">"+currentLine+"</font>");
 		        	sb.append("</br>");
