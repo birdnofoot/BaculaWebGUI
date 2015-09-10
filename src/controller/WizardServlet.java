@@ -19,6 +19,7 @@ public class WizardServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String type = request.getParameter("type");
 		String option = request.getParameter("option");
 		String host_name = request.getParameter("host_name");
@@ -52,29 +53,28 @@ public class WizardServlet extends HttpServlet {
 			/* Create Pool config */
 			
 			String pool_name = host_name ;
-			String pool_type = "Backup";
-			FileIO.createPoolToConfig(pool_name, pool_type, "", "", "", "");
+			FileIO.createPoolToConfig(pool_name, "Backup", "yes", "yes", "60 days", "50G", "2", "1", pool_name+"-Full");
+			FileIO.createPoolToConfig(pool_name, "Backup", "yes", "yes", "30 days", "50G", "4", "1", pool_name+"-Incremental");
 			
 			/* Create FileSet config */
 			
-			String fileset_name = host_name ;
+			String fileset_name ;
+			fileset_name = host_name ;
 			String signature = "MD5" ;
 			String compression = "GZIP";
 			FileIO.createFilesetToConfig(fileset_name, backup_path, exclude_path, signature, compression);
-			
-			/* Create JobDef config */
-			
-			// Nothing to do here
-			
+
 			/* Create Client config */
 			String client_name = host_name+"-fd";
 			FileIO.createClientToConfig(client_name, host_ip, "MyCatalog", "", "yes");
 			
+			/* Create JobDef config */
+			FileIO.createJobDefsToConfig(host_name,"Backup","",client_name,fileset_name,schedule,host_name,pool_name+"-Full",
+					pool_name+"-Full",pool_name+"-Incremental","");
+			
 			/* Create Job config */
 			String job_name = host_name + "_backup" ;
-			String job_type = "Backup";
-			String jobdefs = "DefaultJob";
-			FileIO.createJobToConfig(job_name,job_type,jobdefs,client_name,pool_name,host_name,fileset_name,schedule);
+			FileIO.createJobToConfig(job_name,host_name,"","","","","","");
 			
 	    	request.setAttribute("status", "finish");
 	    	request.getRequestDispatcher("Wizard.jsp").forward(request, response);
@@ -94,8 +94,8 @@ public class WizardServlet extends HttpServlet {
 			/* Create Pool config */
 			
 			String pool_name = host_name ;
-			String pool_type = "Backup";
-			FileIO.createPoolToConfig(pool_name, pool_type, "", "", "", "");
+			FileIO.createPoolToConfig(pool_name, "Backup", "yes", "yes", "60 days", "50G", "2", "1", pool_name+"-Full");
+			FileIO.createPoolToConfig(pool_name, "Backup", "yes", "yes", "30 days", "50G", "4", "1", pool_name+"-Incremental");
 			
 			/* Create FileSet config */
 			String fileset_name ;
@@ -111,29 +111,28 @@ public class WizardServlet extends HttpServlet {
 				}
 				
 				if(exclude_path.length() == 0){
-					exclude_path = "/home/apachelogs,/usr/local/apache*/logs";
+					exclude_path = "/usr/local/apache*/logs,/home/apachelogs,/home/*/tomcat/logs,/home/OLD";
 				}
 				else{
-					exclude_path = "/home/apachelogs,/usr/local/apache*/logs," + exclude_path;
+					exclude_path = "/usr/local/apache*/logs,/home/apachelogs,/home/*/tomcat/logs,/home/OLD," + exclude_path;
 				}
 				fileset_name = host_name ;
 				String signature = "MD5" ;
 				String compression = "GZIP";
 				FileIO.createFilesetToConfig(fileset_name, backup_path, exclude_path, signature, compression);
 			}
-			/* Create JobDef config */
-			
-			// Nothing to do here
-			
+
 			/* Create Client config */
 			String client_name = host_name+"-fd";
 			FileIO.createClientToConfig(client_name, host_ip, "MyCatalog", "", "yes");
 			
+			/* Create JobDef config */
+			FileIO.createJobDefsToConfig(host_name,"Backup","",client_name,fileset_name,schedule,host_name,pool_name+"-Full",
+					pool_name+"-Full",pool_name+"-Incremental","");
+			
 			/* Create Job config */
 			String job_name = host_name + "_backup" ;
-			String job_type = "Backup";
-			String jobdefs = "DefaultJob";
-			FileIO.createJobToConfig(job_name,job_type,jobdefs,client_name,pool_name,host_name,fileset_name,schedule);
+			FileIO.createJobToConfig(job_name,host_name,"","","","","","");
 			
 	    	request.setAttribute("status", "finish");
 	    	request.getRequestDispatcher("Wizard.jsp").forward(request, response);

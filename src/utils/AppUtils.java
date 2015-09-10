@@ -78,7 +78,7 @@ public class AppUtils {
 		String time = parts[1];
 		return time ;
 	}
-    
+	
 	public static String printConfigHighlight(String filename, String type){
 		
 		StringBuilder sb = new StringBuilder();
@@ -141,16 +141,36 @@ public class AppUtils {
 	    long second = TimeUnit.SECONDS.toSeconds(seconds) - TimeUnit.DAYS.toSeconds(day) -
 	                  TimeUnit.HOURS.toSeconds(hours) - TimeUnit.MINUTES.toSeconds(minute);
 	    if(day != 0){
-	    	time += day +" days";
+	    	if (day == 1){
+	    		time += day +" day";
+	    	}
+	    	else{
+	    		time += day +" days";
+	    	}
 	    }
 	    if(hours != 0){
-	    	time += hours + " ,hours" ;
+	    	if(hours == 1){
+	    		time += hours + " hour" ;
+	    	}
+	    	else{
+	    		time += hours + " hours" ;
+	    	}
 	    }
 	    if(minute != 0){
-	    	time += minute + " ,minutes";
+	    	if(minute == 1){
+	    		time += minute + " minute";
+	    	}
+	    	else{
+	    		time += minute + " minutes";
+	    	}
 	    }
 	    if(second != 0){
-	    	time += second + " ,seconds";
+	    	if(second == 0){
+	    		time += second + " second";
+	    	}
+	    	else{
+	    		time += second + " seconds";
+	    	}
 	    }
 	    return time ;
 	}

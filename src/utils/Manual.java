@@ -10,30 +10,34 @@ public class Manual {
 	}
 	
 	public static String getDeviceArchiveDeviceInfo(){
-		String info = "Full absolute path to the directory where backup files will be placed";
+		String info = "Full absolute path to the directory where backup files will be placed. Ex : /bacula/bacula/backup/lxsauve";
 		return info ;
 	}
 	
 	/* Pool */
 	
 	public static String getPoolLabelFormatInfo(){
-		String info = "Default value : ${Poolname}-${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}"
-				+ ", on 20 June 2016 would give : Default-2016-06-20";
+		String info = "Ex. ${Poolname}-${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}";
 		return info ;
 	}
 	
 	public static String getPoolVolumeRetentionInfo(){
-		String info = "Default value : 365 days";
+		String info = "Ex. 60 days";
 		return info ;
 	}
 	
 	public static String getPoolMaxVolumeBytes(){
-		String info = "Default value : 50G";
+		String info = "Ex. 50G";
 		return info ;
 	}
 	
 	public static String getPoolMaxVolume(){
-		String info = "Default value : 100";
+		String info = "Ex. 4";
+		return info ;
+	}
+	
+	public static String getPoolMaxVolumeJob(){
+		String info = "Ex. 1";
 		return info ;
 	}
 	
@@ -92,6 +96,11 @@ public class Manual {
 	
 	public static String getJobScheduleInfo(){
 		String info = "This option will disable and overwrite the schedule already defined in JobDefs";
+		return info ;
+	}
+	
+	public static String getJobJobDefInfo(){
+		String info = "A Job can either be defined by an existing JobDefs, or by using advanced options. Note: options defined in Job will overwrite the same definitions in JobDefs.";
 		return info ;
 	}
 	

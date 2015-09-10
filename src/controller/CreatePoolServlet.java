@@ -22,11 +22,15 @@ public class CreatePoolServlet extends HttpServlet {
 	try {
 		String pool_name = request.getParameter("pool_name");
 		String pool_type = request.getParameter("pool_type");
-		String label_format = request.getParameter("label_format");
+		String recycle = request.getParameter("recycle");
+		String autoprune = request.getParameter("autoprune");
 		String volume_retention = request.getParameter("volume_retention");
 		String maximum_volume_bytes = request.getParameter("maximum_volume_bytes");
 		String maximum_volumes = request.getParameter("maximum_volumes");
-		FileIO.createPoolToConfig(pool_name, pool_type, label_format, volume_retention, maximum_volume_bytes, maximum_volumes);
+		String maximum_volume_jobs = request.getParameter("maximum_volume_jobs");
+		String label_format = request.getParameter("label_format");
+		FileIO.createPoolToConfig(pool_name, pool_type, recycle, autoprune, volume_retention, 
+				maximum_volume_bytes, maximum_volumes, maximum_volume_jobs,label_format);
 		response.sendRedirect(request.getContextPath() + "/"+Constant.getIndexPage());
 	} catch(IOException e){
 		

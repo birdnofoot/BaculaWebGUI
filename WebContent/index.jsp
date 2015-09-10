@@ -20,8 +20,8 @@
 		
     		DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
     		db_controller.openConnection();	
-		out.print("<span>&nbsp;&nbsp;Today is "+AppUtils.getDate()+". You have " +db_controller.getClientNumber()+ 
-			" clients and "+db_controller.getJobNumber()+" jobs. </span>");
+		out.print("<span>&nbsp;&nbsp;Today is "+AppUtils.getDate()+". You have <a href=\"View.jsp?type=Client\" style=\"color:#31708f\">" +db_controller.getClientNumber()+ 
+			" </a>clients and <a href=\"View.jsp?type=Job\" style=\"color:#31708f\">"+db_controller.getJobNumber()+"</a> jobs. </span>");
 		%>
 
 		</div>
@@ -30,10 +30,10 @@
 			out.println("<div class=\"alert alert-info\" role=\"alert\">");
 			out.println("<span class=\"glyphicon glyphicon-time\" aria-hidden=\"true\"></span>");
 			if(db_controller.getRunningJobNumber() == 1){
-				out.print("<span>&nbsp;&nbsp; You have " + db_controller.getRunningJobNumber() + " running job at this moment. </span>");
+				out.print("<span>&nbsp;&nbsp; <a href=\"View.jsp?type=Job\" style=\"color:#31708f\">You have " + db_controller.getRunningJobNumber() + " running job at this moment. </a></span>");
 			}
 			else{
-				out.print("<span>&nbsp;&nbsp; You have " + db_controller.getRunningJobNumber() + " running jobs at this moment. </span>");
+				out.print("<span>&nbsp;&nbsp; <a href=\"View.jsp?type=Job\" style=\"color:#31708f\">You have " + db_controller.getRunningJobNumber() + " running jobs at this moment. </a></span>");
 			}
 			out.println("</div>");
 		}
@@ -105,7 +105,6 @@
 			out.println("</td>");
 			out.println("</tr>");
 		}
-		
 		job_rs.close();
 		st.close();
 	%>
@@ -161,7 +160,6 @@
 		failed_job_rs.close();
 		db_controller.closeConnection();
 	%>
-
 	</table>
 	</div>
 	</div>

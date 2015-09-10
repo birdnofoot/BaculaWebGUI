@@ -26,8 +26,13 @@ public class CreateJobDefsServlet extends HttpServlet {
 		String schedule = request.getParameter("schedule");
 		String storage = request.getParameter("storage");
 		String pool = request.getParameter("pool");
+		String incremental_backup_pool = request.getParameter("incremental_backup_pool");
+		String full_backup_pool = request.getParameter("full_backup_pool");
 		String priority = request.getParameter("priority");
-		FileIO.createJobDefsToConfig(jobdef_name, jobdef_type, level, client, fileset, schedule, storage, pool, priority);
+		
+		FileIO.createJobDefsToConfig(jobdef_name, jobdef_type, level, client, fileset, schedule, 
+				storage, pool, full_backup_pool, incremental_backup_pool, priority);
+		
 		response.sendRedirect(request.getContextPath() + "/"+Constant.getIndexPage());
 	}
 

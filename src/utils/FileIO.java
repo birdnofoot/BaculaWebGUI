@@ -144,32 +144,54 @@ public class FileIO {
 	}
 	
 	public static void createJobDefsToConfig(String jobdefs_name, String jobdefs_type, String level,
-			String client, String fileset, String schedule, String storage, String pool, String priority){
+			String client, String fileset, String schedule, String storage, String pool, 
+			String full_backup_pool, String incremental_backup_pool, String priority){
 		try {
 			if(priority.length() == 0){
 				priority = "10";
 			}
 			BufferedWriter bw = new BufferedWriter(new FileWriter(Constant.getJobdefs(), true));
-			
 			bw.newLine();
 			bw.write("JobDefs {");
 			bw.newLine();
 			bw.write("  Name = \""+jobdefs_name+"\"");
 			bw.newLine();
-			bw.write("  Type = "+jobdefs_type);
-			bw.newLine();
-			bw.write("  Level = "+level);
-			bw.newLine();
-			bw.write("  Client = "+client);
-			bw.newLine();
-			bw.write("  FileSet = \""+fileset+"\"");
-			bw.newLine();
-			bw.write("  Schedule = \""+schedule+"\"");
-			bw.newLine();
-			bw.write("  Storage = "+storage);
-			bw.newLine();
-			bw.write("  Pool = "+pool);
-			bw.newLine();
+			if(jobdefs_name.length()!=0){
+				bw.write("  Type = "+jobdefs_type);
+				bw.newLine();
+			}
+			if(level.length()!=0){
+				bw.write("  Level = "+level);
+				bw.newLine();
+			}
+			if(client.length()!=0){
+				bw.write("  Client = "+client);
+				bw.newLine();
+			}
+			if(fileset.length()!=0){
+				bw.write("  FileSet = \""+fileset+"\"");
+				bw.newLine();
+			}
+			if(schedule.length()!=0){
+				bw.write("  Schedule = \""+schedule+"\"");
+				bw.newLine();
+			}
+			if(storage.length()!=0){
+				bw.write("  Storage = "+storage);
+				bw.newLine();
+			}
+			if(pool.length()!=0){
+				bw.write("  Pool = "+pool);
+				bw.newLine();
+			}
+			if(full_backup_pool.length()!=0){
+				bw.write("  Full Backup Pool = "+full_backup_pool);
+				bw.newLine();
+			}
+			if(incremental_backup_pool.length()!=0){
+				bw.write("  Incremental Backup Pool = "+incremental_backup_pool);
+				bw.newLine();
+			}
 			bw.write("  Priority = "+priority);
 			bw.newLine();
 			bw.write("}");
@@ -180,7 +202,7 @@ public class FileIO {
 		}
 	}
 	
-	public static void createJobToConfig(String job_name, String job_type, String jobdefs, String client,
+	public static void createJobToConfig(String job_name, String jobdefs, String job_type, String client,
 			String pool, String storage, String fileset, String schedule){
 		try {
 		
@@ -190,19 +212,31 @@ public class FileIO {
 			bw.newLine();
 			bw.write("  Name = \""+job_name+"\"");
 			bw.newLine();
-			bw.write("  Type = "+job_type);
-			bw.newLine();
-			bw.write("  JobDefs = "+jobdefs);
-			bw.newLine();
-			bw.write("  Client = "+client);
-			bw.newLine();
-			bw.write("  Pool = "+pool);
-			bw.newLine();
-			bw.write("  Storage = "+storage);
-			bw.newLine();
-			bw.write("  FileSet = "+fileset);
-			bw.newLine();
-			if(!schedule.equals("None")){
+			if(jobdefs.length()!=0){
+				bw.write("  JobDefs = \""+jobdefs+"\"");
+				bw.newLine();
+			}
+			if(job_type.length()!=0){
+				bw.write("  Type = "+job_type);
+				bw.newLine();
+			}
+			if(client.length()!=0){
+				bw.write("  Client = "+client);
+				bw.newLine();
+			}
+			if(pool.length()!=0){
+				bw.write("  Pool = "+pool);
+				bw.newLine();
+			}
+			if(storage.length()!=0){
+				bw.write("  Storage = "+storage);
+				bw.newLine();
+			}
+			if(fileset.length()!=0){
+				bw.write("  FileSet = "+fileset);
+				bw.newLine();
+			}
+			if(schedule.length()!=0){
 				bw.write("  Schedule = \""+schedule+"\"");
 				bw.newLine();
 			}
@@ -215,13 +249,10 @@ public class FileIO {
 		}
 	}
 	
-	public static void createPoolToConfig(String pool_name, String pool_type, String label_format,
-			String volume_retention, String maximum_volume_bytes, String maximum_volumes){
+	public static void createPoolToConfig(String pool_name, String pool_type, String recycle,
+			String autoprune, String volume_retention, String maximum_volume_bytes, 
+			String maximum_volumes, String maximum_volume_job, String label_format){
 		try {
-
-			if(label_format.length()==0){
-				label_format = pool_name + "-${Year}${Month:p/2/0/r}${Day:p/2/0/r}";
-			}
 			if(volume_retention.length()==0){
 				volume_retention = "60 days";
 			}
@@ -241,18 +272,26 @@ public class FileIO {
 			bw.newLine();
 			bw.write("  Pool Type = "+pool_type);
 			bw.newLine();
-			bw.write("  Label format = \""+label_format+"\"");
-			bw.newLine();
-			bw.write("  AutoPrune = yes");
-			bw.newLine();
+			if(recycle.length()!=0){
+				bw.write("  Recycle = "+recycle);
+				bw.newLine();
+			}
+			if(autoprune.length()!=0){
+				bw.write("  AutoPrune = "+autoprune);
+				bw.newLine();
+			}
 			bw.write("  Volume Retention = "+volume_retention);
 			bw.newLine();
 			bw.write("  Maximum Volume Bytes = "+maximum_volume_bytes);
 			bw.newLine();
 			bw.write("  Maximum Volumes = "+maximum_volumes);
 			bw.newLine();
-			bw.write("  Maximum Volume Jobs = 1");
+			bw.write("  Maximum Volume Jobs = "+maximum_volume_job);
 			bw.newLine();
+			if(label_format.length()!=0){
+				bw.write("  Label format = \""+label_format+"\"");
+				bw.newLine();
+			}
 			bw.write("}");
 			bw.newLine();
 			bw.close();

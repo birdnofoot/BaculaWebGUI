@@ -32,30 +32,13 @@
 				</div>
 				</div>
 				
-				<br/>
-				
-				<button type="button" class="btn btn-default" onclick="toggleContent()">Show advanced options</button>
-				<div ID="advanced_form" style="display:none;">
-				
-				<br/>
-				<div class = "form-group">
-
-				<div class="col-xs-3">
-				<%
-				out.println(PrintJSP.printFieldInfo(Manual.getPoolLabelFormatInfo()));
-				%>
-				<label for="label_format">Label Format :</label>
-				<input type="text" class="form-control" name="label_format"/>
-				</div>
-				</div>
-
-				<div class = "form-group">
+								<div class = "form-group">
 				<div class="col-xs-3">
 				<%
 				out.println(PrintJSP.printFieldInfo(Manual.getPoolVolumeRetentionInfo()));
 				%>
-				<label for="volume_retention">Volume Retention :</label>
-				<input type="text" class="form-control" name="volume_retention"/>
+				<label for="volume_retention">Volume Retention <font color="red">*</font> :</label>
+				<input type="text" class="form-control" name="volume_retention" required/>
 				</div>
 				</div>
 				
@@ -64,19 +47,71 @@
 				<%
 				out.println(PrintJSP.printFieldInfo(Manual.getPoolMaxVolumeBytes()));
 				%>
-				<label for="maximum_volume_bytes">Maximum Volume Bytes :</label>
-				<input type="text" class="form-control" name="maximum_volume_bytes"/>
+				<label for="maximum_volume_bytes">Maximum Volume Bytes <font color="red">*</font> :</label>
+				<input type="text" class="form-control" name="maximum_volume_bytes" required/>
 				</div>
 				</div>
+				
 				<div class = "form-group">
 				<div class="col-xs-3">
 				<%
 				out.println(PrintJSP.printFieldInfo(Manual.getPoolMaxVolume()));
 				%>
-				<label for="maximum_volumes">Maximum Volumes :</label>
-				<input type="text" class="form-control" name="maximum_volumes"/>
+				<label for="maximum_volumes">Maximum Volumes <font color="red">*</font> :</label>
+				<input type="text" class="form-control" name="maximum_volumes" required/>
 				</div>
 				</div>
+				
+				<div class = "form-group">
+				<div class="col-xs-3">
+				<%
+				out.println(PrintJSP.printFieldInfo(Manual.getPoolMaxVolumeJob()));
+				%>
+				<label for="maximum_volume_jobs">Maximum Volume Jobs <font color="red">*</font> :</label>
+				<input type="text" class="form-control" name="maximum_volume_jobs" required/>
+				</div>
+				</div>
+				<br/>
+				
+				<button type="button" class="btn btn-default" onclick="toggleContent()">Show advanced options</button>
+				<div ID="advanced_form" style="display:none;">
+				
+				<br/>
+				
+				<div class = "form-group">
+				<div class="col-xs-3">
+				<label for="label_format">Recycle :</label>
+				<select class="form-control" name="recycle">
+					<option></option>
+					<option>yes</option>
+					<option>no</option>
+				</select>
+				</div>
+				</div>
+				
+				<div class = "form-group">
+				<div class="col-xs-3">
+				<label for="label_format">Auto Prune :</label>
+				<select class="form-control" name="autoprune">
+					<option></option>
+					<option>yes</option>
+					<option>no</option>
+				</select>
+				</div>
+				</div>
+				
+
+				
+				<div class = "form-group">
+				<div class="col-xs-3">
+				<%
+				out.println(PrintJSP.printFieldInfo(Manual.getPoolLabelFormatInfo()));
+				%>
+				<label for="label_format">Label Format :</label>
+				<input type="text" class="form-control" name="label_format"/>
+				</div>
+				</div>
+				
 				</div>
 				<br/>
 				<br/>

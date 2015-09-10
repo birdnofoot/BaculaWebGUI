@@ -451,7 +451,7 @@ public class PrintJSP {
 		sb.append("<div class=\"col-xs-3\">");
 		sb.append("<label for=\"label_media\">Schedule <font color=\"red\">*</font> :</label>");
 		sb.append("<select class=\"form-control\" name=\"schedule\" required>");
-		sb.append("<option>None</option>");
+		sb.append("<option></option>");
 		sb.append(PrintJSP.printNameJSP("Schedule"));
 		sb.append("	</select>");
 		sb.append("	</div>");
@@ -472,7 +472,7 @@ public class PrintJSP {
 		sb.append("<form data-toggle=\"validator\" class=\"form-horizontal\"");
 		sb.append("action=\"wizardservlet\" method=\"post\" novalidate>");
 		sb.append("<div class = \"form-group\">");
-		sb.append("<div class=\"alert alert-info\" role=\"alert\">Note : /home, /etc and /usr/local will be backed up. /usr/local/apache*/logs, /home/apachelogs folders (if exist) will be excluded.</div>");
+		sb.append("<div class=\"alert alert-info\" role=\"alert\">Note : /home, /etc and /usr/local will be backed up. /usr/local/apache*/logs,/home/apachelogs,/home/*/tomcat/logs,/home/OLD (if exist) will be excluded.</div>");
 		sb.append("<div class=\"col-md-3\">");
 		sb.append("<label for=\"device_name\">Host name <font color=\"red\">*</font> :</label>");
 		sb.append("<input type=\"text\" class=\"form-control\" name=\"host_name\" required />");
@@ -509,7 +509,7 @@ public class PrintJSP {
 		sb.append("<div class=\"col-xs-3\">");
 		sb.append("<label for=\"label_media\">Schedule <font color=\"red\">*</font> :</label>");
 		sb.append("<select class=\"form-control\" name=\"schedule\" required>");
-		sb.append("<option>None</option>");
+		sb.append("<option></option>");
 		sb.append(PrintJSP.printNameJSP("Schedule"));
 		sb.append("	</select>");
 		sb.append("	</div>");

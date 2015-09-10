@@ -204,10 +204,6 @@ $(".manual").tooltip({
 				<li><a href="Search.jsp" role="button" aria-haspopup="true"
 					aria-expanded="false">Search</a>
 				</li>
-				
-				<li><a href="Console.jsp" role="button" aria-haspopup="true"
-					aria-expanded="false">Console</a>
-				</li>
 						
 				<li class="dropdown">
 				<a href="#" class="dropdown-toggle"

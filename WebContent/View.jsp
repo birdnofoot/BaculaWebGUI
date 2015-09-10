@@ -58,7 +58,7 @@
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
     <%
-		out.println(AppUtils.printConfigHighlight(AppUtils.getConfigPathByType(type),type));
+    	out.println(AppUtils.printConfigHighlight(AppUtils.getConfigPathByType(type),type));
 	%>
 	</div>
 	</div>
