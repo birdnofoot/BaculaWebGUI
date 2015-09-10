@@ -198,6 +198,7 @@ $(".manual").tooltip({
 					</a>
 					<ul class="dropdown-menu">
 						<li><a href="RunJob.jsp">Run job</a></li>
+						<li><a href="RestartDaemon.jsp">Restart Bacula Daemon</a></li>
 					</ul>
 				</li>
 					
