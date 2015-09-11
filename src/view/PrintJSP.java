@@ -1,6 +1,7 @@
 package view;
 
 import java.io.File;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,6 +25,38 @@ public class PrintJSP {
 		int i = 0 ;
 		for(i=0;i<name_list.size();i++){
 			sb.append("<option>"+name_list.get(i)+"</option>");
+		}
+		jsp = sb.toString();
+		return jsp ;
+	}
+	
+	public static String printUpcomingJobs(){
+		String jsp = null ;
+		sb = new StringBuilder();
+		ArrayList<Job> out = new ArrayList<Job>();
+		out = BaculaParser.getScheduledJobs("365");
+		int i ;
+		
+		sb.append("<thead>");
+		sb.append("<th> Scheduled Time </th>");
+		sb.append("<th> Time left </th>");
+		sb.append("<th> Level </th>");
+		sb.append("<th> Name </th>");
+		sb.append("<th> Type </th>");
+		sb.append("<th> Priority </th>");
+		sb.append("<th> Volume </th>");
+		sb.append("</thead>");
+		
+		for(i=0;i<out.size();i++){
+			sb.append("<tr>");
+			sb.append("<td>"+out.get(i).getSchedTime()+"</td>");
+			sb.append("<td>"+BaculaParser.calculateRemainTime(out.get(i).getSchedTime())+"</td>");
+			sb.append("<td>"+out.get(i).getLevel()+"</td>");
+			sb.append("<td>"+out.get(i).getName()+"</td>");
+			sb.append("<td>"+out.get(i).getType()+"</td>");
+			sb.append("<td>"+out.get(i).getPriority()+"</td>");
+			sb.append("<td>"+out.get(i).getVolume()+"</td>");
+			sb.append("</tr>");
 		}
 		jsp = sb.toString();
 		return jsp ;

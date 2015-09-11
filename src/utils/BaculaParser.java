@@ -11,13 +11,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Stack;
 import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import model.Job;
 
 public class BaculaParser {
 
@@ -172,6 +181,115 @@ public class BaculaParser {
 	    	e.printStackTrace();
 	    }
 	    return name_list ;
+	}
+	
+	
+	public static ArrayList<String> getRawScheduledJobs(String days){
+		ArrayList<String> result = new ArrayList<String>();
+		ArrayList<String>[] output = AppUtils.runShell(Constant.getBash(), Constant.getViewUpcomingJobs(), days);
+		ArrayList<String> cmd_output = new ArrayList<String>();
+		cmd_output = output[0];
+		boolean nojob = false ;
+		int start = 0 ;
+		int end = 0 ;
+		ArrayList<Integer> upcomingJobsLine = new ArrayList<Integer>();
+		int i = 0 ;
+		for(i = 0;i<cmd_output.size();i++){
+			if(cmd_output.get(i).trim().contains("====")){
+				upcomingJobsLine.add(i);
+			}
+			if(cmd_output.get(i).trim().contains("No Scheduled Jobs")){
+				nojob = true ;
+			}
+		}
+		start = upcomingJobsLine.get(0);
+		end = upcomingJobsLine.get(1);
+		for(i = start;i<end;i++){
+			result.add(cmd_output.get(i));
+		}
+		if(!nojob){
+			result.remove(0);
+		}
+		else{
+			result = new ArrayList<String>();
+		}
+		return result;
+	}
+	
+	public static ArrayList<Job> getScheduledJobs(String days){
+		ArrayList<Job> result = new ArrayList<Job>();
+		ArrayList<String> schedJobs = BaculaParser.getRawScheduledJobs(days);
+		int i ;
+		for(i=0;i<schedJobs.size();i++){
+			String string = schedJobs.get(i);
+			String[] parts = string.split("\\s+");
+			
+			result.add(new Job(parts[0],parts[1],parts[2],
+					BaculaParser.getNormalDateFormat(parts[3])+" "+parts[4],parts[5],parts[6]));
+		}
+		return result;
+	}
+	
+	public static int getScheduledJobsNumber(){
+		ArrayList<Job> result = new ArrayList<Job>();
+		ArrayList<String> schedJobs = BaculaParser.getRawScheduledJobs("1");
+		int i ;
+		for(i=0;i<schedJobs.size();i++){
+			String string = schedJobs.get(i);
+			String[] parts = string.split("\\s+");
+			
+			result.add(new Job(parts[0],parts[1],parts[2],
+					BaculaParser.getNormalDateFormat(parts[3])+" "+parts[4],parts[5],parts[6]));
+		}
+		return result.size();
+	}
+	
+	public static String getNormalDateFormat(String date){
+		String year = null ;
+		String month = null ;
+		String day = null ;
+		String result = null ;
+		String[] parts = date.split("-");
+		int i ;
+		year = "20"+parts[2];
+		day = parts[0];
+		switch (parts[1]) {
+			case "Jan" : month = "01";break;
+			case "Feb" : month = "02";break;
+			case "Mar" : month = "03";break;
+			case "Apr" : month = "04";break;
+			case "May" : month = "05";break;
+			case "Jun" : month = "06";break;
+			case "Jul" : month = "07";break;
+			case "Aug" : month = "08";break;
+			case "Sep" : month = "09";break;
+			case "Oct" : month = "10";break;
+			case "Nov" : month = "11";break;
+			case "Dec" : month = "12";break;
+		}
+		result = year+"-"+month+"-"+day;
+		return result ;
+	}
+	
+	public static String calculateRemainTime(String scheduled_date){
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		java.util.Date scheduledDate;
+		Calendar current = Calendar.getInstance();
+		java.util.Date currentDate;
+		String current_date = format.format(current.getTime());
+		long diffInMillies = 0 ;
+		long diffence_in_seconds = 0 ;
+			try {
+				scheduledDate = format.parse(scheduled_date);
+				currentDate = format.parse(current_date);
+			    diffInMillies = scheduledDate.getTime() - currentDate.getTime();
+			    diffence_in_seconds = TimeUnit.SECONDS.convert(diffInMillies,TimeUnit.MILLISECONDS);
+			    
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			return AppUtils.formatTime(Objects.toString(diffence_in_seconds,null));
 	}
 
 	/**

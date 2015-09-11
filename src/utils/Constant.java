@@ -35,6 +35,7 @@ public class Constant {
 	private static String bash = "/bin/bash" ;
 	private static String runJobScritpt = "/etc/bacula/scripts/runjob.sh";
 	private static String restartDaemonScritpt = "/etc/bacula/scripts/restartDaemon.sh";
+	private static String viewUpcomingJobs = "/etc/bacula/scripts/viewUpcomingJobs.sh";
 	
 	public static String getPools() {
 		return pools;
@@ -177,5 +178,8 @@ public class Constant {
 	}
 	public static void setRestartDaemonScritpt(String restartDaemonScritpt) {
 		Constant.restartDaemonScritpt = restartDaemonScritpt;
+	}
+	public static String getViewUpcomingJobs() {
+		return viewUpcomingJobs;
 	}
 }

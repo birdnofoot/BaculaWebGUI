@@ -7,8 +7,8 @@ public class Job {
 	private int jobId ;
 	private String job ;
 	private String name ;
-	private char type ;
-	private char level ;
+	private String type ;
+	private String level ;
 	private int clientId ;
 	private char jobStatus ;
 	private String schedTime ;
@@ -31,6 +31,8 @@ public class Job {
 	private int hasCache ;
 	private int reviewed ;
 	private String comment ;
+	private String volume ;
+	private String priority ;
 	
 	/* Configuration file */
 	
@@ -60,7 +62,16 @@ public class Job {
 		this.where = where;
 		this.storage = storage;
 	}
-
+	
+	public Job(String level, String type, String priority, String schedTime, String name, String volume) {
+		this.level = level ;
+		this.type = type;
+		this.priority = priority ;
+		this.schedTime = schedTime ;
+		this.name = name;
+		this.volume = volume ;
+	}
+	
 	public int getJobId() {
 		return jobId;
 	}
@@ -85,19 +96,19 @@ public class Job {
 		this.name = name;
 	}
 
-	public char getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(char type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
-	public char getLevel() {
+	public String getLevel() {
 		return level;
 	}
 
-	public void setLevel(char level) {
+	public void setLevel(String level) {
 		this.level = level;
 	}
 
@@ -347,6 +358,22 @@ public class Job {
 
 	public void setStorage(String storage) {
 		this.storage = storage;
+	}
+
+	public String getVolume() {
+		return volume;
+	}
+
+	public void setVolume(String volume) {
+		this.volume = volume;
+	}
+
+	public String getPriority() {
+		return priority;
+	}
+
+	public void setPriority(String priority) {
+		this.priority = priority;
 	}
 	
 }

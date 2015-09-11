@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,6 +15,7 @@
 </style>
 </head>
 <body>
+<script type="text/javascript" src="js/bootstrap-select.js"></script>
 	<div class="container">
 
 	<%
@@ -52,6 +54,19 @@
 		<h1>Restart Bacula Daemon</h1>
 	</div>
 	
+	<%
+	DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
+	db_controller.openConnection();	
+	
+	if(db_controller.getRunningJobNumber() != 0){
+		out.println("<div class=\"alert alert-warning\" role=\"alert\">");
+		out.println("<span class=\"glyphicon glyphicon-warning-sign\" aria-hidden=\"true\"></span>");
+		out.print("<span>&nbsp;&nbsp; <a href=\"View.jsp?type=Job\" style=\"color:#8a6d3b\">You have running jobs at the moment. Restarting daemons will stop all running jobs.</a></span>");
+		out.println("</div>");
+		}
+	db_controller.closeConnection();
+	%>
+	
 <form data-toggle="validator" class="form-horizontal" action="restartdaemonservlet" method="post" novalidate>
 		<div class = "form-group">
 		<div class="col-xs-6">
@@ -67,10 +82,16 @@
 	    }
 	});
 	</script>
-
-    <input type="checkbox" name="bacula_sd" value="1"> Bacula Storage Daemon (bacula-sd)<br/>
-    <input type="checkbox" name="bacula_fd" value="1"> Bacula File Daemon (bacula-fd)<br/>
-    <input type="checkbox" name="bacula_director" value="1"> Bacula Director Daemon (bacula-director)<br/>
+	
+	<div class="checkbox">
+	  <label><input type="checkbox" name="bacula_sd" value="1">Bacula Storage Daemon (bacula-sd)</label>
+	</div>
+	<div class="checkbox">
+	  <label><input type="checkbox" name="bacula_fd" value="1">Bacula File Daemon (bacula-fd)</label>
+	</div>
+	<div class="checkbox">
+	  <label><input type="checkbox" name="bacula_director" value="1">Bacula Director Daemon (bacula-director)</label>
+	</div>
     <br/>
     <br/>
     </div>

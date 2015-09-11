@@ -19,11 +19,35 @@
 			statusMap = AppUtils.getJobStatusLong();
 		
     		DatabaseController db_controller = (DatabaseController)application.getAttribute("db_controller");
-    		db_controller.openConnection();	
-		out.print("<span>&nbsp;&nbsp;Today is "+AppUtils.getDate()+". You have <a href=\"View.jsp?type=Client\" style=\"color:#31708f\">" +db_controller.getClientNumber()+ 
-			" </a>clients and <a href=\"View.jsp?type=Job\" style=\"color:#31708f\">"+db_controller.getJobNumber()+"</a> jobs. </span>");
-		%>
-
+    		db_controller.openConnection();
+    		out.print("<span>&nbsp;&nbsp;Today is "+
+    	    		AppUtils.getDate()+". </span>");
+    		
+    		if(db_controller.getClientNumber()>1){
+    			out.print("<span>You have <a href=\"View.jsp?type=Client\" style=\"color:#31708f\">" +
+    					db_controller.getClientNumber()+ 
+    						" </a>clients</span>");
+    		}
+    		else{
+    			out.print("<span>You have <a href=\"View.jsp?type=Client\" style=\"color:#31708f\">" +
+    					db_controller.getClientNumber()+ 
+    						" </a>client</span>");
+    		}
+    		if(db_controller.getJobNumber()>1){
+    			 out.println("<span> and <a href=\"View.jsp?type=Job\" style=\"color:#31708f\">"+
+    						db_controller.getJobNumber()+"</a> jobs. </span>");
+    		}
+    		else{
+   			 out.println("<span> and <a href=\"View.jsp?type=Job\" style=\"color:#31708f\">"+
+						db_controller.getJobNumber()+"</a> job. </span>");
+    		}
+    		if(BaculaParser.getScheduledJobsNumber()>1){
+    			out.print("<span><a href=\"View.jsp?type=UpcomingJobs\" style=\"color:#31708f\">"+BaculaParser.getScheduledJobsNumber()+"</a> upcoming jobs are planned in next 24 hours.</span>");
+    		}
+    		else{
+    			out.print("<span><a href=\"View.jsp?type=UpcomingJobs\" style=\"color:#31708f\">"+BaculaParser.getScheduledJobsNumber()+"</a> upcoming job is planned in next 24 hours.</span>");
+    		}
+    		%>
 		</div>
 		<%
 		if(db_controller.getRunningJobNumber() != 0){
@@ -38,7 +62,7 @@
 			out.println("</div>");
 		}
 		%>
-		</div>		
+		</div>
 
 		<%-- DataTables --%>
 		<script type="text/javascript">

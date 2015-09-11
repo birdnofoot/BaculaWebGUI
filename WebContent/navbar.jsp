@@ -150,6 +150,7 @@ $(".manual").tooltip({
                     	<a href="#">Job</a>
               			<ul class="dropdown-menu">
 						<li><a href="View.jsp?type=Job">View Job</a></li>
+						<li><a href="View.jsp?type=UpcomingJobs">View Upcoming Jobs</a></li>
 					  	<li role="separator" class="divider"></li>
 						<li><a href="CreateJob.jsp">Create Job</a></li>
 						<li><a href="Delete.jsp?type=Job">Delete Job</a></li>

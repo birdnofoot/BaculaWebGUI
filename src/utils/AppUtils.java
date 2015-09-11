@@ -142,34 +142,34 @@ public class AppUtils {
 	                  TimeUnit.HOURS.toSeconds(hours) - TimeUnit.MINUTES.toSeconds(minute);
 	    if(day != 0){
 	    	if (day == 1){
-	    		time += day +" day";
+	    		time += day +" day ";
 	    	}
 	    	else{
-	    		time += day +" days";
+	    		time += day +" days ";
 	    	}
 	    }
 	    if(hours != 0){
 	    	if(hours == 1){
-	    		time += hours + " hour" ;
+	    		time += hours + " hour " ;
 	    	}
 	    	else{
-	    		time += hours + " hours" ;
+	    		time += hours + " hours " ;
 	    	}
 	    }
 	    if(minute != 0){
 	    	if(minute == 1){
-	    		time += minute + " minute";
+	    		time += minute + " minute ";
 	    	}
 	    	else{
-	    		time += minute + " minutes";
+	    		time += minute + " minutes ";
 	    	}
 	    }
 	    if(second != 0){
 	    	if(second == 0){
-	    		time += second + " second";
+	    		time += second + " second ";
 	    	}
 	    	else{
-	    		time += second + " seconds";
+	    		time += second + " seconds ";
 	    	}
 	    }
 	    return time ;
