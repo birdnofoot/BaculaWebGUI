@@ -12,7 +12,10 @@
 	<h1>Create storage</h1>
 	</div>
 	
-	<form data-toggle="validator" class="form-horizontal" action="createstorageservlet" method="post" novalidate>
+			<form data-toggle="validator" class="form-horizontal"
+				action="createservlet" method="post" novalidate>
+				
+				<input type="hidden" name="create_type" value="storage">
 	<div class = "form-group">
 	<div class="col-md-3">
 	<label for="storage_name">Storage name <font color="red">*</font> :</label>

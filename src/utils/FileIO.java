@@ -156,7 +156,7 @@ public class FileIO {
 			bw.newLine();
 			bw.write("  Name = \""+jobdefs_name+"\"");
 			bw.newLine();
-			if(jobdefs_name.length()!=0){
+			if(jobdefs_type.length()!=0){
 				bw.write("  Type = "+jobdefs_type);
 				bw.newLine();
 			}

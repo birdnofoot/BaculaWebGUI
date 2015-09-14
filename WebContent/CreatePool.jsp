@@ -13,7 +13,9 @@
 		</div>
 		
 			<form data-toggle="validator" class="form-horizontal"
-				action="createpoolservlet" method="post" novalidate>
+				action="createservlet" method="post" novalidate>
+				
+				<input type="hidden" name="create_type" value="pool">
 				<div class = "form-group">
 				<div class="col-md-3">
 				<label for="pool_name">Pool name <font color="red">*</font> :</label>

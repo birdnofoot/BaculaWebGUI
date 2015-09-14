@@ -14,7 +14,9 @@
 	</div>
 	
 	<form data-toggle="validator" class="form-horizontal"
-			action="createjobdefsservlet" method="post" novalidate>
+		action="createservlet" method="post" novalidate>
+		
+		<input type="hidden" name="create_type" value="jobdefs">
 			
 	<div class = "form-group">
 	<div class="col-xs-3">

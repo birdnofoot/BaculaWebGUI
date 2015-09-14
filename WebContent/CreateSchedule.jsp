@@ -15,8 +15,10 @@
 		<h1>Create Schedule</h1>
 		</div>
 
-		<form data-toggle="validator" id="form_create_fileset" class="form-horizontal"
-				action="createscheduleservlet" method="post" novalidate>
+			<form data-toggle="validator" class="form-horizontal"
+				action="createservlet" method="post" novalidate>
+				
+				<input type="hidden" name="create_type" value="schedule">
 
 		<div class = "form-group">
 		<div class="col-xs-3">

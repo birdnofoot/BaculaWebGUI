@@ -14,9 +14,11 @@
 		<div class="page-header">
 		<h1>Create fileset</h1>
 		</div>
-
-		<form data-toggle="validator" id="form_create_fileset" class="form-horizontal"
-				action="createfilesetservlet" method="post" novalidate>
+		
+			<form data-toggle="validator" class="form-horizontal"
+				action="createservlet" method="post" novalidate>
+				
+				<input type="hidden" name="create_type" value="fileset">
 
 		<div class = "form-group">
 		<div class="col-xs-3">

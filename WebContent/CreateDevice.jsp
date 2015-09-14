@@ -14,7 +14,9 @@
 		</div>
 		
 			<form data-toggle="validator" class="form-horizontal"
-				action="createdeviceservlet" method="post" novalidate>
+				action="createservlet" method="post" novalidate>
+				
+				<input type="hidden" name="create_type" value="device">
 				<div class = "form-group">
 				<div class="col-md-3">
 				<label for="device_name">Device name <font color="red">*</font> :</label>
