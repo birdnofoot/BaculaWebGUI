@@ -1,7 +1,6 @@
 package controller;
 
 import java.sql.*;
-
 import utils.Constant;
 
 public class DatabaseController {

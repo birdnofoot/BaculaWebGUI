@@ -8,7 +8,6 @@ public class Client {
 	private int isAutoPrune ; 
 	private int fileRetention ;
 	private int jobRetention ;
-	
 	private String address;
 	private int fdPort ;
 	private String catalog ;

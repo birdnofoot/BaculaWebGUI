@@ -182,7 +182,6 @@ public class AppUtils {
 		return dateFormat.format(date);
 	}
 	
-
 	public static String getConfigPathByType(String type){
 		String path = null ;
 		if(type.equals("Client")){

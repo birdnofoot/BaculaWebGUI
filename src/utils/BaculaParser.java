@@ -4,15 +4,12 @@
  * Author : Yuanbo Wang
  * 2015-08
  */
-
 package utils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -250,7 +247,6 @@ public class BaculaParser {
 		String day = null ;
 		String result = null ;
 		String[] parts = date.split("-");
-		int i ;
 		year = "20"+parts[2];
 		day = parts[0];
 		switch (parts[1]) {
